@@ -1,0 +1,294 @@
+/* ui.css — Styling kustom untuk LK Kas Harian
+   Light & Dark mode, palet warna kalem (Stitch-inspired), no overflow. */
+
+:root {
+  color-scheme: light;
+  /* ===== Light theme ===== */
+  --lk-bg:           #f7f9f7;        /* hijau-putih kalem, bukan putih murni */
+  --lk-bg-elev:      #ffffff;        /* kartu / form */
+  --lk-text:         #1a1c1b;        /* hampir hitam, kontras tinggi */
+  --lk-text-muted:   #5e6b67;        /* secondary text, cukup terbaca */
+  --lk-text-faint:   #8a9793;        /* placeholder, hint */
+  --lk-border:       #d8e0dc;        /* subtle border */
+  --lk-border-strong:#b4c2bd;
+  --lk-primary:      #2d6a4f;        /* hijau tua, financial app vibe */
+  --lk-primary-hover:#1f5040;
+  --lk-primary-text: #ffffff;
+  --lk-success:      #2d6a4f;        /* income green */
+  --lk-danger:       #b3261e;        /* expense red */
+  --lk-warning:      #b07d1e;        /* amber */
+  --lk-accent:       #5a7a93;        /* blue-grey untuk net/saldo */
+  --lk-shadow:       0 1px 2px rgba(15, 23, 22, 0.06), 0 1px 3px rgba(15, 23, 22, 0.04);
+  --lk-shadow-lg:    0 4px 12px rgba(15, 23, 22, 0.08);
+}
+
+html.dark {
+  color-scheme: dark;
+  /* ===== Dark theme ===== */
+  --lk-bg:           #131614;        /* hijau-hitam, bukan pure black */
+  --lk-bg-elev:      #1c201e;        /* kartu di atas bg */
+  --lk-bg-elev-2:    #252a27;        /* hover state, nested */
+  --lk-text:         #e8edea;        /* off-white, lebih lembut */
+  --lk-text-muted:   #a8b5b0;        /* secondary */
+  --lk-text-faint:   #6b7873;        /* placeholder */
+  --lk-border:       #2d3531;        /* subtle */
+  --lk-border-strong:#404a45;
+  --lk-primary:      #6ec39c;        /* hijau pastel, kontras di dark */
+  --lk-primary-hover:#84d4ad;
+  --lk-primary-text: #0a1a13;
+  --lk-success:      #6ec39c;
+  --lk-danger:       #f5a5a3;        /* soft red */
+  --lk-warning:      #e8c074;
+  --lk-accent:       #9ec0d4;        /* blue pastel */
+  --lk-shadow:       0 1px 2px rgba(0, 0, 0, 0.4);
+  --lk-shadow-lg:    0 4px 16px rgba(0, 0, 0, 0.5);
+}
+
+body {
+  font-family: Inter, system-ui, -apple-system, "Segoe UI", sans-serif;
+  min-height: 100dvh;
+  background-color: var(--lk-bg);
+  color: var(--lk-text);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  word-wrap: break-word;
+  overflow-wrap: anywhere;
+}
+
+/* Inherit color untuk elemen tanpa explicit class */
+input, select, textarea, button, p, span, label, h1, h2, h3, h4, h5, h6, div, article, section, li, td, th {
+  color: inherit;
+}
+
+/* Placeholder */
+input::placeholder, textarea::placeholder {
+  color: var(--lk-text-faint);
+  opacity: 1;
+}
+
+/* ===== Form inputs ===== */
+.lk-input,
+input[type="text"]:not([class*="bg-"]),
+input[type="password"]:not([class*="bg-"]),
+input[type="email"]:not([class*="bg-"]),
+input[type="number"]:not([class*="bg-"]),
+input[type="date"]:not([class*="bg-"]),
+input[type="search"]:not([class*="bg-"]),
+select:not([class*="bg-"]),
+textarea:not([class*="bg-"]) {
+  background-color: var(--lk-bg-elev);
+  color: var(--lk-text);
+  border: 1px solid var(--lk-border);
+  border-radius: 8px;
+  padding: 0.625rem 0.875rem;
+  font-size: 0.95rem;
+  line-height: 1.4;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+.lk-input:focus,
+input[type="text"]:focus, input[type="password"]:focus,
+input[type="email"]:focus, input[type="number"]:focus,
+input[type="date"]:focus, input[type="search"]:focus,
+select:focus, textarea:focus {
+  outline: none;
+  border-color: var(--lk-primary);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--lk-primary) 25%, transparent);
+}
+html.dark .lk-input,
+html.dark input[type="text"]:not([class*="bg-"]),
+html.dark input[type="password"]:not([class*="bg-"]),
+html.dark input[type="email"]:not([class*="bg-"]),
+html.dark input[type="number"]:not([class*="bg-"]),
+html.dark input[type="date"]:not([class*="bg-"]),
+html.dark input[type="search"]:not([class*="bg-"]),
+html.dark select:not([class*="bg-"]),
+html.dark textarea:not([class*="bg-"]) {
+  background-color: var(--lk-bg-elev-2);
+  border-color: var(--lk-border-strong);
+}
+
+/* ===== Cards / surface ===== */
+.lk-card,
+.bg-surface,
+[class*="bg-surface"] {
+  background-color: var(--lk-bg-elev) !important;
+  border: 1px solid var(--lk-border);
+  border-radius: 12px;
+  box-shadow: var(--lk-shadow);
+}
+html.dark [class*="dark:bg-\\[#"] {
+  background-color: var(--lk-bg-elev) !important;
+}
+
+/* ===== Buttons ===== */
+.lk-btn-primary,
+button[class*="bg-primary"]:not([class*="bg-primary/"]),
+button.lk-primary {
+  background-color: var(--lk-primary);
+  color: var(--lk-primary-text);
+  font-weight: 500;
+  border: none;
+  border-radius: 8px;
+  padding: 0.625rem 1rem;
+  cursor: pointer;
+  transition: background-color 0.15s, transform 0.1s;
+}
+.lk-btn-primary:hover,
+button[class*="bg-primary"]:hover {
+  background-color: var(--lk-primary-hover);
+}
+.lk-btn-primary:active,
+button[class*="bg-primary"]:active {
+  transform: translateY(1px);
+}
+.lk-btn-primary:disabled,
+button[class*="bg-primary"]:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.lk-btn-secondary,
+button[class*="border-outline"]:not([class*="bg-"]) {
+  background-color: transparent;
+  color: var(--lk-text);
+  border: 1px solid var(--lk-border);
+  border-radius: 8px;
+  padding: 0.5rem 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.15s, border-color 0.15s;
+}
+.lk-btn-secondary:hover {
+  background-color: var(--lk-bg-elev-2);
+  border-color: var(--lk-border-strong);
+}
+
+/* Danger ghost button (untuk hapus per-item) */
+.lk-btn-danger-ghost {
+  background-color: transparent;
+  color: var(--lk-danger);
+  border: 1px solid transparent;
+  border-radius: 6px;
+  padding: 0.25rem 0.5rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.15s, border-color 0.15s;
+}
+.lk-btn-danger-ghost:hover {
+  background-color: color-mix(in srgb, var(--lk-danger) 12%, transparent);
+  border-color: color-mix(in srgb, var(--lk-danger) 30%, transparent);
+}
+.lk-btn-danger-ghost:active {
+  transform: scale(0.96);
+}
+
+/* ===== Text colors override Tailwind ===== */
+.text-on-surface,
+.dark\:text-surface-bright {
+  color: var(--lk-text) !important;
+}
+.text-on-surface-variant,
+.dark\:text-surface-variant {
+  color: var(--lk-text-muted) !important;
+}
+
+/* ===== Semantic colors ===== */
+.lk-text-success,
+.text-secondary,
+.dark\:text-secondary-fixed {
+  color: var(--lk-success) !important;
+}
+.lk-text-danger,
+.text-tertiary,
+.dark\:text-tertiary-fixed {
+  color: var(--lk-danger) !important;
+}
+.lk-text-accent,
+.text-primary,
+.dark\:text-primary-fixed-dim {
+  color: var(--lk-primary) !important;
+}
+.lk-bg-success-soft { background-color: color-mix(in srgb, var(--lk-success) 12%, transparent); }
+.lk-bg-danger-soft  { background-color: color-mix(in srgb, var(--lk-danger)  12%, transparent); }
+
+/* Error text */
+.text-error,
+.lk-text-error {
+  color: var(--lk-danger);
+}
+
+/* ===== Layout safety (anti overflow) ===== */
+.lk-page { max-width: 1280px; margin-left: auto; margin-right: auto; padding: 1rem; box-sizing: border-box; }
+@media (min-width: 768px) { .lk-page { padding: 1.5rem 2rem; } }
+
+.lk-row { display: flex; flex-wrap: wrap; gap: 0.75rem; min-width: 0; }
+.lk-row > * { min-width: 0; flex: 1 1 0; }
+
+.lk-grid-3 { display: grid; grid-template-columns: 1fr; gap: 0.75rem; }
+@media (min-width: 768px) { .lk-grid-3 { grid-template-columns: repeat(3, 1fr); } }
+
+.lk-grid-2 { display: grid; grid-template-columns: 1fr; gap: 0.75rem; }
+@media (min-width: 768px) { .lk-grid-2 { grid-template-columns: repeat(2, 1fr); } }
+
+.lk-stack { display: flex; flex-direction: column; gap: 0.5rem; min-width: 0; }
+
+/* Header / nav */
+.lk-header {
+  position: sticky; top: 0; z-index: 10;
+  background-color: color-mix(in srgb, var(--lk-bg) 85%, transparent);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--lk-border);
+}
+.lk-header-inner {
+  max-width: 1280px; margin: 0 auto; padding: 0.75rem 1rem;
+  display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+  flex-wrap: wrap;
+}
+@media (min-width: 768px) { .lk-header-inner { padding: 0.75rem 1.5rem; } }
+
+/* Money formatting */
+.lk-money-in  { color: var(--lk-success); font-variant-numeric: tabular-nums; font-weight: 600; }
+.lk-money-out { color: var(--lk-danger);  font-variant-numeric: tabular-nums; font-weight: 600; }
+.lk-money-net { color: var(--lk-accent);  font-variant-numeric: tabular-nums; font-weight: 600; }
+
+/* Toast/notification */
+.lk-toast {
+  position: fixed; bottom: 1rem; left: 50%; transform: translateX(-50%);
+  background-color: var(--lk-bg-elev);
+  color: var(--lk-text);
+  border: 1px solid var(--lk-border);
+  border-radius: 8px;
+  padding: 0.75rem 1rem;
+  box-shadow: var(--lk-shadow-lg);
+  z-index: 50;
+  max-width: 90vw;
+}
+.lk-toast-success { border-color: var(--lk-success); }
+.lk-toast-error   { border-color: var(--lk-danger); color: var(--lk-danger); }
+
+/* Step transitions */
+.step-transition { transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); }
+.step-hidden { opacity: 0; transform: translateX(20px); pointer-events: none; position: absolute; width: 100%; }
+.step-visible { opacity: 1; transform: translateX(0); position: relative; }
+
+.hide-scrollbar::-webkit-scrollbar { display: none; }
+.hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+.pb-safe { padding-bottom: env(safe-area-inset-bottom, 16px); }
+
+/* Accessibility */
+input:focus-visible, select:focus-visible, textarea:focus-visible, button:focus-visible {
+  outline: 2px solid var(--lk-primary);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    transition: none !important;
+    animation: none !important;
+  }
+}

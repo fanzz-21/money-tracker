@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html class="light" lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Masuk — FinTrack Pro</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&display=swap" rel="stylesheet" />
+  <script src="js/pwa.js?v=1"></script>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <script src="js/tailwind-config.js"></script>
+  <link rel="stylesheet" href="css/ui.css" />
+</head>
+<body class="bg-background dark:bg-inverse-surface text-on-background dark:text-surface-bright min-h-screen flex flex-col items-center justify-center p-margin-mobile md:p-margin-desktop antialiased">
+  <button type="button" data-theme-toggle class="absolute top-4 right-4 p-2 rounded-full hover:bg-surface-container dark:hover:bg-on-surface/10 transition-colors" aria-label="Ganti tema">
+    <span class="material-symbols-outlined text-on-surface-variant dark:text-surface-variant" data-theme-icon>dark_mode</span>
+  </button>
+
+  <div class="w-full max-w-sm">
+    <div class="text-center mb-8">
+      <span class="material-symbols-outlined text-primary dark:text-primary-fixed-dim text-5xl mb-4">account_balance_wallet</span>
+      <h1 class="font-display-md text-display-md text-primary dark:text-primary-fixed-dim">FinTrack Pro</h1>
+      <p class="font-body-sm text-body-sm text-on-surface-variant dark:text-surface-variant mt-2">Akses aman ke dasbor keuangan Anda</p>
+    </div>
+
+    <div class="bg-surface dark:bg-[#25262e] rounded-xl border border-outline-variant dark:border-outline shadow-[0px_10px_15px_-3px_rgba(0,0,0,0.1)] p-6 relative overflow-hidden min-h-[16rem]">
+      <div class="relative w-full" id="steps-container">
+        <div class="step-transition step-visible" id="step-1">
+          <form class="flex flex-col gap-6" id="form-step-1">
+            <div>
+              <label class="block font-label-sm text-label-sm text-on-surface dark:text-surface-bright mb-2" for="identifier">Username</label>
+              <input id="identifier" type="text" autocomplete="username" required
+                class="w-full bg-transparent border border-outline-variant rounded p-3 font-body-md text-body-md text-on-surface dark:text-surface-bright placeholder:text-on-surface-variant dark:placeholder:text-surface-variant focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all"
+                placeholder="contoh: fanzz" />
+              <p id="err-1" class="mt-2 text-body-sm text-error dark:text-[#ffb3b6] hidden"></p>
+            </div>
+            <button type="submit" class="w-full bg-primary hover:bg-primary-container text-on-primary font-label-md text-label-md rounded p-3 transition-colors shadow-sm hover:shadow-md hover:-translate-y-0.5 transform">
+              Lanjut
+            </button>
+          </form>
+        </div>
+
+        <div class="step-transition step-hidden" id="step-2">
+          <form class="flex flex-col gap-6" id="form-step-2">
+            <div>
+              <div class="flex items-center mb-4">
+                <button type="button" id="btn-back" class="mr-2 text-on-surface-variant hover:text-primary transition-colors" aria-label="Kembali">
+                  <span class="material-symbols-outlined text-sm">arrow_back</span>
+                </button>
+                <span class="font-body-sm text-body-sm text-on-surface-variant dark:text-surface-variant truncate" id="display-identifier"></span>
+              </div>
+              <label class="block font-label-sm text-label-sm text-on-surface dark:text-surface-bright mb-2" for="password">Password</label>
+              <input id="password" type="password" autocomplete="current-password" required minlength="4"
+                class="w-full bg-transparent border border-outline-variant rounded p-3 font-body-md text-body-md text-on-surface dark:text-surface-bright focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all"
+                placeholder="Minimal 4 karakter" />
+              <p id="mode-hint" class="mt-2 font-body-sm text-body-sm text-on-surface-variant dark:text-surface-variant"></p>
+              <p id="err-2" class="mt-2 text-body-sm text-error dark:text-[#ffb3b6] hidden"></p>
+            </div>
+            <button type="submit" id="btn-submit" class="w-full bg-primary hover:bg-primary-container text-on-primary font-label-md text-label-md rounded p-3 transition-colors shadow-sm hover:shadow-md hover:-translate-y-0.5 transform">
+              Masuk
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+    <p class="mt-4 text-center font-body-sm text-body-sm text-on-surface-variant dark:text-surface-variant">Akun baru dibuat otomatis saat username belum terdaftar.</p>
+  </div>
+
+  <script>
+    window.LK_CONFIG = {
+      url: "https://begnlasmgmobpyebzgsc.supabase.co",
+      key: "sb_publishable_AFDwKgE47-P3Z6TyxKYp-A_j_5JaZtD"
+    };
+    window.LK_CACHE_BUST = Date.now();
+  </script>
+  <script src="js/theme.js?v=2"></script>
+  <script src="js/ready.js?v=2"></script>
+  <script type="module" src="js/supabase.js?v=2"></script>
+  <script type="module" src="js/auth.js?v=2"></script>
+  <script src="js/login.js?v=2"></script>
+</body>
+</html>

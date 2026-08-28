@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html class="light" lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Dasbor — Kas Harian</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&display=swap" rel="stylesheet" />
+  <script src="js/pwa.js?v=1"></script>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <script src="js/tailwind-config.js"></script>
+  <link rel="stylesheet" href="css/ui.css" />
+</head>
+<body class="min-h-screen flex flex-col">
+  <header class="lk-header">
+    <div class="lk-header-inner">
+      <a href="index.html" class="flex items-center gap-2 min-w-0">
+        <span class="material-symbols-outlined lk-text-accent text-2xl shrink-0">account_balance_wallet</span>
+        <h1 class="text-lg font-semibold truncate">Kas Harian</h1>
+      </a>
+      <div class="flex items-center gap-2 shrink-0">
+        <button type="button" data-theme-toggle class="p-2 rounded-full hover:bg-black/5 dark:hover:bg-white/10 transition-colors" aria-label="Ganti tema">
+          <span class="material-symbols-outlined text-xl" data-theme-icon>dark_mode</span>
+        </button>
+        <a href="input.html" class="lk-btn-primary text-sm flex items-center gap-1">
+          <span class="material-symbols-outlined text-lg">add</span>
+          <span class="hidden sm:inline">Tambah</span>
+        </a>
+        <a href="history.html" class="lk-btn-secondary text-sm flex items-center gap-1">
+          <span class="material-symbols-outlined text-lg">history</span>
+          <span class="hidden sm:inline">Riwayat</span>
+        </a>
+        <button id="btn-logout" class="lk-btn-secondary text-sm flex items-center gap-1" aria-label="Keluar">
+          <span class="material-symbols-outlined text-lg">logout</span>
+          <span class="hidden sm:inline">Keluar</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main class="flex-1 lk-page lk-stack" style="gap:1rem">
+    <!-- Ringkasan -->
+    <section class="lk-grid-3" aria-label="Ringkasan keuangan">
+      <article class="lk-card p-4 min-w-0">
+        <p class="text-xs uppercase tracking-wide text-[var(--lk-text-muted)] mb-1">Masuk (bulan ini)</p>
+        <p id="sum-in" class="text-2xl font-semibold lk-money-in truncate">Rp 0</p>
+      </article>
+      <article class="lk-card p-4 min-w-0">
+        <p class="text-xs uppercase tracking-wide text-[var(--lk-text-muted)] mb-1">Keluar (bulan ini)</p>
+        <p id="sum-out" class="text-2xl font-semibold lk-money-out truncate">Rp 0</p>
+      </article>
+      <article class="lk-card p-4 min-w-0">
+        <p class="text-xs uppercase tracking-wide text-[var(--lk-text-muted)] mb-1">Saldo kumulatif</p>
+        <p id="sum-net" class="text-2xl font-semibold lk-money-net truncate">Rp 0</p>
+      </article>
+    </section>
+
+    <!-- Chart aliran -->
+    <section class="lk-card p-4 md:p-6 min-w-0">
+      <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-3 mb-4">
+        <div class="min-w-0">
+          <h2 class="text-lg font-semibold">Aliran kas</h2>
+          <p class="text-sm text-[var(--lk-text-muted)]">Trend pemasukan & pengeluaran per bulan</p>
+        </div>
+        <div class="flex items-center gap-2 shrink-0">
+          <label for="chart-period" class="text-sm text-[var(--lk-text-muted)]">Periode</label>
+          <select id="chart-period" class="text-sm" style="width:auto;min-width:7rem">
+            <option value="6">6 bulan</option>
+            <option value="12" selected>12 bulan</option>
+          </select>
+        </div>
+      </div>
+      <div class="relative" style="height:16rem" role="img" aria-label="Chart aliran kas">
+        <canvas id="flow-chart" class="w-full h-full"></canvas>
+        <div id="chart-legend" class="flex flex-wrap gap-3 justify-center mt-3 text-sm" aria-hidden="true"></div>
+      </div>
+    </section>
+
+    <!-- Chart kategori -->
+    <section class="lk-card p-4 md:p-6 min-w-0">
+      <h2 class="text-lg font-semibold mb-4">Pengeluaran per kategori (bulan ini)</h2>
+      <div class="relative" style="height:14rem" role="img" aria-label="Chart pengeluaran per kategori">
+        <canvas id="cat-chart" class="w-full h-full"></canvas>
+      </div>
+      <div id="cat-legend" class="grid grid-cols-2 md:grid-cols-4 gap-2 text-center text-sm mt-3"></div>
+    </section>
+
+    <!-- Budget bulan ini -->
+    <section class="lk-card p-4 md:p-6 min-w-0" id="budget-section">
+      <div class="flex items-center justify-between gap-2 mb-3">
+        <div class="min-w-0">
+          <h2 class="text-lg font-semibold">Budget bulan ini</h2>
+          <p class="text-sm text-[var(--lk-text-muted)]">Set di halaman Tambah. Tidak di-sync ke server.</p>
+        </div>
+        <a href="input.html" class="lk-btn-secondary text-sm shrink-0">Kelola</a>
+      </div>
+      <div id="budget-list" class="lk-stack" style="gap:0.5rem"></div>
+      <p id="budget-empty" class="text-sm text-[var(--lk-text-muted)] text-center py-3">Belum ada budget yang disetel.</p>
+    </section>
+
+    <!-- Transaksi hari ini -->
+    <section class="lk-stack min-w-0">
+      <div class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-3">
+        <h2 class="text-lg font-semibold">Transaksi hari ini</h2>
+        <a href="input.html" class="lk-btn-primary text-sm self-start sm:self-auto flex items-center gap-1">
+          <span class="material-symbols-outlined text-lg">add</span> Tambah
+        </a>
+      </div>
+      <div id="today-list" class="lk-card overflow-hidden min-w-0">
+        <p class="p-6 text-center text-[var(--lk-text-muted)]" id="today-empty">Belum ada transaksi hari ini.</p>
+      </div>
+    </section>
+  </main>
+
+  <!-- Toast container -->
+  <div id="toast" class="lk-toast hidden" role="status" aria-live="polite"></div>
+
+  <script>
+    window.LK_CONFIG = {
+      url: "https://begnlasmgmobpyebzgsc.supabase.co",
+      key: "sb_publishable_AFDwKgE47-P3Z6TyxKYp-A_j_5JaZtD"
+    };
+    window.LK_CACHE_BUST = Date.now();
+  </script>
+  <script src="js/theme.js?v=3"></script>
+  <script src="js/ready.js?v=3"></script>
+  <script type="module" src="js/supabase.js?v=3"></script>
+  <script type="module" src="js/auth.js?v=3"></script>
+  <script type="module" src="js/storage.js?v=4"></script>
+  <script type="module" src="js/realtime.js?v=1"></script>
+  <script type="module" src="js/budget.js?v=1"></script>
+  <script src="js/notify.js?v=4"></script>
+  <script src="js/chart.js?v=4"></script>
+  <script src="js/dashboard.js?v=4"></script>
+</body>
+</html>
