@@ -125,20 +125,14 @@ export async function requireAuth() {
 export function redirectAfterAuth() {
   const params = new URLSearchParams(location.search);
   const next = params.get("next") || "index.html";
-  // Anti open-redirect: `next` hanya boleh path relatif same-origin.
-  // Tolak: scheme (http/https/ftp), protocol-relative (//), backslash,
-  // whitespace, DAN kontrol — `:x` saja tidak cukup (mis. "javascript:alert(1)"
-  // di-encode sebagai "javascript%3aalert(1)" oleh requireAuth()).
-  const safe =
-    next.startsWith("/") === false &&
-    !/^(?:[a-z][a-z0-9+.-]*:|\/\/|\\|\s)/i.test(next) &&
-    !next.includes("\\") &&
-    next.length <= 2048;
-  if (!safe || next.includes("login.html")) {
-    location.replace("index.html");
-    return;
-  }
-  location.replace(next);
+  // Anti open-redirect: allowlist ketat. `location.replace` hanya pernah
+  // menerima string konstan dari ALLOWED_PAGES — nilai `next` dari URL
+  // tidak pernah mengalir langsung ke sink (juga memblokir
+  // javascript:/data:/scheme lain, protocol-relative, backslash, query
+  // tersamar, dsb. karena harus match persis salah satu entri).
+  const ALLOWED_PAGES = ["index.html", "input.html", "history.html", "profile.html"];
+  const target = ALLOWED_PAGES.includes(next) ? next : "index.html";
+  location.replace(target);
 }
 
 // Helper untuk deteksi akun di login step 1

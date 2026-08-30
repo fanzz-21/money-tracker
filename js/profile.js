@@ -179,15 +179,15 @@ function bindPasswordForm(Auth, email) {
     const cur = pwCurrent.value;
     const next = pwNew.value;
     const conf = pwConfirm.value;
-    if (next.length < 6) return showErr("Password baru minimal 6 karakter.");
-    if (next !== conf) return showErr("Konfirmasi password tidak cocok.");
+    if (next.length < 6) { showErr("Password baru minimal 6 karakter."); return; }
+    if (next !== conf) { showErr("Konfirmasi password tidak cocok."); return; }
     try {
       const supabase = window.supabase || (await import("./supabase.js")).supabase;
       // Supabase Auth: updateUser butuh session fresh — signIn ulang dulu.
       const lr = await supabase.auth.signInWithPassword({ email, password: cur });
-      if (lr.error) return showErr("Password saat ini salah.");
+      if (lr.error) { showErr("Password saat ini salah."); return; }
       const upd = await supabase.auth.updateUser({ password: next });
-      if (upd.error) return showErr(upd.error.message);
+      if (upd.error) { showErr(upd.error.message); return; }
       showOk("Password berhasil diupdate. Silakan login ulang di sesi lain.");
       pwForm.reset();
       setTimeout(async () => {
