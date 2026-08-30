@@ -8,7 +8,7 @@ import Storage from "./storage.js";
 import { supabase } from "./supabase.js";
 
 const EXPORT_VERSION = 1;
-const MAX_AMOUNT = 1_000_000_000;
+const MAX_AMOUNT = 1000000000;
 const MAX_NOTE_LENGTH = 500;
 
 // Pakai whitelist dari Storage.CATS (single source of truth)
@@ -90,9 +90,12 @@ async function clearAll() {
   const { data: { user } } = await supabase.auth.getUser();
   if (!user) throw new Error("Belum login.");
   // Hapus semua row user. Batched untuk hindari request timeout.
+  // Loop dibatasi MAX_BATCHES untuk menjamin terminasi (anti infinite-loop
+  // kalau backend anomaly membuat delete tidak pernah empty).
   const BATCH = 500;
+  const MAX_BATCHES = 1000; // 1000 x 500 = 500.000 row — jauh di atas realita
   let deleted = 0;
-  while (true) {
+  for (let attempt = 0; attempt < MAX_BATCHES; attempt++) {
     const { data, error } = await supabase
       .from("transactions")
       .delete()
