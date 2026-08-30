@@ -20,6 +20,7 @@ const SHELL = [
   "./login.html",
   "./css/ui.css",
   "./js/supabase.js",
+  "./js/config.js",
   "./js/auth.js",
   "./js/storage.js",
   "./js/realtime.js",

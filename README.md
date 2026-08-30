@@ -40,25 +40,19 @@ LK/
 
 ### 2. Konfigurasi frontend
 
-Semua HTML saat ini berisi placeholder:
+Semua konfigurasi Supabase terpusat di **satu file**: `js/config.js`.
 
 ```js
+// js/config.js
 window.LK_CONFIG = {
   url: "https://YOUR-PROJECT-REF.supabase.co",
   key: "YOUR_SUPABASE_PUBLISHABLE_KEY"
 };
 ```
 
-**Ganti** `YOUR-PROJECT-REF` dan `YOUR_SUPABASE_PUBLISHABLE_KEY` di **5 file**:
-
-| File | Letak |
-|---|---|
-| `index.html` | `<script>window.LK_CONFIG = …` |
-| `login.html` | `<script>window.LK_CONFIG = …` |
-| `input.html` | `<script>window.LK_CONFIG = …` |
-| `history.html` | `<script>window.LK_CONFIG = …` |
-| `profile.html` | `<script>window.LK_CONFIG = …` |
-| `js/supabase.js` | `DEFAULT_URL` + `DEFAULT_KEY` |
+**Hanya edit di sini.** Setiap HTML (`index.html`, `login.html`, `input.html`,
+`history.html`, `profile.html`) me-load `js/config.js` duluan sebelum module lain,
+sehingga Anda tidak perlu copy-paste URL/key ke banyak tempat.
 
 Atau override di dev tanpa edit file (lebih aman untuk live deploy):
 

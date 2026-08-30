@@ -87,15 +87,27 @@
   function renderToday() {
     const t = Storage.byDate(items, today);
     if (!t.length) {
-      todayEmpty.hidden = false;
-      todayList.querySelectorAll("article").forEach((e) => e.remove());
+      todayEmpty.hidden = true;
+      todayList.innerHTML = `
+        <div class="lk-empty">
+          <div class="lk-empty-icon">
+            <span class="material-symbols-outlined">inbox</span>
+          </div>
+          <p class="lk-empty-title">Belum ada transaksi hari ini</p>
+          <p class="lk-empty-sub">Catat pemasukan atau pengeluaran pertamamu untuk mulai tracking.</p>
+          <a href="input.html" class="lk-empty-cta">
+            <span class="material-symbols-outlined text-lg">add</span>
+            <span>Catat transaksi</span>
+          </a>
+        </div>
+      `;
       return;
     }
     todayEmpty.hidden = true;
     todayList.innerHTML = "";
     t.forEach((row) => {
       const art = document.createElement("article");
-      art.className = "px-4 py-3 border-t border-[var(--lk-border)] first:border-t-0 flex items-center justify-between gap-3 min-w-0";
+      art.className = "px-4 py-3 border-t border-[var(--lk-border)] first:border-t-0 flex items-center justify-between gap-3 min-w-0 lk-fade-in";
       const sign = row.type === "in" ? "+" : "−";
       const colorClass = row.type === "in" ? "lk-money-in" : "lk-money-out";
       const ts = new Date(row.ts);
@@ -158,6 +170,13 @@
     const username = (u && u.user_metadata && u.user_metadata.username) || email.split("@")[0] || "User";
     if (userAvatar) userAvatar.textContent = (username[0] || "?").toUpperCase();
     if (userName) userName.textContent = username;
+  }
+
+  // Saat data loaded, kasih fade-in ke ringkasan cards supaya perpindahan
+  // dari skeleton -> real content tidak "jambred".
+  for (const id of ["sum-in", "sum-out", "sum-net"]) {
+    const el = document.getElementById(id);
+    if (el) el.classList.add("lk-content-fade");
   }
 
   rerenderAll();

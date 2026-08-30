@@ -36,13 +36,9 @@
           <span class="material-symbols-outlined text-lg">history</span>
           <span class="hidden sm:inline">Riwayat</span>
         </a>
-        <a href="profile.html" id="user-chip" class="flex items-center gap-2 pl-2 pr-3 py-1 rounded-full bg-black/5 dark:bg-white/10 hover:bg-black/10 dark:hover:bg-white/15 transition-colors min-w-0" aria-label="Buka profil" title="Buka profil">
-          <span class="material-symbols-outlined text-lg shrink-0" aria-hidden="true">account_circle</span>
-          <span class="flex items-center gap-1 min-w-0">
-            <span class="text-xs uppercase tracking-wide opacity-70 hidden md:inline">Profil</span>
-            <span id="user-name" class="text-sm font-medium truncate max-w-[10rem]">User</span>
-          </span>
-          <span id="user-avatar" class="w-7 h-7 rounded-full flex items-center justify-center font-semibold text-xs shrink-0" style="background:linear-gradient(135deg, var(--lk-primary), color-mix(in srgb, var(--lk-primary) 60%, var(--lk-accent)));color:var(--lk-primary-text)">?</span>
+        <a href="profile.html" id="user-chip" class="flex items-center gap-2 pl-1 pr-3 py-1 rounded-full bg-black/5 dark:bg-white/10 hover:bg-black/10 dark:hover:bg-white/15 transition-colors min-w-0" aria-label="Buka profil" title="Buka profil">
+          <span id="user-avatar" class="w-8 h-8 rounded-full flex items-center justify-center font-semibold text-sm shrink-0 ring-2 ring-[var(--lk-bg)]" style="background:linear-gradient(135deg, var(--lk-primary), color-mix(in srgb, var(--lk-primary) 60%, var(--lk-accent)));color:var(--lk-primary-text)">?</span>
+          <span id="user-name" class="text-sm font-medium truncate max-w-[10rem]">User</span>
         </a>
       </div>
     </div>
@@ -135,13 +131,7 @@
   <!-- Toast container -->
   <div id="toast" class="lk-toast hidden" role="status" aria-live="polite"></div>
 
-  <script>
-    window.LK_CONFIG = {
-      url: "https://YOUR-PROJECT-REF.supabase.co",
-      key: "YOUR_SUPABASE_PUBLISHABLE_KEY"
-    };
-    window.LK_CACHE_BUST = Date.now();
-  </script>
+  <script src="js/config.js?v=1"></script>
   <script src="js/theme.js?v=10"></script>
   <script src="js/ready.js?v=10"></script>
   <script type="module" src="js/supabase.js?v=10"></script>

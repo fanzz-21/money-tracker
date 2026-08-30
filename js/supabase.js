@@ -3,8 +3,9 @@
 // Impor dari CDN dengan pinned version agar deterministik.
 //
 // Konfigurasi dibaca dari (urutan prioritas):
-//   1. window.LK_CONFIG = { url, key }   (set inline di <head>)
-//   2. localStorage lk_supabase_url / lk_supabase_key (untuk dev override)
+//   1. js/config.js    — set window.LK_CONFIG = { url, key }    (WAJIB di-load dulu)
+//   2. localStorage    — lk_supabase_url / lk_supabase_key (dev override per browser)
+//   3. DEFAULT_*       — placeholder; hanya untuk first-run agar tidak crash.
 //
 // Key yang dipakai: publishable key (sb_publishable_*) atau anon key (eyJ...).
 // JANGAN PERNAH pakai service_role key di frontend.
