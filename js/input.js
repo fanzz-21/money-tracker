@@ -1,7 +1,7 @@
 // js/input.js — Form input transaksi (no-redirect UX)
 (async function () {
-  const Auth = await waitForAuth();
-  const Storage = await waitForStorage();
+  const Auth = await window.waitForAuth();
+  const Storage = await window.waitForStorage();
   const session = await Auth.requireAuth();
   if (!session) return;
 
@@ -35,7 +35,7 @@
   noteCount.textContent = "0";
 
   function setCategoryOptions(type) {
-    const cats = Storage.CATS[type] || [];
+    const cats = (type === "in" ? Storage.CATS.in : Storage.CATS.out) || [];
     category.innerHTML = '<option value="" disabled selected>Pilih kategori</option>';
     cats.forEach((c) => {
       const opt = document.createElement("option");
@@ -63,7 +63,7 @@
 
   function updateBudgetRow() {
     const cat = category.value;
-    const budget = window.Budget ? Budget.get(cat) : 0;
+    const budget = window.Budget ? window.Budget.get(cat) : 0;
     if (!cat || !budget) {
       budgetRow.classList.add("hidden");
       return;
@@ -80,22 +80,22 @@
 
   function promptSetBudget() {
     const cat = category.value;
-    if (!cat) { LK.toast("Pilih kategori dulu.", "error"); return; }
-    const current = Budget.get(cat);
+    if (!cat) { window.LK.toast("Pilih kategori dulu.", "error"); return; }
+    const current = window.Budget.get(cat);
     const v = window.prompt("Budget bulanan untuk \"" + cat + "\" (rupiah):", current ? String(current) : "");
     if (v === null) return;
     try {
       const n = Math.round(Number(String(v).replace(/[^\d]/g, "")));
       if (!n || n < 1) {
-        if (String(v).trim() === "") { Budget.remove(cat); LK.toast("Budget dihapus.", "success"); }
-        else LK.toast("Nominal tidak valid.", "error");
+        if (String(v).trim() === "") { window.Budget.remove(cat); window.LK.toast("Budget dihapus.", "success"); }
+        else window.LK.toast("Nominal tidak valid.", "error");
       } else {
-        Budget.set(cat, n);
-        LK.toast("Budget disimpan: " + fmtRp(n), "success");
+        window.Budget.set(cat, n);
+        window.LK.toast("Budget disimpan: " + fmtRp(n), "success");
       }
       updateBudgetRow();
     } catch (err) {
-      LK.toast(err.message || "Gagal menyimpan budget.", "error");
+      window.LK.toast(err.message || "Gagal menyimpan budget.", "error");
     }
   }
 
@@ -117,7 +117,7 @@
     if (!type) { showErr(errType, "Pilih jenis transaksi."); ok = false; }
     const amt = Number(amount.value);
     if (!amt || amt < 1) { showErr(errAmount, "Masukkan jumlah valid (minimal 1)."); ok = false; }
-    else if (amt > 1e9) { showErr(errAmount, "Jumlah terlalu besar."); ok = false; }
+    else if (amt > 1000000000) { showErr(errAmount, "Jumlah terlalu besar."); ok = false; }
     if (!category.value) { showErr(errCategory, "Pilih kategori."); ok = false; }
     if (!date.value) { showErr(errDate, "Pilih tanggal."); ok = false; }
     return ok;
@@ -145,14 +145,14 @@
       const t = form.type.value;
       if (t === "out" && window.Budget) {
         const cat = category.value;
-        const b = Budget.get(cat);
+        const b = window.Budget.get(cat);
         if (b > 0) {
           const cur = spentThisMonth(cat);
           const after = cur + Number(amount.value);
           if (after > b) {
-            LK.toast("⚠ Over budget: " + fmtRp(after) + " / " + fmtRp(b), "error");
+            window.LK.toast("⚠ Over budget: " + fmtRp(after) + " / " + fmtRp(b), "error");
           } else if (after >= b * 0.8) {
-            LK.toast("Hampir capai budget (" + Math.round((after / b) * 100) + "%)", "info");
+            window.LK.toast("Hampir capai budget (" + Math.round((after / b) * 100) + "%)", "info");
           }
         }
       }
@@ -166,7 +166,7 @@
       // Update cache lokal supaya budget bar langsung reflect item baru
       allItems = [row, ...allItems];
       // Broadcast supaya dashboard/history tab lain auto-refresh
-      LK.broadcast("tx:added", row);
+      window.LK.broadcast("tx:added", row);
       return row;
     } catch (err) {
       showErr(errAmount, err.message || "Gagal menyimpan. Coba lagi.");
@@ -208,7 +208,7 @@
     e.preventDefault();
     const row = await save();
     if (row) {
-      LK.toast("Tersimpan", "success");
+      window.LK.toast("Tersimpan", "success");
       // TIDAK redirect — tetap di halaman, form reset untuk entry berikutnya
       resetForm(true);
     }
@@ -217,7 +217,7 @@
   btnSaveAdd.addEventListener("click", async () => {
     const row = await save();
     if (row) {
-      LK.toast(`+ Rp ${Number(row.amount).toLocaleString("id-ID")}`, "success");
+      window.LK.toast(`+ Rp ${Number(row.amount).toLocaleString("id-ID")}`, "success");
       resetForm(true);
       amount.focus();
     }

@@ -3,10 +3,11 @@
 //   Storage.CATS                    -> { in: [...], out: [...] }
 //   Storage.todayISO()              -> "YYYY-MM-DD"
 //   Storage.uid()                   -> string  (uuid, fallback untuk client-side)
-//   Storage.loadAll()               -> Promise<Transaction[]>
+//   Storage.loadAll()               -> Promise<Transaction[]
 //   Storage.addTx({date,type,amount,category,note}) -> Promise<Transaction>
 //   Storage.removeTx(id)            -> Promise<boolean>
 //   Storage.clearDate(date)         -> Promise<number>  (count dihapus)
+//   Storage.invalidate()            -> void  (drop cache internal)
 //   Storage.byDate(items, date)     -> Transaction[]   (filter+sort, sync)
 //   Storage.totals(items, date)     -> {masuk,keluar,net,all}  (sync)
 //   Storage.toCsv(items)            -> string  (sync)
@@ -32,9 +33,9 @@ const CATS = {
 
 const ALL_CATS = new Set([...CATS.in, ...CATS.out]);
 
-const MAX_AMOUNT = 1_000_000_000;       // 1 miliar
-const MAX_NOTE_LENGTH = 500;            // chars
-const MAX_CATEGORY_LENGTH = 50;         // chars
+const MAX_AMOUNT = 1000000000;        // 1 miliar
+const MAX_NOTE_LENGTH = 500;          // chars
+const MAX_CATEGORY_LENGTH = 50;       // chars
 
 let _cache = null;
 let _inflight = null;
@@ -47,9 +48,15 @@ function todayISO() {
   return y + "-" + m + "-" + day;
 }
 
+// UUID v4 via crypto.getRandomValues (CSPRNG).
+// Fallback 32-hex acak juga memakai crypto.getRandomValues —
+// TIDAK pernah Math.random (insecure random generator).
 function uid() {
-  if (typeof crypto !== "undefined" && crypto.randomUUID) return crypto.randomUUID();
-  return String(Date.now()) + "-" + Math.random().toString(36).slice(2, 10);
+  const c = globalThis.crypto;
+  if (c && typeof c.randomUUID === "function") return c.randomUUID();
+  const bytes = new Uint8Array(16);
+  c.getRandomValues(bytes);
+  return Array.from(bytes, (b) => b.toString(16).padStart(2, "0")).join("");
 }
 
 function rowFromDb(r) {
@@ -233,17 +240,21 @@ function flowSeries(items, n) {
   });
 }
 
+// Agregat per kategori memakai Map — key dari DB tidak pernah jadi
+// akses properti dinamis (object injection), dan Map.has/get/set/delete
+// aman terhadap "__proto__" / "constructor".
 function spendByCategory(items, ym) {
-  const map = {};
+  const map = new Map();
   for (const t of items) {
     if (t.type !== "out") continue;
     if (ym && monthKey(t.date) !== ym) continue;
     const k = t.category || "Lainnya";
-    map[k] = (map[k] || 0) + (Number(t.amount) || 0);
+    map.set(k, (map.get(k) || 0) + (Number(t.amount) || 0));
   }
-  return Object.keys(map)
-    .map((name) => ({ name, amount: map[name] }))
-    .sort((a, b) => b.amount - a.amount);
+  const out = [];
+  map.forEach((amount, name) => out.push({ name, amount }));
+  out.sort((a, b) => b.amount - a.amount);
+  return out;
 }
 
 // Ekspos ke window untuk kompatibilitas dengan kode non-modular
@@ -256,6 +267,7 @@ const Storage = {
   addTx,
   removeTx,
   clearDate,
+  invalidate,
   byDate,
   totals,
   toCsv,
@@ -270,7 +282,7 @@ const Storage = {
 window.Storage = Storage;
 export default Storage;
 export {
-  CATS, todayISO, uid, loadAll, addTx, removeTx, clearDate,
+  CATS, todayISO, uid, loadAll, addTx, removeTx, clearDate, invalidate,
   byDate, totals, toCsv, monthKey, lastMonths, monthTotals,
   flowSeries, spendByCategory
 };

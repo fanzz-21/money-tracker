@@ -11,53 +11,85 @@
 //                                   pct  = spent / budget  (0 kalau budget 0)
 //                                   warn >= 80%, over >= 100%
 //
+// Implementasi internal: Map (bukan object) — key dari localStorage
+// TIDAK pernah dipakai sebagai akses properti dinamis (object injection),
+// dan tidak ada operator `delete` pada key dinamis (dynamic delete).
+// Key selalu divalidasi via isSafeCat() sebelum masuk Map.
+//
 // Aman dipanggil sebelum DOM ready — tidak sentuh DOM.
 
 const KEY = "lk_budgets_v1";
+const MAX_BUDGET = 1000000000; // 1 miliar
 
-function load() {
-  try {
-    const raw = localStorage.getItem(KEY);
-    if (!raw) return {};
-    const obj = JSON.parse(raw);
-    if (!obj || typeof obj !== "object") return {};
-    const out = {};
-    for (const k of Object.keys(obj)) {
-      const n = Math.round(Number(obj[k]));
-      if (Number.isFinite(n) && n > 0 && n <= 1e9) out[k] = n;
-    }
-    return out;
-  } catch (e) { return {}; }
+// Validasi kategori: string 1-50 char, tolak key spesial prototype
+// (__proto__, constructor, prototype, semua yang diawali "__").
+function isSafeCat(k) {
+  return (
+    typeof k === "string" &&
+    k.length > 0 &&
+    k.length <= 50 &&
+    k !== "__proto__" &&
+    k !== "constructor" &&
+    k !== "prototype" &&
+    !k.startsWith("__")
+  );
 }
 
-function save(obj) {
-  try { localStorage.setItem(KEY, JSON.stringify(obj)); }
+// Baca store dari localStorage -> Map (hanya entry valid).
+function readStore() {
+  const m = new Map();
+  try {
+    const raw = localStorage.getItem(KEY);
+    if (!raw) return m;
+    const obj = JSON.parse(raw);
+    if (!obj || typeof obj !== "object" || Array.isArray(obj)) return m;
+    for (const [k, v] of Object.entries(obj)) {
+      if (!isSafeCat(k)) continue;
+      const n = Math.round(Number(v));
+      if (Number.isFinite(n) && n > 0 && n <= MAX_BUDGET) m.set(k, n);
+    }
+  } catch (e) { /* storage corrupt / private mode -> kosong */ }
+  return m;
+}
+
+// Tulis Map -> localStorage (object plain, format kompatibel versi lama).
+function writeStore(m) {
+  const out = {};
+  m.forEach((v, k) => Object.assign(out, { [k]: v }));
+  try { localStorage.setItem(KEY, JSON.stringify(out)); }
   catch (e) { /* quota / private mode — ignore */ }
 }
 
 function getAll() {
-  return Object.assign({}, load());
+  const m = readStore();
+  const out = {};
+  m.forEach((v, k) => Object.assign(out, { [k]: v }));
+  return out;
 }
 
 function get(cat) {
-  const all = load();
-  return all[cat] || 0;
+  if (!isSafeCat(cat)) return 0;
+  return readStore().get(cat) || 0;
 }
 
 function set(cat, amount) {
-  if (!cat || typeof cat !== "string") throw new Error("Kategori tidak valid.");
+  if (!isSafeCat(cat)) throw new Error("Kategori tidak valid.");
   const n = Math.round(Number(amount));
   if (!Number.isFinite(n) || n < 1) throw new Error("Budget minimal 1.");
-  if (n > 1e9) throw new Error("Budget terlalu besar (maks 1 miliar).");
-  const all = load();
-  all[cat] = n;
-  save(all);
+  if (n > MAX_BUDGET) throw new Error("Budget terlalu besar (maks 1 miliar).");
+  const m = readStore();
+  m.set(cat, n);
+  writeStore(m);
   return n;
 }
 
 function remove(cat) {
-  const all = load();
-  if (cat in all) { delete all[cat]; save(all); }
+  if (!isSafeCat(cat)) return;
+  const m = readStore();
+  if (m.has(cat)) {
+    m.delete(cat);
+    writeStore(m);
+  }
 }
 
 function check(cat, spent) {

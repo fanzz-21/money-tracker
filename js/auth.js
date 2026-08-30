@@ -125,7 +125,16 @@ export async function requireAuth() {
 export function redirectAfterAuth() {
   const params = new URLSearchParams(location.search);
   const next = params.get("next") || "index.html";
-  if (next.includes("login.html")) {
+  // Anti open-redirect: `next` hanya boleh path relatif same-origin.
+  // Tolak: scheme (http/https/ftp), protocol-relative (//), backslash,
+  // whitespace, DAN kontrol — `:x` saja tidak cukup (mis. "javascript:alert(1)"
+  // di-encode sebagai "javascript%3aalert(1)" oleh requireAuth()).
+  const safe =
+    next.startsWith("/") === false &&
+    !/^(?:[a-z][a-z0-9+.-]*:|\/\/|\\|\s)/i.test(next) &&
+    !next.includes("\\") &&
+    next.length <= 2048;
+  if (!safe || next.includes("login.html")) {
     location.replace("index.html");
     return;
   }

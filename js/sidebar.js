@@ -7,6 +7,10 @@
 //   3. Section Akun (paling bawah, tepat di atas Logout): Profil & Pengaturan
 //   4. Footer (paling akhir): Logout
 //
+// Keamanan: sidebar dibangun 100% via createElement/setAttribute/textContent
+// (TIDAK ada innerHTML berisi data — data NAV/TAMPILAN/AKUN developer-
+// controlled, tapi tetap XSS-immune).
+//
 // Catatan teknis: state "sedang terbuka" disimpan di module-private `_isOpen`
 // (bukan dari attribute `hidden` di root), supaya toggle() tidak pernah salah
 // baca state karena race antara `removeAttribute('hidden')` dan waktu
@@ -17,9 +21,9 @@
 
 (function (global) {
   const NAV = [
-    { href: "index.html",   icon: "dashboard",       label: "Dasbor" },
-    { href: "input.html",   icon: "add_circle",      label: "Catat Transaksi" },
-    { href: "history.html", icon: "history",         label: "Riwayat" }
+    { href: "index.html", icon: "dashboard", label: "Dasbor" },
+    { href: "input.html", icon: "add_circle", label: "Catat Transaksi" },
+    { href: "history.html", icon: "history", label: "Riwayat" }
   ];
 
   // Section Tampilan: tema toggle. Taruh sebelum section Akun.
@@ -39,53 +43,97 @@
     return path;
   }
 
-  function buildSidebarHTML() {
+  function makeIcon(cls, text) {
+    const s = document.createElement("span");
+    s.className = cls;
+    s.textContent = text;
+    return s;
+  }
+
+  function makeLink(item, active) {
+    if (item.href) {
+      const a = document.createElement("a");
+      a.href = item.href;
+      a.className = "lk-sidebar-link" + (active ? " is-active" : "");
+      a.append(makeIcon("material-symbols-outlined", item.icon),
+        document.createTextNode(item.label));
+      return a;
+    }
+    const btn = document.createElement("button");
+    btn.type = "button";
+    btn.className = "lk-sidebar-link";
+    btn.setAttribute("data-sidebar-action", item.action);
+    btn.setAttribute("aria-label", item.label);
+    const icon = makeIcon("material-symbols-outlined", item.icon);
+    icon.setAttribute("data-theme-icon", "");
+    btn.append(icon, document.createTextNode(item.label));
+    return btn;
+  }
+
+  function makeSection(title, items) {
+    const sec = document.createElement("div");
+    sec.className = "lk-sidebar-section";
+    const h = document.createElement("h3");
+    h.className = "lk-sidebar-section-title";
+    h.textContent = title;
+    sec.appendChild(h);
     const here = currentPage();
-    const linkHTML = (item) => item.href
-      ? `<a href="${item.href}" class="lk-sidebar-link ${here === item.href ? "is-active" : ""}">
-           <span class="material-symbols-outlined">${item.icon}</span>
-           <span>${item.label}</span>
-         </a>`
-      : `<button type="button" class="lk-sidebar-link" data-sidebar-action="${item.action}" aria-label="${item.label}">
-           <span class="material-symbols-outlined" data-theme-icon>${item.icon}</span>
-           <span>${item.label}</span>
-         </button>`;
+    for (const item of items) sec.appendChild(makeLink(item, item.href === here));
+    return sec;
+  }
 
-    return `
-      <div class="lk-sidebar-backdrop" data-sidebar-backdrop></div>
-      <aside class="lk-sidebar" role="navigation" aria-label="Menu utama">
-        <header class="lk-sidebar-header">
-          <div class="flex items-center gap-2 min-w-0">
-            <span class="material-symbols-outlined lk-text-accent text-2xl">account_balance_wallet</span>
-            <h2 class="font-semibold text-lg truncate">Kas Harian</h2>
-          </div>
-          <button type="button" class="lk-sidebar-close" data-sidebar-close aria-label="Tutup menu">
-            <span class="material-symbols-outlined">close</span>
-          </button>
-        </header>
+  function buildSidebar() {
+    const here = currentPage();
 
-        <nav class="lk-sidebar-nav" aria-label="Halaman">
-          ${NAV.map(linkHTML).join("")}
-        </nav>
+    const backdrop = document.createElement("div");
+    backdrop.className = "lk-sidebar-backdrop";
+    backdrop.setAttribute("data-sidebar-backdrop", "");
 
-        <div class="lk-sidebar-section">
-          <h3 class="lk-sidebar-section-title">Tampilan</h3>
-          ${TAMPILAN.map(linkHTML).join("")}
-        </div>
+    const aside = document.createElement("aside");
+    aside.className = "lk-sidebar";
+    aside.setAttribute("role", "navigation");
+    aside.setAttribute("aria-label", "Menu utama");
 
-        <div class="lk-sidebar-section">
-          <h3 class="lk-sidebar-section-title">Akun</h3>
-          ${AKUN.map(linkHTML).join("")}
-        </div>
+    const header = document.createElement("header");
+    header.className = "lk-sidebar-header";
+    const brandRow = document.createElement("div");
+    brandRow.className = "flex items-center gap-2 min-w-0";
+    brandRow.appendChild(makeIcon("material-symbols-outlined lk-text-accent text-2xl", "account_balance_wallet"));
+    const h2 = document.createElement("h2");
+    h2.className = "font-semibold text-lg truncate";
+    h2.textContent = "Kas Harian";
+    brandRow.appendChild(h2);
+    const closeBtn = document.createElement("button");
+    closeBtn.type = "button";
+    closeBtn.className = "lk-sidebar-close";
+    closeBtn.setAttribute("data-sidebar-close", "");
+    closeBtn.setAttribute("aria-label", "Tutup menu");
+    closeBtn.appendChild(makeIcon("material-symbols-outlined", "close"));
+    header.append(brandRow, closeBtn);
 
-        <div class="lk-sidebar-footer">
-          <button type="button" class="lk-sidebar-link lk-sidebar-danger" data-sidebar-action="logout">
-            <span class="material-symbols-outlined">logout</span>
-            <span>Keluar</span>
-          </button>
-        </div>
-      </aside>
-    `;
+    const nav = document.createElement("nav");
+    nav.className = "lk-sidebar-nav";
+    nav.setAttribute("aria-label", "Halaman");
+    for (const item of NAV) nav.appendChild(makeLink(item, item.href === here));
+
+    const footer = document.createElement("div");
+    footer.className = "lk-sidebar-footer";
+    const logout = document.createElement("button");
+    logout.type = "button";
+    logout.className = "lk-sidebar-link lk-sidebar-danger";
+    logout.setAttribute("data-sidebar-action", "logout");
+    logout.append(makeIcon("material-symbols-outlined", "logout"),
+      document.createTextNode("Keluar"));
+    footer.appendChild(logout);
+
+    aside.append(header, nav,
+      makeSection("Tampilan", TAMPILAN),
+      makeSection("Akun", AKUN),
+      footer);
+
+    const root = document.createElement("div");
+    root.append(backdrop, aside);
+    return root;
   }
 
   // State: module-private, bukan dari attribute hidden (lihat header file).
@@ -109,7 +157,7 @@
   function open() {
     if (_isOpen) return;            // idempotent: kalau sudah terbuka, noop
     const el = ensureMount();
-    el.innerHTML = buildSidebarHTML();
+    el.replaceChildren(buildSidebar());
     el.removeAttribute("hidden");
     document.body.classList.add("lk-sidebar-open");
     _isOpen = true;
@@ -134,7 +182,7 @@
     setTimeout(() => {
       if (!_isOpen) {
         el.setAttribute("hidden", "");
-        el.innerHTML = "";
+        el.replaceChildren();
       }
     }, 260);
   }
@@ -149,7 +197,7 @@
     ensureMount();
 
     // Delegated handler SEMUA interaksi sidebar di document — supaya listener
-    // yang dipasang sekali ini tetap work walau HTML sidebar di-render ulang
+    // yang dipasang sekali ini tetap work walau DOM sidebar di-render ulang
     // setiap open().
     document.addEventListener("click", (e) => {
       // Tombol toggle di header (buka/tutup)
