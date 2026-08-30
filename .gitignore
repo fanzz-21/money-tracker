@@ -1,1 +1,9 @@
 .vercel
+node_modules/
+.DS_Store
+.env
+.env.local
+*.log
+config.local.js
+js/.hermes-tmp.*
+*.bak

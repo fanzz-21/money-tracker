@@ -220,6 +220,157 @@ button[class*="border-outline"]:not([class*="bg-"]) {
   color: var(--lk-danger);
 }
 
+/* ===== Sidebar drawer (slide dari kiri) ===== */
+.lk-sidebar {
+  position: fixed; top: 0; left: 0; bottom: 0;
+  width: min(20rem, 85vw);
+  background-color: var(--lk-bg-elev);
+  border-right: 1px solid var(--lk-border);
+  z-index: 60;
+  display: flex; flex-direction: column;
+  transform: translateX(-100%);
+  transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  overflow-y: auto;
+}
+.lk-sidebar.is-open { transform: translateX(0); }
+html.dark .lk-sidebar { box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6); }
+
+.lk-sidebar-backdrop {
+  position: fixed; inset: 0;
+  background-color: rgba(0, 0, 0, 0.4);
+  z-index: 55;
+  opacity: 0; transition: opacity 0.2s;
+}
+#lk-sidebar-root:not([hidden]) .lk-sidebar-backdrop { opacity: 1; }
+
+.lk-sidebar-header {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 1rem;
+  border-bottom: 1px solid var(--lk-border);
+  position: sticky; top: 0;
+  background-color: var(--lk-bg-elev);
+  z-index: 1;
+}
+.lk-sidebar-close {
+  background: none; border: none;
+  width: 2.25rem; height: 2.25rem;
+  border-radius: 6px;
+  color: var(--lk-text-muted);
+  cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  transition: background-color 0.15s;
+}
+.lk-sidebar-close:hover { background-color: var(--lk-bg-elev-2); color: var(--lk-text); }
+
+.lk-sidebar-nav {
+  padding: 0.75rem 0.5rem;
+  display: flex; flex-direction: column; gap: 0.125rem;
+}
+
+.lk-sidebar-link {
+  display: flex; align-items: center; gap: 0.75rem;
+  padding: 0.625rem 0.75rem;
+  border-radius: 8px;
+  color: var(--lk-text);
+  text-decoration: none;
+  font-size: 0.95rem;
+  font-weight: 500;
+  background: none; border: none;
+  cursor: pointer;
+  width: 100%; text-align: left;
+  transition: background-color 0.15s, color 0.15s;
+}
+.lk-sidebar-link:hover {
+  background-color: var(--lk-bg-elev-2);
+}
+.lk-sidebar-link.is-active {
+  background-color: color-mix(in srgb, var(--lk-primary) 15%, transparent);
+  color: var(--lk-primary);
+  font-weight: 600;
+}
+.lk-sidebar-link .material-symbols-outlined {
+  font-size: 1.35rem;
+  color: inherit;
+}
+
+.lk-sidebar-section {
+  padding: 0.5rem 0.5rem 0.5rem;
+  margin-top: 0.5rem;
+  border-top: 1px solid var(--lk-border);
+}
+.lk-sidebar-section-title {
+  padding: 0.5rem 0.75rem 0.25rem;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--lk-text-faint);
+  font-weight: 600;
+}
+
+.lk-sidebar-footer {
+  margin-top: auto;
+  padding: 0.75rem 0.5rem;
+  border-top: 1px solid var(--kBorder, var(--lk-border));
+}
+.lk-sidebar-danger { color: var(--lk-danger); }
+.lk-sidebar-danger:hover { background-color: color-mix(in srgb, var(--lk-danger) 10%, transparent); }
+
+body.lk-sidebar-open { overflow: hidden; }
+
+.lk-menu-btn {
+  display: inline-flex; align-items: center; justify-content: center;
+  background: none; border: none;
+  width: 2.5rem; height: 2.5rem;
+  border-radius: 8px;
+  color: var(--lk-text);
+  cursor: pointer;
+  transition: background-color 0.15s;
+}
+.lk-menu-btn:hover { background-color: color-mix(in srgb, var(--lk-text) 8%, transparent); }
+
+/* ===== Profile page ===== */
+.lk-profile-avatar {
+  width: 4.5rem; height: 4.5rem;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--lk-primary), color-mix(in srgb, var(--lk-primary) 60%, var(--lk-accent)));
+  color: var(--lk-primary-text);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.75rem; font-weight: 600;
+  margin: 0 auto 1rem;
+  box-shadow: var(--lk-shadow);
+}
+.lk-stat-card {
+  background-color: var(--lk-bg-elev);
+  border: 1px solid var(--lk-border);
+  border-radius: 12px;
+  padding: 1rem;
+  text-align: center;
+}
+.lk-stat-card-label { font-size: 0.75rem; color: var(--lk-text-muted); text-transform: uppercase; letter-spacing: 0.05em; }
+.lk-stat-card-value { font-size: 1.5rem; font-weight: 600; margin-top: 0.25rem; }
+
+.lk-budget-row {
+  display: flex; align-items: center; gap: 0.75rem;
+  padding: 0.75rem;
+  border-radius: 8px;
+  background-color: var(--lk-bg-elev-2);
+  border: 1px solid var(--lk-border);
+}
+.lk-budget-bar {
+  height: 0.5rem;
+  background-color: var(--lk-border);
+  border-radius: 999px;
+  overflow: hidden;
+}
+.lk-budget-bar-fill {
+  height: 100%;
+  transition: width 0.3s, background-color 0.3s;
+}
+.lk-budget-bar-fill.is-ok    { background-color: var(--lk-success); }
+.lk-budget-bar-fill.is-warn  { background-color: var(--lk-warning); }
+.lk-budget-bar-fill.is-over  { background-color: var(--lk-danger); }
+
 /* ===== Layout safety (anti overflow) ===== */
 .lk-page { max-width: 1280px; margin-left: auto; margin-right: auto; padding: 1rem; box-sizing: border-box; }
 @media (min-width: 768px) { .lk-page { padding: 1.5rem 2rem; } }
@@ -291,4 +442,58 @@ input:focus-visible, select:focus-visible, textarea:focus-visible, button:focus-
     transition: none !important;
     animation: none !important;
   }
+  /* Tapi shimmer skeleton pakai gradient animation, yang user mungkin
+     ingin dimatikan. Override jadi static. */
+  .lk-skeleton { animation: none !important; background: var(--lk-bg-elev-2) !important; }
 }
+
+/* ===== Skeleton loading =====
+   Pakai class .lk-skeleton di elemen apapun (div/span) untuk efek shimmer.
+   Bisa dikombinasi dengan .rounded / .rounded-full / ukuran utility lain.
+   Default background pakai gradient yang "bergerak" dari kiri ke kanan.
+   Saat data loaded, hapus class .lk-skeleton atau replace element innerHTML. */
+.lk-skeleton {
+  display: inline-block;
+  position: relative;
+  overflow: hidden;
+  background-color: var(--lk-bg-elev-2);
+  border-radius: 6px;
+  vertical-align: middle;
+  /* Hindari layout shift: text-content "x" trick */
+  color: transparent !important;
+}
+.lk-skeleton::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    color-mix(in srgb, var(--lk-text) 6%, transparent) 50%,
+    transparent 100%
+  );
+  transform: translateX(-100%);
+  animation: lk-skeleton-shimmer 1.4s infinite ease-in-out;
+}
+@keyframes lk-skeleton-shimmer {
+  0%   { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+/* Saat element punya [data-loading], sembunyikan teks aslinya
+   (yang mungkin "Rp 0") supaya skeleton di dalamnya yang kelihatan.
+   Setelah data loaded, JS panggil el.removeAttribute('data-loading'). */
+[data-loading] > * { visibility: hidden; }
+[data-loading]::before { content: ""; display: none; }
+/* Wrapper untuk stack beberapa skeleton baris */
+.lk-skeleton-list { display: flex; flex-direction: column; gap: 0.5rem; min-width: 0; }
+.lk-skeleton-list > .lk-skeleton-line { height: 1rem; width: 100%; }
+.lk-skeleton-list > .lk-skeleton-line.short { width: 60%; }
+.lk-skeleton-list > .lk-skeleton-line.tiny  { width: 30%; }
+/* Utilitas untuk skeleton block (kotak/pill) */
+.lk-skeleton-block { display: block; height: 1rem; width: 100%; border-radius: 6px; }
+.lk-skeleton-block.h-lg { height: 16rem; }    /* chart placeholder */
+.lk-skeleton-block.h-md { height: 8rem; }
+.lk-skeleton-block.h-sm { height: 2.5rem; }
+.lk-skeleton-block.w-half { width: 50%; }
+.lk-skeleton-block.w-third { width: 33%; }
+.lk-skeleton-circle { width: 2.5rem; height: 2.5rem; border-radius: 50%; }

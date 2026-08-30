@@ -2,8 +2,20 @@
 (async function () {
   const Auth = await waitForAuth();
   const Storage = await waitForStorage();
-  const session = await Auth.requireAuth();
-  if (!session) return;
+
+  // Tunggu session valid dengan retry (kadang ada race condition di HP)
+  let session = await Auth.requireAuth();
+  if (!session) {
+    console.log("[history] session null, retry after 1s...");
+    await new Promise((r) => setTimeout(r, 1000));
+    session = await Auth.requireAuth();
+  }
+  if (!session) {
+    console.error("[history] tidak ada session, redirect ke login");
+    location.replace("login.html");
+    return;
+  }
+  console.log("[history] session OK, user:", session.id ? session.id.slice(0, 8) : session.email || "?");
 
   const monthSel = document.getElementById("filter-month");
   const typeSel = document.getElementById("filter-type");
@@ -20,7 +32,64 @@
   const sumOut = document.getElementById("sum-total-out");
   const sumNet = document.getElementById("sum-total-net");
 
-  let items = await Storage.loadAll();
+  let items = [];
+  let loadError = null;
+
+  function setEmptyText(text) {
+    if (empty) {
+      empty.textContent = text;
+      empty.hidden = false;
+    }
+  }
+
+  // Cross-tab auto-refresh — register SEBELUM initial load supaya tidak
+  // kehilangan event saat race condition.
+  if (window.LK) {
+    LK.on("tx:added", async () => {
+      console.log("[history] tx:added broadcast, refreshing");
+      await reloadItems({ silent: true });
+    });
+    LK.on("tx:removed", async () => {
+      console.log("[history] tx:removed broadcast, refreshing");
+      await reloadItems({ silent: true });
+    });
+  } else {
+    console.warn("[history] window.LK tidak ada — broadcast listener tidak aktif");
+  }
+
+  async function reloadItems({ silent = false } = {}) {
+    try {
+      const result = await Storage.loadAll({ force: true });
+      items = Array.isArray(result) ? result : [];
+      loadError = null;
+      console.log("[history] reloadItems OK, items =", items.length);
+      populateMonths();
+      render();
+    } catch (err) {
+      loadError = err && err.message ? err.message : String(err);
+      console.error("[history] loadAll failed:", loadError, err);
+      if (!silent) {
+        if (window.LK) LK.toast("Gagal memuat: " + loadError, "error");
+        setEmptyText("Gagal memuat data. Coba refresh halaman. (" + loadError + ")");
+      }
+    }
+  }
+
+  // Initial load (dengan retry untuk masalah transient Supabase)
+  setEmptyText("Memuat data...");
+  await reloadItems();
+  console.log("[history] after first load: items =", items.length, "loadError =", loadError);
+  if (loadError) {
+    console.log("[history] retry after 1s...");
+    await new Promise((r) => setTimeout(r, 1000));
+    await reloadItems({ silent: true });
+    console.log("[history] after retry: items =", items.length, "loadError =", loadError);
+  }
+
+  // DEBUG: kalau setelah load items kosong, tampilkan info debug di empty area
+  if (items.length === 0 && !loadError) {
+    setEmptyText("Belum ada transaksi. (Sesi: " + (session.email || session.id?.slice(0,8) || "?") + ", load OK, items=0)");
+  }
 
   function fmtRp(n) {
     return "Rp " + Number(n || 0).toLocaleString("id-ID");

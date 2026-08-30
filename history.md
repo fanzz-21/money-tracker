@@ -131,7 +131,7 @@ create table public.transactions (
 - Tidak ada folder `api/` lagi — semua backend adalah Supabase.
 - Setiap halaman harus menyertakan `window.LK_CONFIG` sebelum `<script type="module" src="js/supabase.js">`.
 - Email confirmation Supabase defaultnya ON. Untuk auto-login setelah daftar, matikan di Auth > Providers > Email > Confirm email = OFF.
-- Project Supabase: `begnlasmgmobpyebzgsc` (publishable key + anon key sudah ter-config di semua HTML)
+- Project Supabase: `<YOUR-PROJECT-REF>` (publishable key sudah ter-config sebagai placeholder `YOUR_SUPABASE_PUBLISHABLE_KEY` — lihat `README.md` § Konfigurasi)
 - Untuk deploy: `npx vercel --prod --yes` (perlu login Vercel dulu) atau via REST API (lihat /root/LK/.vercel/project.json).
 - Vercel CLI 59+ wajib `outputDirectory` di `vercel.json` (sudah di-set ke `.`).
 
@@ -139,7 +139,8 @@ create table public.transactions (
 
 | Date | ID | State | URL | Note |
 |---|---|---|---|---|
-| 2026-08-28 | dpl_b7mpopy8f (kas-harian-b7mpopy8f) | READY | https://kas-harian-swart.vercel.app | Security: XSS escape (escapeHTML) + CSP + X-Frame-Options + sw.js shell coverage fix |
+| 2026-08-29 | dpl_759ynPwmZrru9GwZCcTUXT9pirtH | READY | https://kas-harian-swart.vercel.app | Sidebar bug fix (state privat _isOpen) + sidebar reorder (Profil di bawah, Logout paling akhir) + dashboard header user_chip (icon+label+Profil) |
+| 2026-08-28 | dpl_BekresqEwQj6ZbD5hFFgzhXQHiUN | READY | https://kas-harian-swart.vercel.app | Security: XSS escape (escapeHTML) + CSP + X-Frame-Options + sw.js shell coverage fix |
 | 2026-08-28 | dpl_32hCueEkHzhVLe1fXfK3YVjMxPJ5 | READY | https://kas-harian-swart.vercel.app | Fase 3 #1: backup/restore JSON + reset all |
 | 2026-08-28 | dpl_5xx3vfDi8LUb7tnkDgSqeo8EFKjL | READY | https://kas-harian-swart.vercel.app | Hapus per-item: icon + label + visual feedback |
 | 2026-08-28 | dpl_8ysVfjvVfdwKoxFiUKyBcjochjH1 | READY | https://kas-harian-swart.vercel.app | Fase 2: client-side hardening |

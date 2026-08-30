@@ -3,7 +3,7 @@
 -- Tujuan: fix vulnerabilities ditemukan saat penetration test
 --
 -- INSTRUKSI:
--- 1. Buka https://supabase.com/dashboard/project/begnlasmgmobpyebzgsc/sql/new
+-- 1. Buka https://supabase.com/dashboard/project/YOUR-PROJECT-REF/sql/new
 -- 2. Copy-paste SELURUH isi file ini
 -- 3. Klik "Run" atau Ctrl+Enter
 -- 4. Expected: "Success. No rows returned" (semua statement idempotent)

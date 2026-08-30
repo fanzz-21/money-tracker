@@ -7,7 +7,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&display=swap" rel="stylesheet" />
-  <script src="js/pwa.js?v=1"></script>
+  <script src="js/pwa.js?v=9"></script>
   <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
   <script src="js/tailwind-config.js"></script>
   <link rel="stylesheet" href="css/ui.css" />
@@ -15,10 +15,15 @@
 <body class="min-h-screen flex flex-col">
   <header class="lk-header">
     <div class="lk-header-inner">
-      <a href="index.html" class="flex items-center gap-2 min-w-0">
-        <span class="material-symbols-outlined text-xl">arrow_back</span>
-        <h1 class="text-lg font-semibold truncate">Riwayat Transaksi</h1>
-      </a>
+      <div class="flex items-center gap-2 min-w-0">
+        <button type="button" data-sidebar-toggle class="lk-menu-btn" aria-label="Buka menu">
+          <span class="material-symbols-outlined text-xl">menu</span>
+        </button>
+        <a href="index.html" class="flex items-center gap-2 min-w-0">
+          <span class="material-symbols-outlined text-xl">arrow_back</span>
+          <h1 class="text-lg font-semibold truncate">Riwayat Transaksi</h1>
+        </a>
+      </div>
       <button type="button" data-theme-toggle class="p-2 rounded-full hover:bg-black/5 dark:hover:bg-white/10 transition-colors" aria-label="Ganti tema">
         <span class="material-symbols-outlined text-xl" data-theme-icon>dark_mode</span>
       </button>
@@ -92,19 +97,21 @@
 
   <script>
     window.LK_CONFIG = {
-      url: "https://begnlasmgmobpyebzgsc.supabase.co",
-      key: "sb_publishable_AFDwKgE47-P3Z6TyxKYp-A_j_5JaZtD"
+      url: "https://YOUR-PROJECT-REF.supabase.co",
+      key: "YOUR_SUPABASE_PUBLISHABLE_KEY"
     };
     window.LK_CACHE_BUST = Date.now();
   </script>
-  <script src="js/theme.js?v=4"></script>
-  <script src="js/ready.js?v=4"></script>
-  <script type="module" src="js/supabase.js?v=4"></script>
-  <script type="module" src="js/storage.js?v=6"></script>
-  <script type="module" src="js/storage-backup.js?v=1"></script>
-  <script type="module" src="js/realtime.js?v=1"></script>
-  <script type="module" src="js/budget.js?v=1"></script>
-  <script src="js/notify.js?v=6"></script>
-  <script src="js/history.js?v=6"></script>
+  <script src="js/theme.js?v=10"></script>
+  <script src="js/ready.js?v=10"></script>
+  <script type="module" src="js/supabase.js?v=10"></script>
+  <script type="module" src="js/auth.js?v=10"></script>
+  <script type="module" src="js/storage.js?v=10"></script>
+  <script type="module" src="js/storage-backup.js?v=10"></script>
+  <script type="module" src="js/realtime.js?v=10"></script>
+  <script type="module" src="js/budget.js?v=10"></script>
+  <script src="js/notify.js?v=10"></script>
+  <script src="js/sidebar.js?v=15"></script>
+  <script src="js/history.js?v=10"></script>
 </body>
 </html>

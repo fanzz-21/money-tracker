@@ -11,8 +11,8 @@
 
 import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.0/+esm";
 
-const DEFAULT_URL = "https://begnlasmgmobpyebzgsc.supabase.co";
-const DEFAULT_KEY = "sb_publishable_AFDwKgE47-P3Z6TyxKYp-A_j_5JaZtD";
+const DEFAULT_URL  = "https://YOUR-PROJECT-REF.supabase.co";
+const DEFAULT_KEY  = "YOUR_SUPABASE_PUBLISHABLE_KEY";
 
 const cfg = {
   url:    (window.LK_CONFIG && (window.LK_CONFIG.url  || window.LK_CONFIG.anon)) || localStorage.getItem("lk_supabase_url") || DEFAULT_URL,

@@ -24,6 +24,7 @@
   const budgetList = document.getElementById("budget-list");
   const budgetEmpty = document.getElementById("budget-empty");
   const logoutBtn = document.getElementById("btn-logout");
+  // (logout button dihapus di header — sekarang pakai sidebar/profile)
 
   function fmtRp(n) {
     const sign = n < 0 ? "-" : "";
@@ -138,11 +139,26 @@
 
   periodSel.addEventListener("change", refreshCharts);
   window.addEventListener("resize", onResize);
-  logoutBtn.addEventListener("click", () => {
-    if (typeof Auth.logout === "function") Auth.logout();
-    else if (typeof Auth.signOut === "function") Auth.signOut();
-    else console.error("[LK] Auth.logout tidak ada");
-  });
+
+  // Logout button mungkin masih ada (backward compat) — bind jika ada
+  if (logoutBtn) {
+    logoutBtn.addEventListener("click", () => {
+      if (typeof Auth.logout === "function") Auth.logout();
+      else if (typeof Auth.signOut === "function") Auth.signOut();
+      else console.error("[LK] Auth.logout tidak ada");
+    });
+  }
+
+  // Populate user chip (avatar + nama) di header
+  const userAvatar = document.getElementById("user-avatar");
+  const userName = document.getElementById("user-name");
+  if (userAvatar || userName) {
+    const u = session && (session.user || session);
+    const email = (u && u.email) || "";
+    const username = (u && u.user_metadata && u.user_metadata.username) || email.split("@")[0] || "User";
+    if (userAvatar) userAvatar.textContent = (username[0] || "?").toUpperCase();
+    if (userName) userName.textContent = username;
+  }
 
   rerenderAll();
 })();

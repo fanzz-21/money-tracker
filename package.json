@@ -1,6 +1,7 @@
 {
-  "name": "kas-harian",
-  "version": "2.0.0",
+  "name": "money-tracker",
+  "version": "1.0.0",
+  "description": "Money tracker — catat kas harian, sync via Supabase. Static frontend (HTML/JS ESM) siap deploy ke Vercel.",
   "type": "module",
   "scripts": {
     "dev": "vercel dev",
