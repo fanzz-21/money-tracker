@@ -1,0 +1,3440 @@
+[
+ {
+  "issueId": "ce13136ee0abda3e460ec31b369a54c1",
+  "resultDataId": 131533438400,
+  "filePath": "js/dashboard.js",
+  "fileId": 228177683197,
+  "patternInfo": {
+   "id": "Semgrep_javascript.browser.security.insecure-document-method.insecure-document-method",
+   "category": "Security",
+   "level": "Error",
+   "severityLevel": "Error",
+   "subCategory": "XSS"
+  },
+  "toolInfo": {
+   "uuid": "6792c561-236d-41b7-ba5e-9d6bee0d548b",
+   "name": "Opengrep"
+  },
+  "lineNumber": 114,
+  "message": "User controlled data in methods like `innerHTML`, `outerHTML` or `document.write` is an anti-pattern that can lead to XSS vulnerabilities",
+  "language": "Javascript",
+  "lineText": "      art.innerHTML = `",
+  "falsePositiveThreshold": 80,
+  "commitInfo": {
+   "sha": "5e083d97608816ec83ad8f7ada7acdb8cea5fc9c",
+   "commiter": "dev@money-tracker.local",
+   "commiterName": "Money Tracker Dev",
+   "timestamp": "2026-08-30T04:05:59Z"
+  }
+ },
+ {
+  "issueId": "16b61296ef95599d2b2858a2cc423599",
+  "resultDataId": 131533438282,
+  "filePath": "js/budget.js",
+  "fileId": 228177683202,
+  "patternInfo": {
+   "id": "ESLint8_security_detect-object-injection",
+   "category": "Security",
+   "level": "High",
+   "severityLevel": "High",
+   "subCategory": "InsecureModulesLibraries"
+  },
+  "toolInfo": {
+   "uuid": "f8b29663-2cb2-498d-b923-a10c6a8c05cd",
+   "name": "ESLint"
+  },
+  "lineNumber": 60,
+  "message": "Generic Object Injection Sink",
+  "language": "Javascript",
+  "lineText": "  if (cat in all) { delete all[cat]; save(all); }",
+  "falsePositiveThreshold": 80,
+  "commitInfo": {
+   "sha": "5e083d97608816ec83ad8f7ada7acdb8cea5fc9c",
+   "commiter": "dev@money-tracker.local",
+   "commiterName": "Money Tracker Dev",
+   "timestamp": "2026-08-30T04:05:59Z"
+  }
+ },
+ {
+  "issueId": "eaf6d038fe5aebec73ba15847d23a908",
+  "resultDataId": 131533438392,
+  "filePath": "js/sidebar.js",
+  "fileId": 228177683185,
+  "patternInfo": {
+   "id": "Semgrep_javascript.browser.security.insecure-document-method.insecure-document-method",
+   "category": "Security",
+   "level": "Error",
+   "severityLevel": "Error",
+   "subCategory": "XSS"
+  },
+  "toolInfo": {
+   "uuid": "6792c561-236d-41b7-ba5e-9d6bee0d548b",
+   "name": "Opengrep"
+  },
+  "lineNumber": 112,
+  "message": "User controlled data in methods like `innerHTML`, `outerHTML` or `document.write` is an anti-pattern that can lead to XSS vulnerabilities",
+  "language": "Javascript",
+  "lineText": "    el.innerHTML = buildSidebarHTML();",
+  "falsePositiveThreshold": 80,
+  "commitInfo": {
+   "sha": "5e083d97608816ec83ad8f7ada7acdb8cea5fc9c",
+   "commiter": "dev@money-tracker.local",
+   "commiterName": "Money Tracker Dev",
+   "timestamp": "2026-08-30T04:05:59Z"
+  }
+ },
+ {
+  "issueId": "4d260efcceceeaf740c952633039c1a5",
+  "resultDataId": 131533438328,
+  "filePath": "js/budget.js",
+  "fileId": 228177683202,
+  "patternInfo": {
+   "id": "ESLint8_security_detect-object-injection",
+   "category": "Security",
+   "level": "High",
+   "severityLevel": "High",
+   "subCategory": "InsecureModulesLibraries"
+  },
+  "toolInfo": {
+   "uuid": "f8b29663-2cb2-498d-b923-a10c6a8c05cd",
+   "name": "ESLint"
+  },
+  "lineNumber": 44,
+  "message": "Generic Object Injection Sink",
+  "language": "Javascript",
+  "lineText": "  return all[cat] || 0;",
+  "falsePositiveThreshold": 80,
+  "commitInfo": {
+   "sha": "5e083d97608816ec83ad8f7ada7acdb8cea5fc9c",
+   "commiter": "dev@money-tracker.local",
+   "commiterName": "Money Tracker Dev",
+   "timestamp": "2026-08-30T04:05:59Z"
+  }
+ },
+ {
+  "issueId": "240ddf1edc2fe15a3ded3d8b76091aa1",
+  "resultDataId": 131533438353,
+  "filePath": "js/sidebar.js",
+  "fileId": 228177683185,
+  "patternInfo": {
+   "id": "ESLint8_xss_no-mixed-html",
+   "category": "Security",
+   "level": "High",
+   "severityLevel": "High",
+   "subCategory": "XSS"
+  },
+  "toolInfo": {
+   "uuid": "f8b29663-2cb2-498d-b923-a10c6a8c05cd",
+   "name": "ESLint"
+  },
+  "lineNumber": 78,
+  "message": "HTML passed in to function 'AKUN.map'",
+  "language": "Javascript",
+  "lineText": "          ${AKUN.map(linkHTML).join(\"\")}",
+  "falsePositiveThreshold": 80,
+  "commitInfo": {
+   "sha": "5e083d97608816ec83ad8f7ada7acdb8cea5fc9c",
+   "commiter": "dev@money-tracker.local",
+   "commiterName": "Money Tracker Dev",
+   "timestamp": "2026-08-30T04:05:59Z"
+  }
+ },
+ {
+  "issueId": "e377dbe2678ca9555589d33e90814ae7",
+  "resultDataId": 131533438293,
+  "filePath": "js/budget.js",
+  "fileId": 228177683202,
+  "patternInfo": {
+   "id": "ESLint8_security_detect-object-injection",
+   "category": "Security",
+   "level": "High",
+   "severityLevel": "High",
+   "subCategory": "InsecureModulesLibraries"
+  },
+  "toolInfo": {
+   "uuid": "f8b29663-2cb2-498d-b923-a10c6a8c05cd",
+   "name": "ESLint"
+  },
+  "lineNumber": 26,
+  "message": "Function Call Object Injection Sink",
+  "language": "Javascript",
+  "lineText": "      const n = Math.round(Number(obj[k]));",
+  "falsePositiveThreshold": 80,
+  "commitInfo": {
+   "sha": "5e083d97608816ec83ad8f7ada7acdb8cea5fc9c",
+   "commiter": "dev@money-tracker.local",
+   "commiterName": "Money Tracker Dev",
+   "timestamp": "2026-08-30T04:05:59Z"
+  }
+ },
+ {
+  "issueId": "9d978a5c7725c9520cd4491b757b1ff7",
+  "resultDataId": 131533438329,
+  "filePath": "js/budget.js",
+  "fileId": 228177683202,
+  "patternInfo": {
+   "id": "ESLint8_security_detect-object-injection",
+   "category": "Security",
+   "level": "High",
+   "severityLevel": "High",
+   "subCategory": "InsecureModulesLibraries"
+  },
+  "toolInfo": {
+   "uuid": "f8b29663-2cb2-498d-b923-a10c6a8c05cd",
+   "name": "ESLint"
+  },
+  "lineNumber": 27,
+  "message": "Generic Object Injection Sink",
+  "language": "Javascript",
+  "lineText": "      if (Number.isFinite(n) && n > 0 && n <= 1e9) out[k] = n;",
+  "falsePositiveThreshold": 80,
+  "commitInfo": {
+   "sha": "5e083d97608816ec83ad8f7ada7acdb8cea5fc9c",
+   "commiter": "dev@money-tracker.local",
+   "commiterName": "Money Tracker Dev",
+   "timestamp": "2026-08-30T04:05:59Z"
+  }
+ },
+ {
+  "issueId": "ed9924596037efee35d7dc174263d101",
+  "resultDataId": 131533438331,
+  "filePath": "js/sidebar.js",
+  "fileId": 228177683185,
+  "patternInfo": {
+   "id": "ESLint8_xss_no-mixed-html",
+   "category": "Security",
+   "level": "High",
+   "severityLevel": "High",
+   "subCategory": "XSS"
+  },
+  "toolInfo": {
+   "uuid": "f8b29663-2cb2-498d-b923-a10c6a8c05cd",
+   "name": "ESLint"
+  },
+  "lineNumber": 112,
+  "message": "Unencoded return value from function 'buildSidebarHTML' used in HTML context",
+  "language": "Javascript",
+  "lineText": "    el.innerHTML = buildSidebarHTML();",
+  "falsePositiveThreshold": 80,
+  "commitInfo": {
+   "sha": "5e083d97608816ec83ad8f7ada7acdb8cea5fc9c",
+   "commiter": "dev@money-tracker.local",
+   "commiterName": "Money Tracker Dev",
+   "timestamp": "2026-08-30T04:05:59Z"
+  }
+ },
+ {
+  "issueId": "b19519c1e4def85ce7b52a1fddccd7de",
+  "resultDataId": 131533438269,
+  "filePath": "js/dashboard.js",
+  "fileId": 228177683197,
+  "patternInfo": {
+   "id": "ESLint8_no-unsanitized_property",
+   "category": "Security",
+   "level": "High",
+   "severityLevel": "High",
+   "subCategory": "XSS"
+  },
+  "toolInfo": {
+   "uuid": "f8b29663-2cb2-498d-b923-a10c6a8c05cd",
+   "name": "ESLint"
+  },
+  "lineNumber": 114,
+  "message": "Unsafe assignment to innerHTML",
+  "language": "Javascript",
+  "lineText": "      art.innerHTML = `",
+  "falsePositiveThreshold": 80,
+  "commitInfo": {
+   "sha": "5e083d97608816ec83ad8f7ada7acdb8cea5fc9c",
+   "commiter": "dev@money-tracker.local",
+   "commiterName": "Money Tracker Dev",
+   "timestamp": "2026-08-30T04:05:59Z"
+  }
+ },
+ {
+  "issueId": "78aea18b7814acbeec47f4c992bac990",
+  "resultDataId": 131533438398,
+  "filePath": "js/profile.js",
+  "fileId": 228177683205,
+  "patternInfo": {
+   "id": "Semgrep_javascript.browser.security.insecure-document-method.insecure-document-method",
+   "category": "Security",
+   "level": "Error",
+   "severityLevel": "Error",
+   "subCategory": "XSS"
+  },
+  "toolInfo": {
+   "uuid": "6792c561-236d-41b7-ba5e-9d6bee0d548b",
+   "name": "Opengrep"
+  },
+  "lineNumber": 83,
+  "message": "User controlled data in methods like `innerHTML`, `outerHTML` or `document.write` is an anti-pattern that can lead to XSS vulnerabilities",
+  "language": "Javascript",
+  "lineText": "      row.innerHTML = `",
+  "falsePositiveThreshold": 80,
+  "commitInfo": {
+   "sha": "5e083d97608816ec83ad8f7ada7acdb8cea5fc9c",
+   "commiter": "dev@money-tracker.local",
+   "commiterName": "Money Tracker Dev",
+   "timestamp": "2026-08-30T04:05:59Z"
+  }
+ },
+ {
+  "issueId": "973f8d23a802c470bf10b85cfd2d8fcf",
+  "resultDataId": 131533438280,
+  "filePath": "js/history.js",
+  "fileId": 228177683192,
+  "patternInfo": {
+   "id": "ESLint8_no-unsanitized_property",
+   "category": "Security",
+   "level": "High",
+   "severityLevel": "High",
+   "subCategory": "XSS"
+  },
+  "toolInfo": {
+   "uuid": "f8b29663-2cb2-498d-b923-a10c6a8c05cd",
+   "name": "ESLint"
+  },
+  "lineNumber": 151,
+  "message": "Unsafe assignment to innerHTML",
+  "language": "Javascript",
+  "lineText": "      art.innerHTML = `",
+  "falsePositiveThreshold": 80,
+  "commitInfo": {
+   "sha": "5e083d97608816ec83ad8f7ada7acdb8cea5fc9c",
+   "commiter": "dev@money-tracker.local",
+   "commiterName": "Money Tracker Dev",
+   "timestamp": "2026-08-30T04:05:59Z"
+  }
+ },
+ {
+  "issueId": "4ab5de4f0e738eb77e8ab7d514cf7f35",
+  "resultDataId": 131533438278,
+  "filePath": "js/ready.js",
+  "fileId": 228177683187,
+  "patternInfo": {
+   "id": "ESLint8_security_detect-object-injection",
+   "category": "Security",
+   "level": "High",
+   "severityLevel": "High",
+   "subCategory": "InsecureModulesLibraries"
+  },
+  "toolInfo": {
+   "uuid": "f8b29663-2cb2-498d-b923-a10c6a8c05cd",
+   "name": "ESLint"
+  },
+  "lineNumber": 14,
+  "message": "Generic Object Injection Sink",
+  "language": "Javascript",
+  "lineText": "    return global[name];",
+  "falsePositiveThreshold": 80,
+  "commitInfo": {
+   "sha": "5e083d97608816ec83ad8f7ada7acdb8cea5fc9c",
+   "commiter": "dev@money-tracker.local",
+   "commiterName": "Money Tracker Dev",
+   "timestamp": "2026-08-30T04:05:59Z"
+  }
+ },
+ {
+  "issueId": "ab1b3b2a19932131b6ddef91f7467416",
+  "resultDataId": 131533438360,
+  "filePath": "js/dashboard.js",
+  "fileId": 228177683197,
+  "patternInfo": {
+   "id": "ESLint8_xss_no-mixed-html",
+   "category": "Security",
+   "level": "High",
+   "severityLevel": "High",
+   "subCategory": "XSS"
+  },
+  "toolInfo": {
+   "uuid": "f8b29663-2cb2-498d-b923-a10c6a8c05cd",
+   "name": "ESLint"
+  },
+  "lineNumber": 81,
+  "message": "Unencoded input 'pct' used in HTML context",
+  "language": "Javascript",
+  "lineText": "          '<div style=\"width:' + pct + '%;height:100%;background:' + (over ? \"var(--lk-danger)\" : warn ? \"var(--lk-warning, #f59e0b)\" : \"var(--lk-success)\") + '\"></div>' +",
+  "falsePositiveThreshold": 80,
+  "commitInfo": {
+   "sha": "5e083d97608816ec83ad8f7ada7acdb8cea5fc9c",
+   "commiter": "dev@money-tracker.local",
+   "commiterName": "Money Tracker Dev",
+   "timestamp": "2026-08-30T04:05:59Z"
+  }
+ },
+ {
+  "issueId": "18ca8b4d5f2b4d5b9cf5167a8f9d8cf3",
+  "resultDataId": 131533438339,
+  "filePath": "js/storage.js",
+  "fileId": 228177683184,
+  "patternInfo": {
+   "id": "ESLint8_security_detect-object-injection",
+   "category": "Security",
+   "level": "High",
+   "severityLevel": "High",
+   "subCategory": "InsecureModulesLibraries"
+  },
+  "toolInfo": {
+   "uuid": "f8b29663-2cb2-498d-b923-a10c6a8c05cd",
+   "name": "ESLint"
+  },
+  "lineNumber": 245,
+  "message": "Generic Object Injection Sink",
+  "language": "Javascript",
+  "lineText": "    .map((name) => ({ name, amount: map[name] }))",
+  "falsePositiveThreshold": 80,
+  "commitInfo": {
+   "sha": "5e083d97608816ec83ad8f7ada7acdb8cea5fc9c",
+   "commiter": "dev@money-tracker.local",
+   "commiterName": "Money Tracker Dev",
+   "timestamp": "2026-08-30T04:05:59Z"
+  }
+ },
+ {
+  "issueId": "cbb63d3d7b148500300b9a66bdfaf001",
+  "resultDataId": 131533438401,
+  "filePath": "js/dashboard.js",
+  "fileId": 228177683197,
+  "patternInfo": {
+   "id": "Semgrep_javascript.browser.security.insecure-document-method.insecure-document-method",
+   "category": "Security",
+   "level": "Error",
+   "severityLevel": "Error",
+   "subCategory": "XSS"
+  },
+  "toolInfo": {
+   "uuid": "6792c561-236d-41b7-ba5e-9d6bee0d548b",
+   "name": "Opengrep"
+  },
+  "lineNumber": 73,
+  "message": "User controlled data in methods like `innerHTML`, `outerHTML` or `document.write` is an anti-pattern that can lead to XSS vulnerabilities",
+  "language": "Javascript",
+  "lineText": "      row.innerHTML =",
+  "falsePositiveThreshold": 80,
+  "commitInfo": {
+   "sha": "5e083d97608816ec83ad8f7ada7acdb8cea5fc9c",
+   "commiter": "dev@money-tracker.local",
+   "commiterName": "Money Tracker Dev",
+   "timestamp": "2026-08-30T04:05:59Z"
+  }
+ },
+ {
+  "issueId": "9d8a644995fdde27c715d116e327b012",
+  "resultDataId": 131533438300,
+  "filePath": "js/sidebar.js",
+  "fileId": 228177683185,
+  "patternInfo": {
+   "id": "ESLint8_xss_no-mixed-html",
+   "category": "Security",
+   "level": "High",
+   "severityLevel": "High",
+   "subCategory": "XSS"
+  },
+  "toolInfo": {
+   "uuid": "f8b29663-2cb2-498d-b923-a10c6a8c05cd",
+   "name": "ESLint"
+  },
+  "lineNumber": 73,
+  "message": "HTML passed in to function 'TAMPILAN.map'",
+  "language": "Javascript",
+  "lineText": "          ${TAMPILAN.map(linkHTML).join(\"\")}",
+  "falsePositiveThreshold": 80,
+  "commitInfo": {
+   "sha": "5e083d97608816ec83ad8f7ada7acdb8cea5fc9c",
+   "commiter": "dev@money-tracker.local",
+   "commiterName": "Money Tracker Dev",
+   "timestamp": "2026-08-30T04:05:59Z"
+  }
+ },
+ {
+  "issueId": "86c7fba0d6d5b0460c02b44987439299",
+  "resultDataId": 131533438325,
+  "filePath": "js/profile.js",
+  "fileId": 228177683205,
+  "patternInfo": {
+   "id": "ESLint8_no-unsanitized_property",
+   "category": "Security",
+   "level": "High",
+   "severityLevel": "High",
+   "subCategory": "XSS"
+  },
+  "toolInfo": {
+   "uuid": "f8b29663-2cb2-498d-b923-a10c6a8c05cd",
+   "name": "ESLint"
+  },
+  "lineNumber": 83,
+  "message": "Unsafe assignment to innerHTML",
+  "language": "Javascript",
+  "lineText": "      row.innerHTML = `",
+  "falsePositiveThreshold": 80,
+  "commitInfo": {
+   "sha": "5e083d97608816ec83ad8f7ada7acdb8cea5fc9c",
+   "commiter": "dev@money-tracker.local",
+   "commiterName": "Money Tracker Dev",
+   "timestamp": "2026-08-30T04:05:59Z"
+  }
+ },
+ {
+  "issueId": "ed330e2a7e02b218d3b0ecaf1c86aa8e",
+  "resultDataId": 131533438286,
+  "filePath": "js/sidebar.js",
+  "fileId": 228177683185,
+  "patternInfo": {
+   "id": "ESLint8_xss_no-mixed-html",
+   "category": "Security",
+   "level": "High",
+   "severityLevel": "High",
+   "subCategory": "XSS"
+  },
+  "toolInfo": {
+   "uuid": "f8b29663-2cb2-498d-b923-a10c6a8c05cd",
+   "name": "ESLint"
+  },
+  "lineNumber": 68,
+  "message": "HTML passed in to function 'NAV.map'",
+  "language": "Javascript",
+  "lineText": "          ${NAV.map(linkHTML).join(\"\")}",
+  "falsePositiveThreshold": 80,
+  "commitInfo": {
+   "sha": "5e083d97608816ec83ad8f7ada7acdb8cea5fc9c",
+   "commiter": "dev@money-tracker.local",
+   "commiterName": "Money Tracker Dev",
+   "timestamp": "2026-08-30T04:05:59Z"
+  }
+ },
+ {
+  "issueId": "a2bd464c7e3f0183ce0d80c15c2b7c96",
+  "resultDataId": 131533438394,
+  "filePath": "js/dashboard.js",
+  "fileId": 228177683197,
+  "patternInfo": {
+   "id": "Semgrep_javascript.browser.security.insecure-innerhtml.insecure-innerhtml",
+   "category": "Security",
+   "level": "Error",
+   "severityLevel": "Error",
+   "subCategory": "XSS"
+  },
+  "toolInfo": {
+   "uuid": "6792c561-236d-41b7-ba5e-9d6bee0d548b",
+   "name": "Opengrep"
+  },
+  "lineNumber": 114,
+  "message": "User controlled data in a `art.innerHTML` is an anti-pattern that can lead to XSS vulnerabilities",
+  "language": "Javascript",
+  "lineText": "      art.innerHTML = `",
+  "falsePositiveThreshold": 80,
+  "commitInfo": {
+   "sha": "5e083d97608816ec83ad8f7ada7acdb8cea5fc9c",
+   "commiter": "dev@money-tracker.local",
+   "commiterName": "Money Tracker Dev",
+   "timestamp": "2026-08-30T04:05:59Z"
+  }
+ },
+ {
+  "issueId": "6d94624b1610b98d401b503eb3b7e1d2",
+  "resultDataId": 131533438393,
+  "filePath": "js/history.js",
+  "fileId": 228177683192,
+  "patternInfo": {
+   "id": "Semgrep_javascript.browser.security.insecure-innerhtml.insecure-innerhtml",
+   "category": "Security",
+   "level": "Error",
+   "severityLevel": "Error",
+   "subCategory": "XSS"
+  },
+  "toolInfo": {
+   "uuid": "6792c561-236d-41b7-ba5e-9d6bee0d548b",
+   "name": "Opengrep"
+  },
+  "lineNumber": 151,
+  "message": "User controlled data in a `art.innerHTML` is an anti-pattern that can lead to XSS vulnerabilities",
+  "language": "Javascript",
+  "lineText": "      art.innerHTML = `",
+  "falsePositiveThreshold": 80,
+  "commitInfo": {
+   "sha": "5e083d97608816ec83ad8f7ada7acdb8cea5fc9c",
+   "commiter": "dev@money-tracker.local",
+   "commiterName": "Money Tracker Dev",
+   "timestamp": "2026-08-30T04:05:59Z"
+  }
+ },
+ {
+  "issueId": "1494f82373e421b86ada8494b3ddf163",
+  "resultDataId": 131533438397,
+  "filePath": "js/auth.js",
+  "fileId": 228177683186,
+  "patternInfo": {
+   "id": "Semgrep_javascript.browser.security.open-redirect.js-open-redirect",
+   "category": "Security",
+   "level": "Error",
+   "severityLevel": "Error",
+   "subCategory": "InputValidation"
+  },
+  "toolInfo": {
+   "uuid": "6792c561-236d-41b7-ba5e-9d6bee0d548b",
+   "name": "Opengrep"
+  },
+  "lineNumber": 132,
+  "message": "The application accepts potentially user-controlled input `$PROP` which can control the location of the current window context.",
+  "language": "Javascript",
+  "lineText": "  location.replace(next);",
+  "falsePositiveThreshold": 80,
+  "commitInfo": {
+   "sha": "5e083d97608816ec83ad8f7ada7acdb8cea5fc9c",
+   "commiter": "dev@money-tracker.local",
+   "commiterName": "Money Tracker Dev",
+   "timestamp": "2026-08-30T04:05:59Z"
+  }
+ },
+ {
+  "issueId": "58a3337a041c083e1aa4c06afdbb1e14",
+  "resultDataId": 131533438396,
+  "filePath": "js/profile.js",
+  "fileId": 228177683205,
+  "patternInfo": {
+   "id": "Semgrep_javascript.browser.security.insecure-innerhtml.insecure-innerhtml",
+   "category": "Security",
+   "level": "Error",
+   "severityLevel": "Error",
+   "subCategory": "XSS"
+  },
+  "toolInfo": {
+   "uuid": "6792c561-236d-41b7-ba5e-9d6bee0d548b",
+   "name": "Opengrep"
+  },
+  "lineNumber": 83,
+  "message": "User controlled data in a `row.innerHTML` is an anti-pattern that can lead to XSS vulnerabilities",
+  "language": "Javascript",
+  "lineText": "      row.innerHTML = `",
+  "falsePositiveThreshold": 80,
+  "commitInfo": {
+   "sha": "5e083d97608816ec83ad8f7ada7acdb8cea5fc9c",
+   "commiter": "dev@money-tracker.local",
+   "commiterName": "Money Tracker Dev",
+   "timestamp": "2026-08-30T04:05:59Z"
+  }
+ },
+ {
+  "issueId": "43a89021d2124ab0ee8fdb415f7acc19",
+  "resultDataId": 131533438402,
+  "filePath": "js/storage.js",
+  "fileId": 228177683184,
+  "patternInfo": {
+   "id": "Semgrep_rules_lgpl_javascript_crypto_rule-node-insecure-random-generator",
+   "category": "Security",
+   "level": "Error",
+   "severityLevel": "Error",
+   "subCategory": "Cryptography"
+  },
+  "toolInfo": {
+   "uuid": "6792c561-236d-41b7-ba5e-9d6bee0d548b",
+   "name": "Opengrep"
+  },
+  "lineNumber": 52,
+  "message": "This rule identifies use of cryptographically weak random number generators.",
+  "language": "Javascript",
+  "lineText": "  return String(Date.now()) + \"-\" + Math.random().toString(36).slice(2, 10);",
+  "falsePositiveThreshold": 80,
+  "commitInfo": {
+   "sha": "5e083d97608816ec83ad8f7ada7acdb8cea5fc9c",
+   "commiter": "dev@money-tracker.local",
+   "commiterName": "Money Tracker Dev",
+   "timestamp": "2026-08-30T04:05:59Z"
+  }
+ },
+ {
+  "issueId": "bab8413a0a71c82bdfbdee31ddfa58fe",
+  "resultDataId": 131533438292,
+  "filePath": "js/budget.js",
+  "fileId": 228177683202,
+  "patternInfo": {
+   "id": "ESLint8_security_detect-object-injection",
+   "category": "Security",
+   "level": "High",
+   "severityLevel": "High",
+   "subCategory": "InsecureModulesLibraries"
+  },
+  "toolInfo": {
+   "uuid": "f8b29663-2cb2-498d-b923-a10c6a8c05cd",
+   "name": "ESLint"
+  },
+  "lineNumber": 53,
+  "message": "Generic Object Injection Sink",
+  "language": "Javascript",
+  "lineText": "  all[cat] = n;",
+  "falsePositiveThreshold": 80,
+  "commitInfo": {
+   "sha": "5e083d97608816ec83ad8f7ada7acdb8cea5fc9c",
+   "commiter": "dev@money-tracker.local",
+   "commiterName": "Money Tracker Dev",
+   "timestamp": "2026-08-30T04:05:59Z"
+  }
+ },
+ {
+  "issueId": "805e74c4ce24817359768d0dc1e303d4",
+  "resultDataId": 131533438399,
+  "filePath": "js/dashboard.js",
+  "fileId": 228177683197,
+  "patternInfo": {
+   "id": "Semgrep_javascript.browser.security.insecure-innerhtml.insecure-innerhtml",
+   "category": "Security",
+   "level": "Error",
+   "severityLevel": "Error",
+   "subCategory": "XSS"
+  },
+  "toolInfo": {
+   "uuid": "6792c561-236d-41b7-ba5e-9d6bee0d548b",
+   "name": "Opengrep"
+  },
+  "lineNumber": 73,
+  "message": "User controlled data in a `row.innerHTML` is an anti-pattern that can lead to XSS vulnerabilities",
+  "language": "Javascript",
+  "lineText": "      row.innerHTML =",
+  "falsePositiveThreshold": 80,
+  "commitInfo": {
+   "sha": "5e083d97608816ec83ad8f7ada7acdb8cea5fc9c",
+   "commiter": "dev@money-tracker.local",
+   "commiterName": "Money Tracker Dev",
+   "timestamp": "2026-08-30T04:05:59Z"
+  }
+ },
+ {
+  "issueId": "c48084c3bd49ed9250c219a6c6a4c66c",
+  "resultDataId": 131533438302,
+  "filePath": "js/dashboard.js",
+  "fileId": 228177683197,
+  "patternInfo": {
+   "id": "ESLint8_xss_no-mixed-html",
+   "category": "Security",
+   "level": "High",
+   "severityLevel": "High",
+   "subCategory": "XSS"
+  },
+  "toolInfo": {
+   "uuid": "f8b29663-2cb2-498d-b923-a10c6a8c05cd",
+   "name": "ESLint"
+  },
+  "lineNumber": 77,
+  "message": "Unencoded return value from function 'fmtRp' used in HTML context",
+  "language": "Javascript",
+  "lineText": "            fmtRp(spent) + ' / ' + fmtRp(chk.budget) + (over ? \" \u26a0\" : \"\") +",
+  "falsePositiveThreshold": 80,
+  "commitInfo": {
+   "sha": "5e083d97608816ec83ad8f7ada7acdb8cea5fc9c",
+   "commiter": "dev@money-tracker.local",
+   "commiterName": "Money Tracker Dev",
+   "timestamp": "2026-08-30T04:05:59Z"
+  }
+ },
+ {
+  "issueId": "252aa052d04938a8a3ff6d1593175745",
+  "resultDataId": 131533438403,
+  "filePath": "js/history.js",
+  "fileId": 228177683192,
+  "patternInfo": {
+   "id": "Semgrep_javascript.browser.security.insecure-document-method.insecure-document-method",
+   "category": "Security",
+   "level": "Error",
+   "severityLevel": "Error",
+   "subCategory": "XSS"
+  },
+  "toolInfo": {
+   "uuid": "6792c561-236d-41b7-ba5e-9d6bee0d548b",
+   "name": "Opengrep"
+  },
+  "lineNumber": 151,
+  "message": "User controlled data in methods like `innerHTML`, `outerHTML` or `document.write` is an anti-pattern that can lead to XSS vulnerabilities",
+  "language": "Javascript",
+  "lineText": "      art.innerHTML = `",
+  "falsePositiveThreshold": 80,
+  "commitInfo": {
+   "sha": "5e083d97608816ec83ad8f7ada7acdb8cea5fc9c",
+   "commiter": "dev@money-tracker.local",
+   "commiterName": "Money Tracker Dev",
+   "timestamp": "2026-08-30T04:05:59Z"
+  }
+ },
+ {
+  "issueId": "32cf0b5825ca387323c4760e9bdb8b7a",
+  "resultDataId": 131533438303,
+  "filePath": "js/storage.js",
+  "fileId": 228177683184,
+  "patternInfo": {
+   "id": "ESLint8_security_detect-object-injection",
+   "category": "Security",
+   "level": "High",
+   "severityLevel": "High",
+   "subCategory": "InsecureModulesLibraries"
+  },
+  "toolInfo": {
+   "uuid": "f8b29663-2cb2-498d-b923-a10c6a8c05cd",
+   "name": "ESLint"
+  },
+  "lineNumber": 242,
+  "message": "Generic Object Injection Sink",
+  "language": "Javascript",
+  "lineText": "    map[k] = (map[k] || 0) + (Number(t.amount) || 0);",
+  "falsePositiveThreshold": 80,
+  "commitInfo": {
+   "sha": "5e083d97608816ec83ad8f7ada7acdb8cea5fc9c",
+   "commiter": "dev@money-tracker.local",
+   "commiterName": "Money Tracker Dev",
+   "timestamp": "2026-08-30T04:05:59Z"
+  }
+ },
+ {
+  "issueId": "612be95e8154876a109bbdd430328232",
+  "resultDataId": 131533438295,
+  "filePath": "js/profile.js",
+  "fileId": 228177683205,
+  "patternInfo": {
+   "id": "ESLint8_security_detect-object-injection",
+   "category": "Security",
+   "level": "High",
+   "severityLevel": "High",
+   "subCategory": "InsecureModulesLibraries"
+  },
+  "toolInfo": {
+   "uuid": "f8b29663-2cb2-498d-b923-a10c6a8c05cd",
+   "name": "ESLint"
+  },
+  "lineNumber": 71,
+  "message": "Variable Assigned to Object Injection Sink",
+  "language": "Javascript",
+  "lineText": "      const budget = all[cat];",
+  "falsePositiveThreshold": 80,
+  "commitInfo": {
+   "sha": "5e083d97608816ec83ad8f7ada7acdb8cea5fc9c",
+   "commiter": "dev@money-tracker.local",
+   "commiterName": "Money Tracker Dev",
+   "timestamp": "2026-08-30T04:05:59Z"
+  }
+ },
+ {
+  "issueId": "c75a2e721330f3074cc21da7a722a36a",
+  "resultDataId": 131533438327,
+  "filePath": "js/dashboard.js",
+  "fileId": 228177683197,
+  "patternInfo": {
+   "id": "ESLint8_xss_no-mixed-html",
+   "category": "Security",
+   "level": "High",
+   "severityLevel": "High",
+   "subCategory": "XSS"
+  },
+  "toolInfo": {
+   "uuid": "f8b29663-2cb2-498d-b923-a10c6a8c05cd",
+   "name": "ESLint"
+  },
+  "lineNumber": 75,
+  "message": "Unencoded return value from function 'window.LK.escapeHTML' used in HTML context",
+  "language": "Javascript",
+  "lineText": "          '<span class=\"font-medium\">' + window.LK.escapeHTML(cat) + '</span>' +",
+  "falsePositiveThreshold": 80,
+  "commitInfo": {
+   "sha": "5e083d97608816ec83ad8f7ada7acdb8cea5fc9c",
+   "commiter": "dev@money-tracker.local",
+   "commiterName": "Money Tracker Dev",
+   "timestamp": "2026-08-30T04:05:59Z"
+  }
+ },
+ {
+  "issueId": "800edaf3de55f548317906206a2f219d",
+  "resultDataId": 131533438355,
+  "filePath": "js/dashboard.js",
+  "fileId": 228177683197,
+  "patternInfo": {
+   "id": "ESLint8_security_detect-object-injection",
+   "category": "Security",
+   "level": "High",
+   "severityLevel": "High",
+   "subCategory": "InsecureModulesLibraries"
+  },
+  "toolInfo": {
+   "uuid": "f8b29663-2cb2-498d-b923-a10c6a8c05cd",
+   "name": "ESLint"
+  },
+  "lineNumber": 67,
+  "message": "Generic Object Injection Sink",
+  "language": "Javascript",
+  "lineText": "      const spent = spentByCat[cat] || 0;",
+  "falsePositiveThreshold": 80,
+  "commitInfo": {
+   "sha": "5e083d97608816ec83ad8f7ada7acdb8cea5fc9c",
+   "commiter": "dev@money-tracker.local",
+   "commiterName": "Money Tracker Dev",
+   "timestamp": "2026-08-30T04:05:59Z"
+  }
+ },
+ {
+  "issueId": "a7b647ac06f1b32c33bb3b73080673e1",
+  "resultDataId": 131533438354,
+  "filePath": "js/input.js",
+  "fileId": 228177683206,
+  "patternInfo": {
+   "id": "ESLint8_security_detect-object-injection",
+   "category": "Security",
+   "level": "High",
+   "severityLevel": "High",
+   "subCategory": "InsecureModulesLibraries"
+  },
+  "toolInfo": {
+   "uuid": "f8b29663-2cb2-498d-b923-a10c6a8c05cd",
+   "name": "ESLint"
+  },
+  "lineNumber": 38,
+  "message": "Generic Object Injection Sink",
+  "language": "Javascript",
+  "lineText": "    const cats = Storage.CATS[type] || [];",
+  "falsePositiveThreshold": 80,
+  "commitInfo": {
+   "sha": "5e083d97608816ec83ad8f7ada7acdb8cea5fc9c",
+   "commiter": "dev@money-tracker.local",
+   "commiterName": "Money Tracker Dev",
+   "timestamp": "2026-08-30T04:05:59Z"
+  }
+ },
+ {
+  "issueId": "76f0e7fc31e8e19d72ecadd50456c8b1",
+  "resultDataId": 131533438351,
+  "filePath": "js/dashboard.js",
+  "fileId": 228177683197,
+  "patternInfo": {
+   "id": "ESLint8_no-unsanitized_property",
+   "category": "Security",
+   "level": "High",
+   "severityLevel": "High",
+   "subCategory": "XSS"
+  },
+  "toolInfo": {
+   "uuid": "f8b29663-2cb2-498d-b923-a10c6a8c05cd",
+   "name": "ESLint"
+  },
+  "lineNumber": 73,
+  "message": "Unsafe assignment to innerHTML",
+  "language": "Javascript",
+  "lineText": "      row.innerHTML =",
+  "falsePositiveThreshold": 80,
+  "commitInfo": {
+   "sha": "5e083d97608816ec83ad8f7ada7acdb8cea5fc9c",
+   "commiter": "dev@money-tracker.local",
+   "commiterName": "Money Tracker Dev",
+   "timestamp": "2026-08-30T04:05:59Z"
+  }
+ },
+ {
+  "issueId": "79d218c56a97e5a254d1bb7b62a2c6f",
+  "resultDataId": 131533438395,
+  "filePath": "js/sidebar.js",
+  "fileId": 228177683185,
+  "patternInfo": {
+   "id": "Semgrep_javascript.browser.security.insecure-innerhtml.insecure-innerhtml",
+   "category": "Security",
+   "level": "Error",
+   "severityLevel": "Error",
+   "subCategory": "XSS"
+  },
+  "toolInfo": {
+   "uuid": "6792c561-236d-41b7-ba5e-9d6bee0d548b",
+   "name": "Opengrep"
+  },
+  "lineNumber": 112,
+  "message": "User controlled data in a `el.innerHTML` is an anti-pattern that can lead to XSS vulnerabilities",
+  "language": "Javascript",
+  "lineText": "    el.innerHTML = buildSidebarHTML();",
+  "falsePositiveThreshold": 80,
+  "commitInfo": {
+   "sha": "5e083d97608816ec83ad8f7ada7acdb8cea5fc9c",
+   "commiter": "dev@money-tracker.local",
+   "commiterName": "Money Tracker Dev",
+   "timestamp": "2026-08-30T04:05:59Z"
+  }
+ },
+ {
+  "issueId": "dfd1c0ead1a9f806f7b0efae04133a25",
+  "resultDataId": 131533438349,
+  "filePath": "js/ready.js",
+  "fileId": 228177683187,
+  "patternInfo": {
+   "id": "ESLint8_security_detect-object-injection",
+   "category": "Security",
+   "level": "High",
+   "severityLevel": "High",
+   "subCategory": "InsecureModulesLibraries"
+  },
+  "toolInfo": {
+   "uuid": "f8b29663-2cb2-498d-b923-a10c6a8c05cd",
+   "name": "ESLint"
+  },
+  "lineNumber": 8,
+  "message": "Generic Object Injection Sink",
+  "language": "Javascript",
+  "lineText": "    while (!global[name]) {",
+  "falsePositiveThreshold": 80,
+  "commitInfo": {
+   "sha": "5e083d97608816ec83ad8f7ada7acdb8cea5fc9c",
+   "commiter": "dev@money-tracker.local",
+   "commiterName": "Money Tracker Dev",
+   "timestamp": "2026-08-30T04:05:59Z"
+  }
+ },
+ {
+  "issueId": "f92ab6eac8c2716ca19ad93a3466652c",
+  "resultDataId": 131533438288,
+  "filePath": "js/sidebar.js",
+  "fileId": 228177683185,
+  "patternInfo": {
+   "id": "ESLint8_no-unsanitized_property",
+   "category": "Security",
+   "level": "High",
+   "severityLevel": "High",
+   "subCategory": "XSS"
+  },
+  "toolInfo": {
+   "uuid": "f8b29663-2cb2-498d-b923-a10c6a8c05cd",
+   "name": "ESLint"
+  },
+  "lineNumber": 112,
+  "message": "Unsafe assignment to innerHTML",
+  "language": "Javascript",
+  "lineText": "    el.innerHTML = buildSidebarHTML();",
+  "falsePositiveThreshold": 80,
+  "commitInfo": {
+   "sha": "5e083d97608816ec83ad8f7ada7acdb8cea5fc9c",
+   "commiter": "dev@money-tracker.local",
+   "commiterName": "Money Tracker Dev",
+   "timestamp": "2026-08-30T04:05:59Z"
+  }
+ },
+ {
+  "issueId": "3a143d776159d0bcc34799471989ed0b",
+  "resultDataId": 131533438332,
+  "filePath": "js/input.js",
+  "fileId": 228177683206,
+  "patternInfo": {
+   "id": "ESLint8_no-undef",
+   "category": "ErrorProne",
+   "level": "High",
+   "severityLevel": "High"
+  },
+  "toolInfo": {
+   "uuid": "f8b29663-2cb2-498d-b923-a10c6a8c05cd",
+   "name": "ESLint"
+  },
+  "lineNumber": 148,
+  "message": "'Budget' is not defined.",
+  "language": "Javascript",
+  "lineText": "        const b = Budget.get(cat);",
+  "falsePositiveThreshold": 80,
+  "commitInfo": {
+   "sha": "5e083d97608816ec83ad8f7ada7acdb8cea5fc9c",
+   "commiter": "dev@money-tracker.local",
+   "commiterName": "Money Tracker Dev",
+   "timestamp": "2026-08-30T04:05:59Z"
+  }
+ },
+ {
+  "issueId": "49570957f6d23eb11ab4f58d6a2617bf",
+  "resultDataId": 131533438320,
+  "filePath": "js/history.js",
+  "fileId": 228177683192,
+  "patternInfo": {
+   "id": "ESLint8_no-undef",
+   "category": "ErrorProne",
+   "level": "High",
+   "severityLevel": "High"
+  },
+  "toolInfo": {
+   "uuid": "f8b29663-2cb2-498d-b923-a10c6a8c05cd",
+   "name": "ESLint"
+  },
+  "lineNumber": 271,
+  "message": "'LK' is not defined.",
+  "language": "Javascript",
+  "lineText": "      if (window.LK) LK.toast(",
+  "falsePositiveThreshold": 80,
+  "commitInfo": {
+   "sha": "5e083d97608816ec83ad8f7ada7acdb8cea5fc9c",
+   "commiter": "dev@money-tracker.local",
+   "commiterName": "Money Tracker Dev",
+   "timestamp": "2026-08-30T04:05:59Z"
+  }
+ },
+ {
+  "issueId": "cf8e56b7fa34d179617358097556dc6d",
+  "resultDataId": 131533438294,
+  "filePath": "js/history.js",
+  "fileId": 228177683192,
+  "patternInfo": {
+   "id": "ESLint8_no-undef",
+   "category": "ErrorProne",
+   "level": "High",
+   "severityLevel": "High"
+  },
+  "toolInfo": {
+   "uuid": "f8b29663-2cb2-498d-b923-a10c6a8c05cd",
+   "name": "ESLint"
+  },
+  "lineNumber": 282,
+  "message": "'LK' is not defined.",
+  "language": "Javascript",
+  "lineText": "      if (window.LK) LK.toast(\"Restore gagal: \" + (err.message || \"unknown\"), \"error\");",
+  "falsePositiveThreshold": 80,
+  "commitInfo": {
+   "sha": "5e083d97608816ec83ad8f7ada7acdb8cea5fc9c",
+   "commiter": "dev@money-tracker.local",
+   "commiterName": "Money Tracker Dev",
+   "timestamp": "2026-08-30T04:05:59Z"
+  }
+ },
+ {
+  "issueId": "5c9d09ab3e2faf65bf02bf3527d9eda9",
+  "resultDataId": 131533438318,
+  "filePath": "js/profile.js",
+  "fileId": 228177683205,
+  "patternInfo": {
+   "id": "ESLint8_no-undef",
+   "category": "ErrorProne",
+   "level": "High",
+   "severityLevel": "High"
+  },
+  "toolInfo": {
+   "uuid": "f8b29663-2cb2-498d-b923-a10c6a8c05cd",
+   "name": "ESLint"
+  },
+  "lineNumber": 141,
+  "message": "'LK' is not defined.",
+  "language": "Javascript",
+  "lineText": "    LK.on(\"tx:removed\", async () => renderBudgets());",
+  "falsePositiveThreshold": 80,
+  "commitInfo": {
+   "sha": "5e083d97608816ec83ad8f7ada7acdb8cea5fc9c",
+   "commiter": "dev@money-tracker.local",
+   "commiterName": "Money Tracker Dev",
+   "timestamp": "2026-08-30T04:05:59Z"
+  }
+ },
+ {
+  "issueId": "aaf587da7b61dd2cf594dd2c5159ca3",
+  "resultDataId": 131533438284,
+  "filePath": "js/dashboard.js",
+  "fileId": 228177683197,
+  "patternInfo": {
+   "id": "ESLint8_no-undef",
+   "category": "ErrorProne",
+   "level": "High",
+   "severityLevel": "High"
+  },
+  "toolInfo": {
+   "uuid": "f8b29663-2cb2-498d-b923-a10c6a8c05cd",
+   "name": "ESLint"
+  },
+  "lineNumber": 38,
+  "message": "'Chart' is not defined.",
+  "language": "Javascript",
+  "lineText": "      Chart.drawFlowChart(flowCanvas, flow);",
+  "falsePositiveThreshold": 80,
+  "commitInfo": {
+   "sha": "5e083d97608816ec83ad8f7ada7acdb8cea5fc9c",
+   "commiter": "dev@money-tracker.local",
+   "commiterName": "Money Tracker Dev",
+   "timestamp": "2026-08-30T04:05:59Z"
+  }
+ },
+ {
+  "issueId": "fa15021dbbfdf12862f578869d784b87",
+  "resultDataId": 131533438291,
+  "filePath": "js/history.js",
+  "fileId": 228177683192,
+  "patternInfo": {
+   "id": "ESLint8_no-undef",
+   "category": "ErrorProne",
+   "level": "High",
+   "severityLevel": "High"
+  },
+  "toolInfo": {
+   "uuid": "f8b29663-2cb2-498d-b923-a10c6a8c05cd",
+   "name": "ESLint"
+  },
+  "lineNumber": 291,
+  "message": "'LK' is not defined.",
+  "language": "Javascript",
+  "lineText": "      if (window.LK) LK.toast(\"Tidak ada data untuk dihapus\", \"info\");",
+  "falsePositiveThreshold": 80,
+  "commitInfo": {
+   "sha": "5e083d97608816ec83ad8f7ada7acdb8cea5fc9c",
+   "commiter": "dev@money-tracker.local",
+   "commiterName": "Money Tracker Dev",
+   "timestamp": "2026-08-30T04:05:59Z"
+  }
+ },
+ {
+  "issueId": "507be680cfabd8bebf030f6244adaf55",
+  "resultDataId": 131533438305,
+  "filePath": "js/profile.js",
+  "fileId": 228177683205,
+  "patternInfo": {
+   "id": "ESLint8_no-undef",
+   "category": "ErrorProne",
+   "level": "High",
+   "severityLevel": "High"
+  },
+  "toolInfo": {
+   "uuid": "f8b29663-2cb2-498d-b923-a10c6a8c05cd",
+   "name": "ESLint"
+  },
+  "lineNumber": 130,
+  "message": "'LK' is not defined.",
+  "language": "Javascript",
+  "lineText": "        if (window.LK) LK.toast(\"Budget dihapus\", \"success\");",
+  "falsePositiveThreshold": 80,
+  "commitInfo": {
+   "sha": "5e083d97608816ec83ad8f7ada7acdb8cea5fc9c",
+   "commiter": "dev@money-tracker.local",
+   "commiterName": "Money Tracker Dev",
+   "timestamp": "2026-08-30T04:05:59Z"
+  }
+ },
+ {
+  "issueId": "f3b015632c1bdb4f1dda58a13b7ed688",
+  "resultDataId": 131533438335,
+  "filePath": "js/history.js",
+  "fileId": 228177683192,
+  "patternInfo": {
+   "id": "ESLint8_no-undef",
+   "category": "ErrorProne",
+   "level": "High",
+   "severityLevel": "High"
+  },
+  "toolInfo": {
+   "uuid": "f8b29663-2cb2-498d-b923-a10c6a8c05cd",
+   "name": "ESLint"
+  },
+  "lineNumber": 312,
+  "message": "'LK' is not defined.",
+  "language": "Javascript",
+  "lineText": "      if (window.LK) LK.toast(`${count} transaksi dihapus`, \"success\");",
+  "falsePositiveThreshold": 80,
+  "commitInfo": {
+   "sha": "5e083d97608816ec83ad8f7ada7acdb8cea5fc9c",
+   "commiter": "dev@money-tracker.local",
+   "commiterName": "Money Tracker Dev",
+   "timestamp": "2026-08-30T04:05:59Z"
+  }
+ },
+ {
+  "issueId": "42018fb3cf267d579d8a4c95114d3714",
+  "resultDataId": 131533438279,
+  "filePath": "js/login.js",
+  "fileId": 228177683189,
+  "patternInfo": {
+   "id": "ESLint8_no-undef",
+   "category": "ErrorProne",
+   "level": "High",
+   "severityLevel": "High"
+  },
+  "toolInfo": {
+   "uuid": "f8b29663-2cb2-498d-b923-a10c6a8c05cd",
+   "name": "ESLint"
+  },
+  "lineNumber": 56,
+  "message": "'Auth' is not defined.",
+  "language": "Javascript",
+  "lineText": "    const validationErr = Auth.validateIdentifier(id);",
+  "falsePositiveThreshold": 80,
+  "commitInfo": {
+   "sha": "5e083d97608816ec83ad8f7ada7acdb8cea5fc9c",
+   "commiter": "dev@money-tracker.local",
+   "commiterName": "Money Tracker Dev",
+   "timestamp": "2026-08-30T04:05:59Z"
+  }
+ },
+ {
+  "issueId": "bf80dd0d0685e64d7f563357ff79171a",
+  "resultDataId": 131533438314,
+  "filePath": "js/history.js",
+  "fileId": 228177683192,
+  "patternInfo": {
+   "id": "ESLint8_no-undef",
+   "category": "ErrorProne",
+   "level": "High",
+   "severityLevel": "High"
+  },
+  "toolInfo": {
+   "uuid": "f8b29663-2cb2-498d-b923-a10c6a8c05cd",
+   "name": "ESLint"
+  },
+  "lineNumber": 280,
+  "message": "'LK' is not defined.",
+  "language": "Javascript",
+  "lineText": "      if (window.LK) LK.broadcast(\"tx:added\", { restored: result.inserted });",
+  "falsePositiveThreshold": 80,
+  "commitInfo": {
+   "sha": "5e083d97608816ec83ad8f7ada7acdb8cea5fc9c",
+   "commiter": "dev@money-tracker.local",
+   "commiterName": "Money Tracker Dev",
+   "timestamp": "2026-08-30T04:05:59Z"
+  }
+ },
+ {
+  "issueId": "eb7a421237e7f05c373d160faf5a1e9c",
+  "resultDataId": 131533438343,
+  "filePath": "js/history.js",
+  "fileId": 228177683192,
+  "patternInfo": {
+   "id": "ESLint8_no-undef",
+   "category": "ErrorProne",
+   "level": "High",
+   "severityLevel": "High"
+  },
+  "toolInfo": {
+   "uuid": "f8b29663-2cb2-498d-b923-a10c6a8c05cd",
+   "name": "ESLint"
+  },
+  "lineNumber": 48,
+  "message": "'LK' is not defined.",
+  "language": "Javascript",
+  "lineText": "    LK.on(\"tx:added\", async () => {",
+  "falsePositiveThreshold": 80,
+  "commitInfo": {
+   "sha": "5e083d97608816ec83ad8f7ada7acdb8cea5fc9c",
+   "commiter": "dev@money-tracker.local",
+   "commiterName": "Money Tracker Dev",
+   "timestamp": "2026-08-30T04:05:59Z"
+  }
+ },
+ {
+  "issueId": "8f93f1b48d2a545f311e4ae7f1ab1004",
+  "resultDataId": 131533438387,
+  "filePath": "js/budget.js",
+  "fileId": 228177683202,
+  "patternInfo": {
+   "id": "PMD_category_ecmascript_errorprone_InnaccurateNumericLiteral",
+   "category": "ErrorProne",
+   "level": "High",
+   "severityLevel": "High"
+  },
+  "toolInfo": {
+   "uuid": "9ed24812-b6ee-4a58-9004-0ed183c45b8f",
+   "name": "PMD"
+  },
+  "lineNumber": 51,
+  "message": "The numeric literal '1e9' will have at different value at runtime.",
+  "language": "Javascript",
+  "lineText": "  if (n > 1e9) throw new Error(\"Budget terlalu besar (maks 1 miliar).\");",
+  "falsePositiveThreshold": 80,
+  "commitInfo": {
+   "sha": "5e083d97608816ec83ad8f7ada7acdb8cea5fc9c",
+   "commiter": "dev@money-tracker.local",
+   "commiterName": "Money Tracker Dev",
+   "timestamp": "2026-08-30T04:05:59Z"
+  }
+ },
+ {
+  "issueId": "f9e3ed1a9b5d39593bfa4916751dfb33",
+  "resultDataId": 131533438330,
+  "filePath": "js/dashboard.js",
+  "fileId": 228177683197,
+  "patternInfo": {
+   "id": "ESLint8_no-undef",
+   "category": "ErrorProne",
+   "level": "High",
+   "severityLevel": "High"
+  },
+  "toolInfo": {
+   "uuid": "f8b29663-2cb2-498d-b923-a10c6a8c05cd",
+   "name": "ESLint"
+  },
+  "lineNumber": 4,
+  "message": "'waitForStorage' is not defined.",
+  "language": "Javascript",
+  "lineText": "  const Storage = await waitForStorage();",
+  "falsePositiveThreshold": 80,
+  "commitInfo": {
+   "sha": "5e083d97608816ec83ad8f7ada7acdb8cea5fc9c",
+   "commiter": "dev@money-tracker.local",
+   "commiterName": "Money Tracker Dev",
+   "timestamp": "2026-08-30T04:05:59Z"
+  }
+ },
+ {
+  "issueId": "289dd5508ad4217be3bb9984e9423bf",
+  "resultDataId": 131533438277,
+  "filePath": "js/history.js",
+  "fileId": 228177683192,
+  "patternInfo": {
+   "id": "ESLint8_no-undef",
+   "category": "ErrorProne",
+   "level": "High",
+   "severityLevel": "High"
+  },
+  "toolInfo": {
+   "uuid": "f8b29663-2cb2-498d-b923-a10c6a8c05cd",
+   "name": "ESLint"
+  },
+  "lineNumber": 315,
+  "message": "'LK' is not defined.",
+  "language": "Javascript",
+  "lineText": "      if (window.LK) LK.toast(\"Gagal reset: \" + (err.message || \"unknown\"), \"error\");",
+  "falsePositiveThreshold": 80,
+  "commitInfo": {
+   "sha": "5e083d97608816ec83ad8f7ada7acdb8cea5fc9c",
+   "commiter": "dev@money-tracker.local",
+   "commiterName": "Money Tracker Dev",
+   "timestamp": "2026-08-30T04:05:59Z"
+  }
+ },
+ {
+  "issueId": "ee6690a2f3ab788402c74417f106e041",
+  "resultDataId": 131533438388,
+  "filePath": "js/storage.js",
+  "fileId": 228177683184,
+  "patternInfo": {
+   "id": "PMD_category_ecmascript_errorprone_InnaccurateNumericLiteral",
+   "category": "ErrorProne",
+   "level": "High",
+   "severityLevel": "High"
+  },
+  "toolInfo": {
+   "uuid": "9ed24812-b6ee-4a58-9004-0ed183c45b8f",
+   "name": "PMD"
+  },
+  "lineNumber": 35,
+  "message": "The numeric literal '1_000_000_000' will have at different value at runtime.",
+  "language": "Javascript",
+  "lineText": "const MAX_AMOUNT = 1_000_000_000;       // 1 miliar",
+  "falsePositiveThreshold": 80,
+  "commitInfo": {
+   "sha": "5e083d97608816ec83ad8f7ada7acdb8cea5fc9c",
+   "commiter": "dev@money-tracker.local",
+   "commiterName": "Money Tracker Dev",
+   "timestamp": "2026-08-30T04:05:59Z"
+  }
+ },
+ {
+  "issueId": "cfbdc91fc98580a4e13c1682057460c0",
+  "resultDataId": 131533438306,
+  "filePath": "js/history.js",
+  "fileId": 228177683192,
+  "patternInfo": {
+   "id": "ESLint8_no-undef",
+   "category": "ErrorProne",
+   "level": "High",
+   "severityLevel": "High"
+  },
+  "toolInfo": {
+   "uuid": "f8b29663-2cb2-498d-b923-a10c6a8c05cd",
+   "name": "ESLint"
+  },
+  "lineNumber": 313,
+  "message": "'LK' is not defined.",
+  "language": "Javascript",
+  "lineText": "      if (window.LK) LK.broadcast(\"tx:removed\", { reset: true });",
+  "falsePositiveThreshold": 80,
+  "commitInfo": {
+   "sha": "5e083d97608816ec83ad8f7ada7acdb8cea5fc9c",
+   "commiter": "dev@money-tracker.local",
+   "commiterName": "Money Tracker Dev",
+   "timestamp": "2026-08-30T04:05:59Z"
+  }
+ },
+ {
+  "issueId": "9afeba61bcedc181513aa571147dabba",
+  "resultDataId": 131533438310,
+  "filePath": "js/input.js",
+  "fileId": 228177683206,
+  "patternInfo": {
+   "id": "ESLint8_no-undef",
+   "category": "ErrorProne",
+   "level": "High",
+   "severityLevel": "High"
+  },
+  "toolInfo": {
+   "uuid": "f8b29663-2cb2-498d-b923-a10c6a8c05cd",
+   "name": "ESLint"
+  },
+  "lineNumber": 83,
+  "message": "'LK' is not defined.",
+  "language": "Javascript",
+  "lineText": "    if (!cat) { LK.toast(\"Pilih kategori dulu.\", \"error\"); return; }",
+  "falsePositiveThreshold": 80,
+  "commitInfo": {
+   "sha": "5e083d97608816ec83ad8f7ada7acdb8cea5fc9c",
+   "commiter": "dev@money-tracker.local",
+   "commiterName": "Money Tracker Dev",
+   "timestamp": "2026-08-30T04:05:59Z"
+  }
+ },
+ {
+  "issueId": "d103493726af5ff8a4afa2b90b25a70d",
+  "resultDataId": 131533438345,
+  "filePath": "js/history.js",
+  "fileId": 228177683192,
+  "patternInfo": {
+   "id": "ESLint8_no-undef",
+   "category": "ErrorProne",
+   "level": "High",
+   "severityLevel": "High"
+  },
+  "toolInfo": {
+   "uuid": "f8b29663-2cb2-498d-b923-a10c6a8c05cd",
+   "name": "ESLint"
+  },
+  "lineNumber": 194,
+  "message": "'LK' is not defined.",
+  "language": "Javascript",
+  "lineText": "      if (window.LK) LK.toast(\"Transaksi dihapus\", \"success\");",
+  "falsePositiveThreshold": 80,
+  "commitInfo": {
+   "sha": "5e083d97608816ec83ad8f7ada7acdb8cea5fc9c",
+   "commiter": "dev@money-tracker.local",
+   "commiterName": "Money Tracker Dev",
+   "timestamp": "2026-08-30T04:05:59Z"
+  }
+ },
+ {
+  "issueId": "cd400514f8409b00737a070887fc64c2",
+  "resultDataId": 131533438334,
+  "filePath": "js/storage-backup.js",
+  "fileId": 228177683190,
+  "patternInfo": {
+   "id": "ESLint8_no-constant-condition",
+   "category": "ErrorProne",
+   "level": "High",
+   "severityLevel": "High"
+  },
+  "toolInfo": {
+   "uuid": "f8b29663-2cb2-498d-b923-a10c6a8c05cd",
+   "name": "ESLint"
+  },
+  "lineNumber": 95,
+  "message": "Unexpected constant condition.",
+  "language": "Javascript",
+  "lineText": "  while (true) {",
+  "falsePositiveThreshold": 80,
+  "commitInfo": {
+   "sha": "5e083d97608816ec83ad8f7ada7acdb8cea5fc9c",
+   "commiter": "dev@money-tracker.local",
+   "commiterName": "Money Tracker Dev",
+   "timestamp": "2026-08-30T04:05:59Z"
+  }
+ },
+ {
+  "issueId": "81064561e779171520e32a047755352b",
+  "resultDataId": 131533438363,
+  "filePath": "js/history.js",
+  "fileId": 228177683192,
+  "patternInfo": {
+   "id": "ESLint8_no-undef",
+   "category": "ErrorProne",
+   "level": "High",
+   "severityLevel": "High"
+  },
+  "toolInfo": {
+   "uuid": "f8b29663-2cb2-498d-b923-a10c6a8c05cd",
+   "name": "ESLint"
+  },
+  "lineNumber": 303,
+  "message": "'LK' is not defined.",
+  "language": "Javascript",
+  "lineText": "      if (window.LK) LK.toast(\"Dibatalkan\", \"info\");",
+  "falsePositiveThreshold": 80,
+  "commitInfo": {
+   "sha": "5e083d97608816ec83ad8f7ada7acdb8cea5fc9c",
+   "commiter": "dev@money-tracker.local",
+   "commiterName": "Money Tracker Dev",
+   "timestamp": "2026-08-30T04:05:59Z"
+  }
+ },
+ {
+  "issueId": "3d7b65309831c5c918c2f4435b28485f",
+  "resultDataId": 131533438297,
+  "filePath": "js/login.js",
+  "fileId": 228177683189,
+  "patternInfo": {
+   "id": "ESLint8_no-undef",
+   "category": "ErrorProne",
+   "level": "High",
+   "severityLevel": "High"
+  },
+  "toolInfo": {
+   "uuid": "f8b29663-2cb2-498d-b923-a10c6a8c05cd",
+   "name": "ESLint"
+  },
+  "lineNumber": 90,
+  "message": "'Auth' is not defined.",
+  "language": "Javascript",
+  "lineText": "        result = await Auth.signIn(pendingId, pwd);",
+  "falsePositiveThreshold": 80,
+  "commitInfo": {
+   "sha": "5e083d97608816ec83ad8f7ada7acdb8cea5fc9c",
+   "commiter": "dev@money-tracker.local",
+   "commiterName": "Money Tracker Dev",
+   "timestamp": "2026-08-30T04:05:59Z"
+  }
+ },
+ {
+  "issueId": "7a92eea73dbe4c404d0b13186c7006a6",
+  "resultDataId": 131533438347,
+  "filePath": "js/dashboard.js",
+  "fileId": 228177683197,
+  "patternInfo": {
+   "id": "ESLint8_no-undef",
+   "category": "ErrorProne",
+   "level": "High",
+   "severityLevel": "High"
+  },
+  "toolInfo": {
+   "uuid": "f8b29663-2cb2-498d-b923-a10c6a8c05cd",
+   "name": "ESLint"
+  },
+  "lineNumber": 3,
+  "message": "'waitForAuth' is not defined.",
+  "language": "Javascript",
+  "lineText": "  const Auth = await waitForAuth();",
+  "falsePositiveThreshold": 80,
+  "commitInfo": {
+   "sha": "5e083d97608816ec83ad8f7ada7acdb8cea5fc9c",
+   "commiter": "dev@money-tracker.local",
+   "commiterName": "Money Tracker Dev",
+   "timestamp": "2026-08-30T04:05:59Z"
+  }
+ },
+ {
+  "issueId": "d11fa79ad18f0bd45188b4f7a8defbc4",
+  "resultDataId": 131533438323,
+  "filePath": "js/input.js",
+  "fileId": 228177683206,
+  "patternInfo": {
+   "id": "ESLint8_no-undef",
+   "category": "ErrorProne",
+   "level": "High",
+   "severityLevel": "High"
+  },
+  "toolInfo": {
+   "uuid": "f8b29663-2cb2-498d-b923-a10c6a8c05cd",
+   "name": "ESLint"
+  },
+  "lineNumber": 4,
+  "message": "'waitForStorage' is not defined.",
+  "language": "Javascript",
+  "lineText": "  const Storage = await waitForStorage();",
+  "falsePositiveThreshold": 80,
+  "commitInfo": {
+   "sha": "5e083d97608816ec83ad8f7ada7acdb8cea5fc9c",
+   "commiter": "dev@money-tracker.local",
+   "commiterName": "Money Tracker Dev",
+   "timestamp": "2026-08-30T04:05:59Z"
+  }
+ },
+ {
+  "issueId": "dd7370bda47911906beb82376af7f836",
+  "resultDataId": 131533438285,
+  "filePath": "js/login.js",
+  "fileId": 228177683189,
+  "patternInfo": {
+   "id": "ESLint8_no-undef",
+   "category": "ErrorProne",
+   "level": "High",
+   "severityLevel": "High"
+  },
+  "toolInfo": {
+   "uuid": "f8b29663-2cb2-498d-b923-a10c6a8c05cd",
+   "name": "ESLint"
+  },
+  "lineNumber": 109,
+  "message": "'Auth' is not defined.",
+  "language": "Javascript",
+  "lineText": "        result = await Auth.signUp(pendingId, pwd);",
+  "falsePositiveThreshold": 80,
+  "commitInfo": {
+   "sha": "5e083d97608816ec83ad8f7ada7acdb8cea5fc9c",
+   "commiter": "dev@money-tracker.local",
+   "commiterName": "Money Tracker Dev",
+   "timestamp": "2026-08-30T04:05:59Z"
+  }
+ },
+ {
+  "issueId": "3e4630da4f45803c7212b54c99adef55",
+  "resultDataId": 131533438333,
+  "filePath": "js/input.js",
+  "fileId": 228177683206,
+  "patternInfo": {
+   "id": "ESLint8_no-undef",
+   "category": "ErrorProne",
+   "level": "High",
+   "severityLevel": "High"
+  },
+  "toolInfo": {
+   "uuid": "f8b29663-2cb2-498d-b923-a10c6a8c05cd",
+   "name": "ESLint"
+  },
+  "lineNumber": 155,
+  "message": "'LK' is not defined.",
+  "language": "Javascript",
+  "lineText": "            LK.toast(\"Hampir capai budget (\" + Math.round((after / b) * 100) + \"%)\", \"info\");",
+  "falsePositiveThreshold": 80,
+  "commitInfo": {
+   "sha": "5e083d97608816ec83ad8f7ada7acdb8cea5fc9c",
+   "commiter": "dev@money-tracker.local",
+   "commiterName": "Money Tracker Dev",
+   "timestamp": "2026-08-30T04:05:59Z"
+  }
+ },
+ {
+  "issueId": "380a80877a82f9cbe6611697a495af3",
+  "resultDataId": 131533438356,
+  "filePath": "js/tailwind-config.js",
+  "fileId": 228177683201,
+  "patternInfo": {
+   "id": "ESLint8_no-undef",
+   "category": "ErrorProne",
+   "level": "High",
+   "severityLevel": "High"
+  },
+  "toolInfo": {
+   "uuid": "f8b29663-2cb2-498d-b923-a10c6a8c05cd",
+   "name": "ESLint"
+  },
+  "lineNumber": 1,
+  "message": "'tailwind' is not defined.",
+  "language": "Javascript",
+  "lineText": "tailwind.config = {",
+  "falsePositiveThreshold": 80,
+  "commitInfo": {
+   "sha": "5e083d97608816ec83ad8f7ada7acdb8cea5fc9c",
+   "commiter": "dev@money-tracker.local",
+   "commiterName": "Money Tracker Dev",
+   "timestamp": "2026-08-30T04:05:59Z"
+  }
+ },
+ {
+  "issueId": "1d6bd168ae1b5fa75dd713ecd2b6cb14",
+  "resultDataId": 131533438299,
+  "filePath": "js/profile.js",
+  "fileId": 228177683205,
+  "patternInfo": {
+   "id": "ESLint8_no-undef",
+   "category": "ErrorProne",
+   "level": "High",
+   "severityLevel": "High"
+  },
+  "toolInfo": {
+   "uuid": "f8b29663-2cb2-498d-b923-a10c6a8c05cd",
+   "name": "ESLint"
+  },
+  "lineNumber": 215,
+  "message": "'LK' is not defined.",
+  "language": "Javascript",
+  "lineText": "        if (window.LK) LK.toast(\"Gagal: \" + (err.message || \"unknown\"), \"error\");",
+  "falsePositiveThreshold": 80,
+  "commitInfo": {
+   "sha": "5e083d97608816ec83ad8f7ada7acdb8cea5fc9c",
+   "commiter": "dev@money-tracker.local",
+   "commiterName": "Money Tracker Dev",
+   "timestamp": "2026-08-30T04:05:59Z"
+  }
+ },
+ {
+  "issueId": "89f4b01fc71f7c1268409f3317d872ae",
+  "resultDataId": 131533438390,
+  "filePath": "js/input.js",
+  "fileId": 228177683206,
+  "patternInfo": {
+   "id": "PMD_category_ecmascript_errorprone_InnaccurateNumericLiteral",
+   "category": "ErrorProne",
+   "level": "High",
+   "severityLevel": "High"
+  },
+  "toolInfo": {
+   "uuid": "9ed24812-b6ee-4a58-9004-0ed183c45b8f",
+   "name": "PMD"
+  },
+  "lineNumber": 120,
+  "message": "The numeric literal '1e9' will have at different value at runtime.",
+  "language": "Javascript",
+  "lineText": "    else if (amt > 1e9) { showErr(errAmount, \"Jumlah terlalu besar.\"); ok = false; }",
+  "falsePositiveThreshold": 80,
+  "commitInfo": {
+   "sha": "5e083d97608816ec83ad8f7ada7acdb8cea5fc9c",
+   "commiter": "dev@money-tracker.local",
+   "commiterName": "Money Tracker Dev",
+   "timestamp": "2026-08-30T04:05:59Z"
+  }
+ },
+ {
+  "issueId": "66c0f547dfe2f43cc323dc9248f6cdc",
+  "resultDataId": 131533438315,
+  "filePath": "js/history.js",
+  "fileId": 228177683192,
+  "patternInfo": {
+   "id": "ESLint8_no-undef",
+   "category": "ErrorProne",
+   "level": "High",
+   "severityLevel": "High"
+  },
+  "toolInfo": {
+   "uuid": "f8b29663-2cb2-498d-b923-a10c6a8c05cd",
+   "name": "ESLint"
+  },
+  "lineNumber": 252,
+  "message": "'LK' is not defined.",
+  "language": "Javascript",
+  "lineText": "      if (window.LK) LK.toast(\"Gagal export: \" + (err.message || \"unknown\"), \"error\");",
+  "falsePositiveThreshold": 80,
+  "commitInfo": {
+   "sha": "5e083d97608816ec83ad8f7ada7acdb8cea5fc9c",
+   "commiter": "dev@money-tracker.local",
+   "commiterName": "Money Tracker Dev",
+   "timestamp": "2026-08-30T04:05:59Z"
+  }
+ },
+ {
+  "issueId": "17c88fb53f9fada476f9448c29220ddc",
+  "resultDataId": 131533438273,
+  "filePath": "js/dashboard.js",
+  "fileId": 228177683197,
+  "patternInfo": {
+   "id": "ESLint8_no-undef",
+   "category": "ErrorProne",
+   "level": "High",
+   "severityLevel": "High"
+  },
+  "toolInfo": {
+   "uuid": "f8b29663-2cb2-498d-b923-a10c6a8c05cd",
+   "name": "ESLint"
+  },
+  "lineNumber": 141,
+  "message": "'LK' is not defined.",
+  "language": "Javascript",
+  "lineText": "    LK.on(\"tx:removed\", async () => {",
+  "falsePositiveThreshold": 80,
+  "commitInfo": {
+   "sha": "5e083d97608816ec83ad8f7ada7acdb8cea5fc9c",
+   "commiter": "dev@money-tracker.local",
+   "commiterName": "Money Tracker Dev",
+   "timestamp": "2026-08-30T04:05:59Z"
+  }
+ },
+ {
+  "issueId": "c1c534974966f27fe6f634ec6482653c",
+  "resultDataId": 131533438317,
+  "filePath": "js/input.js",
+  "fileId": 228177683206,
+  "patternInfo": {
+   "id": "ESLint8_no-undef",
+   "category": "ErrorProne",
+   "level": "High",
+   "severityLevel": "High"
+  },
+  "toolInfo": {
+   "uuid": "f8b29663-2cb2-498d-b923-a10c6a8c05cd",
+   "name": "ESLint"
+  },
+  "lineNumber": 211,
+  "message": "'LK' is not defined.",
+  "language": "Javascript",
+  "lineText": "      LK.toast(\"Tersimpan\", \"success\");",
+  "falsePositiveThreshold": 80,
+  "commitInfo": {
+   "sha": "5e083d97608816ec83ad8f7ada7acdb8cea5fc9c",
+   "commiter": "dev@money-tracker.local",
+   "commiterName": "Money Tracker Dev",
+   "timestamp": "2026-08-30T04:05:59Z"
+  }
+ },
+ {
+  "issueId": "fb463a53f4bd5bd6f222303c003a3371",
+  "resultDataId": 131533438272,
+  "filePath": "js/dashboard.js",
+  "fileId": 228177683197,
+  "patternInfo": {
+   "id": "ESLint8_no-undef",
+   "category": "ErrorProne",
+   "level": "High",
+   "severityLevel": "High"
+  },
+  "toolInfo": {
+   "uuid": "f8b29663-2cb2-498d-b923-a10c6a8c05cd",
+   "name": "ESLint"
+  },
+  "lineNumber": 40,
+  "message": "'Chart' is not defined.",
+  "language": "Javascript",
+  "lineText": "      Chart.drawCatChart(catCanvas, cat);",
+  "falsePositiveThreshold": 80,
+  "commitInfo": {
+   "sha": "5e083d97608816ec83ad8f7ada7acdb8cea5fc9c",
+   "commiter": "dev@money-tracker.local",
+   "commiterName": "Money Tracker Dev",
+   "timestamp": "2026-08-30T04:05:59Z"
+  }
+ },
+ {
+  "issueId": "d4a6a707ef88355c79839ef4be528ac0",
+  "resultDataId": 131533438364,
+  "filePath": "js/input.js",
+  "fileId": 228177683206,
+  "patternInfo": {
+   "id": "ESLint8_no-undef",
+   "category": "ErrorProne",
+   "level": "High",
+   "severityLevel": "High"
+  },
+  "toolInfo": {
+   "uuid": "f8b29663-2cb2-498d-b923-a10c6a8c05cd",
+   "name": "ESLint"
+  },
+  "lineNumber": 3,
+  "message": "'waitForAuth' is not defined.",
+  "language": "Javascript",
+  "lineText": "  const Auth = await waitForAuth();",
+  "falsePositiveThreshold": 80,
+  "commitInfo": {
+   "sha": "5e083d97608816ec83ad8f7ada7acdb8cea5fc9c",
+   "commiter": "dev@money-tracker.local",
+   "commiterName": "Money Tracker Dev",
+   "timestamp": "2026-08-30T04:05:59Z"
+  }
+ },
+ {
+  "issueId": "4b2854ac1ac6f8f00750e8278da72e1d",
+  "resultDataId": 131533438304,
+  "filePath": "js/input.js",
+  "fileId": 228177683206,
+  "patternInfo": {
+   "id": "ESLint8_no-undef",
+   "category": "ErrorProne",
+   "level": "High",
+   "severityLevel": "High"
+  },
+  "toolInfo": {
+   "uuid": "f8b29663-2cb2-498d-b923-a10c6a8c05cd",
+   "name": "ESLint"
+  },
+  "lineNumber": 94,
+  "message": "'LK' is not defined.",
+  "language": "Javascript",
+  "lineText": "        LK.toast(\"Budget disimpan: \" + fmtRp(n), \"success\");",
+  "falsePositiveThreshold": 80,
+  "commitInfo": {
+   "sha": "5e083d97608816ec83ad8f7ada7acdb8cea5fc9c",
+   "commiter": "dev@money-tracker.local",
+   "commiterName": "Money Tracker Dev",
+   "timestamp": "2026-08-30T04:05:59Z"
+  }
+ },
+ {
+  "issueId": "703ae8e0fd89afb859a8caa67db44aaf",
+  "resultDataId": 131533438338,
+  "filePath": "js/input.js",
+  "fileId": 228177683206,
+  "patternInfo": {
+   "id": "ESLint8_no-undef",
+   "category": "ErrorProne",
+   "level": "High",
+   "severityLevel": "High"
+  },
+  "toolInfo": {
+   "uuid": "f8b29663-2cb2-498d-b923-a10c6a8c05cd",
+   "name": "ESLint"
+  },
+  "lineNumber": 90,
+  "message": "'Budget' is not defined.",
+  "language": "Javascript",
+  "lineText": "        if (String(v).trim() === \"\") { Budget.remove(cat); LK.toast(\"Budget dihapus.\", \"success\"); }",
+  "falsePositiveThreshold": 80,
+  "commitInfo": {
+   "sha": "5e083d97608816ec83ad8f7ada7acdb8cea5fc9c",
+   "commiter": "dev@money-tracker.local",
+   "commiterName": "Money Tracker Dev",
+   "timestamp": "2026-08-30T04:05:59Z"
+  }
+ },
+ {
+  "issueId": "e100545b25c588fd926f01ef3d49c114",
+  "resultDataId": 131533438298,
+  "filePath": "js/dashboard.js",
+  "fileId": 228177683197,
+  "patternInfo": {
+   "id": "ESLint8_no-undef",
+   "category": "ErrorProne",
+   "level": "High",
+   "severityLevel": "High"
+  },
+  "toolInfo": {
+   "uuid": "f8b29663-2cb2-498d-b923-a10c6a8c05cd",
+   "name": "ESLint"
+  },
+  "lineNumber": 54,
+  "message": "'Budget' is not defined.",
+  "language": "Javascript",
+  "lineText": "    const all = Budget.getAll();",
+  "falsePositiveThreshold": 80,
+  "commitInfo": {
+   "sha": "5e083d97608816ec83ad8f7ada7acdb8cea5fc9c",
+   "commiter": "dev@money-tracker.local",
+   "commiterName": "Money Tracker Dev",
+   "timestamp": "2026-08-30T04:05:59Z"
+  }
+ },
+ {
+  "issueId": "6559389e39ea69f3dd1e6b3864552816",
+  "resultDataId": 131533438324,
+  "filePath": "js/input.js",
+  "fileId": 228177683206,
+  "patternInfo": {
+   "id": "ESLint8_no-undef",
+   "category": "ErrorProne",
+   "level": "High",
+   "severityLevel": "High"
+  },
+  "toolInfo": {
+   "uuid": "f8b29663-2cb2-498d-b923-a10c6a8c05cd",
+   "name": "ESLint"
+  },
+  "lineNumber": 220,
+  "message": "'LK' is not defined.",
+  "language": "Javascript",
+  "lineText": "      LK.toast(`+ Rp ${Number(row.amount).toLocaleString(\"id-ID\")}`, \"success\");",
+  "falsePositiveThreshold": 80,
+  "commitInfo": {
+   "sha": "5e083d97608816ec83ad8f7ada7acdb8cea5fc9c",
+   "commiter": "dev@money-tracker.local",
+   "commiterName": "Money Tracker Dev",
+   "timestamp": "2026-08-30T04:05:59Z"
+  }
+ },
+ {
+  "issueId": "b25d87fa0d7f24db0b0682625023e868",
+  "resultDataId": 131533438341,
+  "filePath": "js/login.js",
+  "fileId": 228177683189,
+  "patternInfo": {
+   "id": "ESLint8_no-undef",
+   "category": "ErrorProne",
+   "level": "High",
+   "severityLevel": "High"
+  },
+  "toolInfo": {
+   "uuid": "f8b29663-2cb2-498d-b923-a10c6a8c05cd",
+   "name": "ESLint"
+  },
+  "lineNumber": 93,
+  "message": "'Auth' is not defined.",
+  "language": "Javascript",
+  "lineText": "          const up = await Auth.signUp(pendingId, pwd);",
+  "falsePositiveThreshold": 80,
+  "commitInfo": {
+   "sha": "5e083d97608816ec83ad8f7ada7acdb8cea5fc9c",
+   "commiter": "dev@money-tracker.local",
+   "commiterName": "Money Tracker Dev",
+   "timestamp": "2026-08-30T04:05:59Z"
+  }
+ },
+ {
+  "issueId": "997862acd9c9ba194e31992da423ca5e",
+  "resultDataId": 131533438340,
+  "filePath": "js/profile.js",
+  "fileId": 228177683205,
+  "patternInfo": {
+   "id": "ESLint8_no-undef",
+   "category": "ErrorProne",
+   "level": "High",
+   "severityLevel": "High"
+  },
+  "toolInfo": {
+   "uuid": "f8b29663-2cb2-498d-b923-a10c6a8c05cd",
+   "name": "ESLint"
+  },
+  "lineNumber": 5,
+  "message": "'waitForAuth' is not defined.",
+  "language": "Javascript",
+  "lineText": "  const Auth = await waitForAuth();",
+  "falsePositiveThreshold": 80,
+  "commitInfo": {
+   "sha": "5e083d97608816ec83ad8f7ada7acdb8cea5fc9c",
+   "commiter": "dev@money-tracker.local",
+   "commiterName": "Money Tracker Dev",
+   "timestamp": "2026-08-30T04:05:59Z"
+  }
+ },
+ {
+  "issueId": "ffc8af1e26551b0c6cc762c7f0667a74",
+  "resultDataId": 131533438319,
+  "filePath": "js/profile.js",
+  "fileId": 228177683205,
+  "patternInfo": {
+   "id": "ESLint8_no-undef",
+   "category": "ErrorProne",
+   "level": "High",
+   "severityLevel": "High"
+  },
+  "toolInfo": {
+   "uuid": "f8b29663-2cb2-498d-b923-a10c6a8c05cd",
+   "name": "ESLint"
+  },
+  "lineNumber": 140,
+  "message": "'LK' is not defined.",
+  "language": "Javascript",
+  "lineText": "    LK.on(\"tx:added\", async () => renderBudgets());",
+  "falsePositiveThreshold": 80,
+  "commitInfo": {
+   "sha": "5e083d97608816ec83ad8f7ada7acdb8cea5fc9c",
+   "commiter": "dev@money-tracker.local",
+   "commiterName": "Money Tracker Dev",
+   "timestamp": "2026-08-30T04:05:59Z"
+  }
+ },
+ {
+  "issueId": "55096bdf845b4d38a6d7c6ff02e83ee4",
+  "resultDataId": 131533438281,
+  "filePath": "js/profile.js",
+  "fileId": 228177683205,
+  "patternInfo": {
+   "id": "ESLint8_no-undef",
+   "category": "ErrorProne",
+   "level": "High",
+   "severityLevel": "High"
+  },
+  "toolInfo": {
+   "uuid": "f8b29663-2cb2-498d-b923-a10c6a8c05cd",
+   "name": "ESLint"
+  },
+  "lineNumber": 118,
+  "message": "'LK' is not defined.",
+  "language": "Javascript",
+  "lineText": "        if (window.LK) LK.toast(err.message || \"Gagal simpan budget\", \"error\");",
+  "falsePositiveThreshold": 80,
+  "commitInfo": {
+   "sha": "5e083d97608816ec83ad8f7ada7acdb8cea5fc9c",
+   "commiter": "dev@money-tracker.local",
+   "commiterName": "Money Tracker Dev",
+   "timestamp": "2026-08-30T04:05:59Z"
+  }
+ },
+ {
+  "issueId": "b422cbfd7d4be4b601bda55bda1403d0",
+  "resultDataId": 131533438365,
+  "filePath": "js/input.js",
+  "fileId": 228177683206,
+  "patternInfo": {
+   "id": "ESLint8_no-undef",
+   "category": "ErrorProne",
+   "level": "High",
+   "severityLevel": "High"
+  },
+  "toolInfo": {
+   "uuid": "f8b29663-2cb2-498d-b923-a10c6a8c05cd",
+   "name": "ESLint"
+  },
+  "lineNumber": 66,
+  "message": "'Budget' is not defined.",
+  "language": "Javascript",
+  "lineText": "    const budget = window.Budget ? Budget.get(cat) : 0;",
+  "falsePositiveThreshold": 80,
+  "commitInfo": {
+   "sha": "5e083d97608816ec83ad8f7ada7acdb8cea5fc9c",
+   "commiter": "dev@money-tracker.local",
+   "commiterName": "Money Tracker Dev",
+   "timestamp": "2026-08-30T04:05:59Z"
+  }
+ },
+ {
+  "issueId": "f247bec43c3dc65c9f77339bf1b52b06",
+  "resultDataId": 131533438342,
+  "filePath": "js/history.js",
+  "fileId": 228177683192,
+  "patternInfo": {
+   "id": "ESLint8_no-undef",
+   "category": "ErrorProne",
+   "level": "High",
+   "severityLevel": "High"
+  },
+  "toolInfo": {
+   "uuid": "f8b29663-2cb2-498d-b923-a10c6a8c05cd",
+   "name": "ESLint"
+  },
+  "lineNumber": 201,
+  "message": "'LK' is not defined.",
+  "language": "Javascript",
+  "lineText": "      if (window.LK) LK.toast(\"Gagal hapus: \" + (err.message || \"unknown\"), \"error\");",
+  "falsePositiveThreshold": 80,
+  "commitInfo": {
+   "sha": "5e083d97608816ec83ad8f7ada7acdb8cea5fc9c",
+   "commiter": "dev@money-tracker.local",
+   "commiterName": "Money Tracker Dev",
+   "timestamp": "2026-08-30T04:05:59Z"
+  }
+ },
+ {
+  "issueId": "ac1ac045d8654f1a996b67ddba75ba6b",
+  "resultDataId": 131533438271,
+  "filePath": "js/profile.js",
+  "fileId": 228177683205,
+  "patternInfo": {
+   "id": "ESLint8_no-undef",
+   "category": "ErrorProne",
+   "level": "High",
+   "severityLevel": "High"
+  },
+  "toolInfo": {
+   "uuid": "f8b29663-2cb2-498d-b923-a10c6a8c05cd",
+   "name": "ESLint"
+  },
+  "lineNumber": 6,
+  "message": "'waitForStorage' is not defined.",
+  "language": "Javascript",
+  "lineText": "  const Storage = await waitForStorage();",
+  "falsePositiveThreshold": 80,
+  "commitInfo": {
+   "sha": "5e083d97608816ec83ad8f7ada7acdb8cea5fc9c",
+   "commiter": "dev@money-tracker.local",
+   "commiterName": "Money Tracker Dev",
+   "timestamp": "2026-08-30T04:05:59Z"
+  }
+ },
+ {
+  "issueId": "56fb09221755e32454ed612f49408f47",
+  "resultDataId": 131533438372,
+  "filePath": "js/profile.js",
+  "fileId": 228177683205,
+  "patternInfo": {
+   "id": "ESLint8_no-undef",
+   "category": "ErrorProne",
+   "level": "High",
+   "severityLevel": "High"
+  },
+  "toolInfo": {
+   "uuid": "f8b29663-2cb2-498d-b923-a10c6a8c05cd",
+   "name": "ESLint"
+  },
+  "lineNumber": 115,
+  "message": "'LK' is not defined.",
+  "language": "Javascript",
+  "lineText": "        if (window.LK) LK.toast(\"Budget disimpan\", \"success\");",
+  "falsePositiveThreshold": 80,
+  "commitInfo": {
+   "sha": "5e083d97608816ec83ad8f7ada7acdb8cea5fc9c",
+   "commiter": "dev@money-tracker.local",
+   "commiterName": "Money Tracker Dev",
+   "timestamp": "2026-08-30T04:05:59Z"
+  }
+ },
+ {
+  "issueId": "bd78ed6ba7ac7d75ec2fddd8f426d9ce",
+  "resultDataId": 131533438275,
+  "filePath": "js/login.js",
+  "fileId": 228177683189,
+  "patternInfo": {
+   "id": "ESLint8_no-undef",
+   "category": "ErrorProne",
+   "level": "High",
+   "severityLevel": "High"
+  },
+  "toolInfo": {
+   "uuid": "f8b29663-2cb2-498d-b923-a10c6a8c05cd",
+   "name": "ESLint"
+  },
+  "lineNumber": 10,
+  "message": "'Auth' is not defined.",
+  "language": "Javascript",
+  "lineText": "  if (window.Auth && Auth.isLoggedIn()) {",
+  "falsePositiveThreshold": 80,
+  "commitInfo": {
+   "sha": "5e083d97608816ec83ad8f7ada7acdb8cea5fc9c",
+   "commiter": "dev@money-tracker.local",
+   "commiterName": "Money Tracker Dev",
+   "timestamp": "2026-08-30T04:05:59Z"
+  }
+ },
+ {
+  "issueId": "a769ac5dc21acfbad269acbb7b65780b",
+  "resultDataId": 131533438326,
+  "filePath": "js/login.js",
+  "fileId": 228177683189,
+  "patternInfo": {
+   "id": "ESLint8_no-undef",
+   "category": "ErrorProne",
+   "level": "High",
+   "severityLevel": "High"
+  },
+  "toolInfo": {
+   "uuid": "f8b29663-2cb2-498d-b923-a10c6a8c05cd",
+   "name": "ESLint"
+  },
+  "lineNumber": 11,
+  "message": "'Auth' is not defined.",
+  "language": "Javascript",
+  "lineText": "    Auth.redirectAfterAuth();",
+  "falsePositiveThreshold": 80,
+  "commitInfo": {
+   "sha": "5e083d97608816ec83ad8f7ada7acdb8cea5fc9c",
+   "commiter": "dev@money-tracker.local",
+   "commiterName": "Money Tracker Dev",
+   "timestamp": "2026-08-30T04:05:59Z"
+  }
+ },
+ {
+  "issueId": "87ee639e0a04fdb4817e6a1a3ce2b1ef",
+  "resultDataId": 131533438296,
+  "filePath": "js/input.js",
+  "fileId": 228177683206,
+  "patternInfo": {
+   "id": "ESLint8_no-undef",
+   "category": "ErrorProne",
+   "level": "High",
+   "severityLevel": "High"
+  },
+  "toolInfo": {
+   "uuid": "f8b29663-2cb2-498d-b923-a10c6a8c05cd",
+   "name": "ESLint"
+  },
+  "lineNumber": 153,
+  "message": "'LK' is not defined.",
+  "language": "Javascript",
+  "lineText": "            LK.toast(\"\u26a0 Over budget: \" + fmtRp(after) + \" / \" + fmtRp(b), \"error\");",
+  "falsePositiveThreshold": 80,
+  "commitInfo": {
+   "sha": "5e083d97608816ec83ad8f7ada7acdb8cea5fc9c",
+   "commiter": "dev@money-tracker.local",
+   "commiterName": "Money Tracker Dev",
+   "timestamp": "2026-08-30T04:05:59Z"
+  }
+ },
+ {
+  "issueId": "af02acf025a916810b69e6e1c6c98f2d",
+  "resultDataId": 131533438309,
+  "filePath": "js/input.js",
+  "fileId": 228177683206,
+  "patternInfo": {
+   "id": "ESLint8_no-undef",
+   "category": "ErrorProne",
+   "level": "High",
+   "severityLevel": "High"
+  },
+  "toolInfo": {
+   "uuid": "f8b29663-2cb2-498d-b923-a10c6a8c05cd",
+   "name": "ESLint"
+  },
+  "lineNumber": 84,
+  "message": "'Budget' is not defined.",
+  "language": "Javascript",
+  "lineText": "    const current = Budget.get(cat);",
+  "falsePositiveThreshold": 80,
+  "commitInfo": {
+   "sha": "5e083d97608816ec83ad8f7ada7acdb8cea5fc9c",
+   "commiter": "dev@money-tracker.local",
+   "commiterName": "Money Tracker Dev",
+   "timestamp": "2026-08-30T04:05:59Z"
+  }
+ },
+ {
+  "issueId": "42acb31afb29ab136d680b05ce36f9ff",
+  "resultDataId": 131533438346,
+  "filePath": "js/dashboard.js",
+  "fileId": 228177683197,
+  "patternInfo": {
+   "id": "ESLint8_no-undef",
+   "category": "ErrorProne",
+   "level": "High",
+   "severityLevel": "High"
+  },
+  "toolInfo": {
+   "uuid": "f8b29663-2cb2-498d-b923-a10c6a8c05cd",
+   "name": "ESLint"
+  },
+  "lineNumber": 41,
+  "message": "'Chart' is not defined.",
+  "language": "Javascript",
+  "lineText": "      Chart.renderCatLegend(catLegend, cat);",
+  "falsePositiveThreshold": 80,
+  "commitInfo": {
+   "sha": "5e083d97608816ec83ad8f7ada7acdb8cea5fc9c",
+   "commiter": "dev@money-tracker.local",
+   "commiterName": "Money Tracker Dev",
+   "timestamp": "2026-08-30T04:05:59Z"
+  }
+ },
+ {
+  "issueId": "604b95f4e438aa69274af24d17063fec",
+  "resultDataId": 131533438357,
+  "filePath": "js/input.js",
+  "fileId": 228177683206,
+  "patternInfo": {
+   "id": "ESLint8_no-undef",
+   "category": "ErrorProne",
+   "level": "High",
+   "severityLevel": "High"
+  },
+  "toolInfo": {
+   "uuid": "f8b29663-2cb2-498d-b923-a10c6a8c05cd",
+   "name": "ESLint"
+  },
+  "lineNumber": 93,
+  "message": "'Budget' is not defined.",
+  "language": "Javascript",
+  "lineText": "        Budget.set(cat, n);",
+  "falsePositiveThreshold": 80,
+  "commitInfo": {
+   "sha": "5e083d97608816ec83ad8f7ada7acdb8cea5fc9c",
+   "commiter": "dev@money-tracker.local",
+   "commiterName": "Money Tracker Dev",
+   "timestamp": "2026-08-30T04:05:59Z"
+  }
+ },
+ {
+  "issueId": "7e6d4f52bbeadd2ed70e9252aca3101a",
+  "resultDataId": 131533438389,
+  "filePath": "js/storage-backup.js",
+  "fileId": 228177683190,
+  "patternInfo": {
+   "id": "PMD_category_ecmascript_errorprone_InnaccurateNumericLiteral",
+   "category": "ErrorProne",
+   "level": "High",
+   "severityLevel": "High"
+  },
+  "toolInfo": {
+   "uuid": "9ed24812-b6ee-4a58-9004-0ed183c45b8f",
+   "name": "PMD"
+  },
+  "lineNumber": 11,
+  "message": "The numeric literal '1_000_000_000' will have at different value at runtime.",
+  "language": "Javascript",
+  "lineText": "const MAX_AMOUNT = 1_000_000_000;",
+  "falsePositiveThreshold": 80,
+  "commitInfo": {
+   "sha": "5e083d97608816ec83ad8f7ada7acdb8cea5fc9c",
+   "commiter": "dev@money-tracker.local",
+   "commiterName": "Money Tracker Dev",
+   "timestamp": "2026-08-30T04:05:59Z"
+  }
+ },
+ {
+  "issueId": "a226c1249090bfcf9c14151d604e5985",
+  "resultDataId": 131533438290,
+  "filePath": "js/history.js",
+  "fileId": 228177683192,
+  "patternInfo": {
+   "id": "ESLint8_no-undef",
+   "category": "ErrorProne",
+   "level": "High",
+   "severityLevel": "High"
+  },
+  "toolInfo": {
+   "uuid": "f8b29663-2cb2-498d-b923-a10c6a8c05cd",
+   "name": "ESLint"
+  },
+  "lineNumber": 250,
+  "message": "'LK' is not defined.",
+  "language": "Javascript",
+  "lineText": "      if (window.LK) LK.toast(`Backup ${items.length} transaksi diunduh`, \"success\");",
+  "falsePositiveThreshold": 80,
+  "commitInfo": {
+   "sha": "5e083d97608816ec83ad8f7ada7acdb8cea5fc9c",
+   "commiter": "dev@money-tracker.local",
+   "commiterName": "Money Tracker Dev",
+   "timestamp": "2026-08-30T04:05:59Z"
+  }
+ },
+ {
+  "issueId": "69a798b440a5c57372b484492cded82e",
+  "resultDataId": 131533438337,
+  "filePath": "js/dashboard.js",
+  "fileId": 228177683197,
+  "patternInfo": {
+   "id": "ESLint8_no-undef",
+   "category": "ErrorProne",
+   "level": "High",
+   "severityLevel": "High"
+  },
+  "toolInfo": {
+   "uuid": "f8b29663-2cb2-498d-b923-a10c6a8c05cd",
+   "name": "ESLint"
+  },
+  "lineNumber": 137,
+  "message": "'LK' is not defined.",
+  "language": "Javascript",
+  "lineText": "    LK.on(\"tx:added\", async (row) => {",
+  "falsePositiveThreshold": 80,
+  "commitInfo": {
+   "sha": "5e083d97608816ec83ad8f7ada7acdb8cea5fc9c",
+   "commiter": "dev@money-tracker.local",
+   "commiterName": "Money Tracker Dev",
+   "timestamp": "2026-08-30T04:05:59Z"
+  }
+ },
+ {
+  "issueId": "d8a104437b40cd01454c9c8755bfda34",
+  "resultDataId": 131533438312,
+  "filePath": "js/input.js",
+  "fileId": 228177683206,
+  "patternInfo": {
+   "id": "ESLint8_no-undef",
+   "category": "ErrorProne",
+   "level": "High",
+   "severityLevel": "High"
+  },
+  "toolInfo": {
+   "uuid": "f8b29663-2cb2-498d-b923-a10c6a8c05cd",
+   "name": "ESLint"
+  },
+  "lineNumber": 98,
+  "message": "'LK' is not defined.",
+  "language": "Javascript",
+  "lineText": "      LK.toast(err.message || \"Gagal menyimpan budget.\", \"error\");",
+  "falsePositiveThreshold": 80,
+  "commitInfo": {
+   "sha": "5e083d97608816ec83ad8f7ada7acdb8cea5fc9c",
+   "commiter": "dev@money-tracker.local",
+   "commiterName": "Money Tracker Dev",
+   "timestamp": "2026-08-30T04:05:59Z"
+  }
+ },
+ {
+  "issueId": "7497b5520800f76c6dfce5f8d7a2e0e7",
+  "resultDataId": 131533438359,
+  "filePath": "js/budget.js",
+  "fileId": 228177683202,
+  "patternInfo": {
+   "id": "ESLint8_@typescript-eslint_no-dynamic-delete",
+   "category": "ErrorProne",
+   "level": "Warning",
+   "severityLevel": "Warning"
+  },
+  "toolInfo": {
+   "uuid": "f8b29663-2cb2-498d-b923-a10c6a8c05cd",
+   "name": "ESLint"
+  },
+  "lineNumber": 60,
+  "message": "Do not delete dynamically computed property keys.",
+  "language": "Javascript",
+  "lineText": "  if (cat in all) { delete all[cat]; save(all); }",
+  "falsePositiveThreshold": 80,
+  "commitInfo": {
+   "sha": "5e083d97608816ec83ad8f7ada7acdb8cea5fc9c",
+   "commiter": "dev@money-tracker.local",
+   "commiterName": "Money Tracker Dev",
+   "timestamp": "2026-08-30T04:05:59Z"
+  }
+ },
+ {
+  "issueId": "26d12991e496946b825bd807384b3a58",
+  "resultDataId": 131533438289,
+  "filePath": "js/history.js",
+  "fileId": 228177683192,
+  "patternInfo": {
+   "id": "ESLint8_no-undef",
+   "category": "ErrorProne",
+   "level": "High",
+   "severityLevel": "High"
+  },
+  "toolInfo": {
+   "uuid": "f8b29663-2cb2-498d-b923-a10c6a8c05cd",
+   "name": "ESLint"
+  },
+  "lineNumber": 4,
+  "message": "'waitForStorage' is not defined.",
+  "language": "Javascript",
+  "lineText": "  const Storage = await waitForStorage();",
+  "falsePositiveThreshold": 80,
+  "commitInfo": {
+   "sha": "5e083d97608816ec83ad8f7ada7acdb8cea5fc9c",
+   "commiter": "dev@money-tracker.local",
+   "commiterName": "Money Tracker Dev",
+   "timestamp": "2026-08-30T04:05:59Z"
+  }
+ },
+ {
+  "issueId": "72fb061b3ee13a27f27f41cd6d035a92",
+  "resultDataId": 131533438321,
+  "filePath": "js/history.js",
+  "fileId": 228177683192,
+  "patternInfo": {
+   "id": "ESLint8_no-undef",
+   "category": "ErrorProne",
+   "level": "High",
+   "severityLevel": "High"
+  },
+  "toolInfo": {
+   "uuid": "f8b29663-2cb2-498d-b923-a10c6a8c05cd",
+   "name": "ESLint"
+  },
+  "lineNumber": 52,
+  "message": "'LK' is not defined.",
+  "language": "Javascript",
+  "lineText": "    LK.on(\"tx:removed\", async () => {",
+  "falsePositiveThreshold": 80,
+  "commitInfo": {
+   "sha": "5e083d97608816ec83ad8f7ada7acdb8cea5fc9c",
+   "commiter": "dev@money-tracker.local",
+   "commiterName": "Money Tracker Dev",
+   "timestamp": "2026-08-30T04:05:59Z"
+  }
+ },
+ {
+  "issueId": "8bbe50d6b3b1e5d2de9642b219ac94f8",
+  "resultDataId": 131533438307,
+  "filePath": "js/history.js",
+  "fileId": 228177683192,
+  "patternInfo": {
+   "id": "ESLint8_no-undef",
+   "category": "ErrorProne",
+   "level": "High",
+   "severityLevel": "High"
+  },
+  "toolInfo": {
+   "uuid": "f8b29663-2cb2-498d-b923-a10c6a8c05cd",
+   "name": "ESLint"
+  },
+  "lineNumber": 3,
+  "message": "'waitForAuth' is not defined.",
+  "language": "Javascript",
+  "lineText": "  const Auth = await waitForAuth();",
+  "falsePositiveThreshold": 80,
+  "commitInfo": {
+   "sha": "5e083d97608816ec83ad8f7ada7acdb8cea5fc9c",
+   "commiter": "dev@money-tracker.local",
+   "commiterName": "Money Tracker Dev",
+   "timestamp": "2026-08-30T04:05:59Z"
+  }
+ },
+ {
+  "issueId": "ad67a239a1289ef7e31fd76b7e02e08c",
+  "resultDataId": 131533438287,
+  "filePath": "js/profile.js",
+  "fileId": 228177683205,
+  "patternInfo": {
+   "id": "ESLint8_no-undef",
+   "category": "ErrorProne",
+   "level": "High",
+   "severityLevel": "High"
+  },
+  "toolInfo": {
+   "uuid": "f8b29663-2cb2-498d-b923-a10c6a8c05cd",
+   "name": "ESLint"
+  },
+  "lineNumber": 200,
+  "message": "'LK' is not defined.",
+  "language": "Javascript",
+  "lineText": "        if (window.LK) LK.toast(\"Dibatalkan\", \"info\");",
+  "falsePositiveThreshold": 80,
+  "commitInfo": {
+   "sha": "5e083d97608816ec83ad8f7ada7acdb8cea5fc9c",
+   "commiter": "dev@money-tracker.local",
+   "commiterName": "Money Tracker Dev",
+   "timestamp": "2026-08-30T04:05:59Z"
+  }
+ },
+ {
+  "issueId": "90ef9593d436a5f03cda961dc08f662b",
+  "resultDataId": 131533438344,
+  "filePath": "js/history.js",
+  "fileId": 228177683192,
+  "patternInfo": {
+   "id": "ESLint8_no-undef",
+   "category": "ErrorProne",
+   "level": "High",
+   "severityLevel": "High"
+  },
+  "toolInfo": {
+   "uuid": "f8b29663-2cb2-498d-b923-a10c6a8c05cd",
+   "name": "ESLint"
+  },
+  "lineNumber": 195,
+  "message": "'LK' is not defined.",
+  "language": "Javascript",
+  "lineText": "      if (window.LK) LK.broadcast(\"tx:removed\", { id });",
+  "falsePositiveThreshold": 80,
+  "commitInfo": {
+   "sha": "5e083d97608816ec83ad8f7ada7acdb8cea5fc9c",
+   "commiter": "dev@money-tracker.local",
+   "commiterName": "Money Tracker Dev",
+   "timestamp": "2026-08-30T04:05:59Z"
+  }
+ },
+ {
+  "issueId": "732a9e4dd1d9d9c9e87f28b756106598",
+  "resultDataId": 131533438274,
+  "filePath": "js/dashboard.js",
+  "fileId": 228177683197,
+  "patternInfo": {
+   "id": "ESLint8_no-undef",
+   "category": "ErrorProne",
+   "level": "High",
+   "severityLevel": "High"
+  },
+  "toolInfo": {
+   "uuid": "f8b29663-2cb2-498d-b923-a10c6a8c05cd",
+   "name": "ESLint"
+  },
+  "lineNumber": 68,
+  "message": "'Budget' is not defined.",
+  "language": "Javascript",
+  "lineText": "      const chk = Budget.check(cat, spent);",
+  "falsePositiveThreshold": 80,
+  "commitInfo": {
+   "sha": "5e083d97608816ec83ad8f7ada7acdb8cea5fc9c",
+   "commiter": "dev@money-tracker.local",
+   "commiterName": "Money Tracker Dev",
+   "timestamp": "2026-08-30T04:05:59Z"
+  }
+ },
+ {
+  "issueId": "fec3d3896861e6e4434a125ad1cc63fd",
+  "resultDataId": 131533438362,
+  "filePath": "js/history.js",
+  "fileId": 228177683192,
+  "patternInfo": {
+   "id": "ESLint8_no-undef",
+   "category": "ErrorProne",
+   "level": "High",
+   "severityLevel": "High"
+  },
+  "toolInfo": {
+   "uuid": "f8b29663-2cb2-498d-b923-a10c6a8c05cd",
+   "name": "ESLint"
+  },
+  "lineNumber": 235,
+  "message": "'LK' is not defined.",
+  "language": "Javascript",
+  "lineText": "    if (window.LK) LK.toast(\"CSV diunduh\", \"success\");",
+  "falsePositiveThreshold": 80,
+  "commitInfo": {
+   "sha": "5e083d97608816ec83ad8f7ada7acdb8cea5fc9c",
+   "commiter": "dev@money-tracker.local",
+   "commiterName": "Money Tracker Dev",
+   "timestamp": "2026-08-30T04:05:59Z"
+  }
+ },
+ {
+  "issueId": "bc79d6029ca473d78a8b1e2ff0838663",
+  "resultDataId": 131533438358,
+  "filePath": "js/input.js",
+  "fileId": 228177683206,
+  "patternInfo": {
+   "id": "ESLint8_no-undef",
+   "category": "ErrorProne",
+   "level": "High",
+   "severityLevel": "High"
+  },
+  "toolInfo": {
+   "uuid": "f8b29663-2cb2-498d-b923-a10c6a8c05cd",
+   "name": "ESLint"
+  },
+  "lineNumber": 169,
+  "message": "'LK' is not defined.",
+  "language": "Javascript",
+  "lineText": "      LK.broadcast(\"tx:added\", row);",
+  "falsePositiveThreshold": 80,
+  "commitInfo": {
+   "sha": "5e083d97608816ec83ad8f7ada7acdb8cea5fc9c",
+   "commiter": "dev@money-tracker.local",
+   "commiterName": "Money Tracker Dev",
+   "timestamp": "2026-08-30T04:05:59Z"
+  }
+ },
+ {
+  "issueId": "625acf6b1ffa551cdbdb3b0f7b992be3",
+  "resultDataId": 131533438316,
+  "filePath": "js/profile.js",
+  "fileId": 228177683205,
+  "patternInfo": {
+   "id": "ESLint8_no-undef",
+   "category": "ErrorProne",
+   "level": "High",
+   "severityLevel": "High"
+  },
+  "toolInfo": {
+   "uuid": "f8b29663-2cb2-498d-b923-a10c6a8c05cd",
+   "name": "ESLint"
+  },
+  "lineNumber": 93,
+  "message": "'fmt' is not defined.",
+  "language": "Javascript",
+  "lineText": "            <span>${fmt(spent)} / ${fmt(budget)}</span>",
+  "falsePositiveThreshold": 80,
+  "commitInfo": {
+   "sha": "5e083d97608816ec83ad8f7ada7acdb8cea5fc9c",
+   "commiter": "dev@money-tracker.local",
+   "commiterName": "Money Tracker Dev",
+   "timestamp": "2026-08-30T04:05:59Z"
+  }
+ },
+ {
+  "issueId": "18c146e4b303e2f8331c21eacce58343",
+  "resultDataId": 131533438350,
+  "filePath": "js/profile.js",
+  "fileId": 228177683205,
+  "patternInfo": {
+   "id": "ESLint8_no-undef",
+   "category": "ErrorProne",
+   "level": "High",
+   "severityLevel": "High"
+  },
+  "toolInfo": {
+   "uuid": "f8b29663-2cb2-498d-b923-a10c6a8c05cd",
+   "name": "ESLint"
+  },
+  "lineNumber": 206,
+  "message": "'LK' is not defined.",
+  "language": "Javascript",
+  "lineText": "          LK.toast(`${count} transaksi dihapus`, \"success\");",
+  "falsePositiveThreshold": 80,
+  "commitInfo": {
+   "sha": "5e083d97608816ec83ad8f7ada7acdb8cea5fc9c",
+   "commiter": "dev@money-tracker.local",
+   "commiterName": "Money Tracker Dev",
+   "timestamp": "2026-08-30T04:05:59Z"
+  }
+ },
+ {
+  "issueId": "64ff9a59d6db903924b082f6be27a99",
+  "resultDataId": 131533438368,
+  "filePath": "js/input.js",
+  "fileId": 228177683206,
+  "patternInfo": {
+   "id": "ESLint8_no-undef",
+   "category": "ErrorProne",
+   "level": "High",
+   "severityLevel": "High"
+  },
+  "toolInfo": {
+   "uuid": "f8b29663-2cb2-498d-b923-a10c6a8c05cd",
+   "name": "ESLint"
+  },
+  "lineNumber": 91,
+  "message": "'LK' is not defined.",
+  "language": "Javascript",
+  "lineText": "        else LK.toast(\"Nominal tidak valid.\", \"error\");",
+  "falsePositiveThreshold": 80,
+  "commitInfo": {
+   "sha": "5e083d97608816ec83ad8f7ada7acdb8cea5fc9c",
+   "commiter": "dev@money-tracker.local",
+   "commiterName": "Money Tracker Dev",
+   "timestamp": "2026-08-30T04:05:59Z"
+  }
+ },
+ {
+  "issueId": "af9725e47bd7e752da36723b25b16bbd",
+  "resultDataId": 131533438352,
+  "filePath": "js/history.js",
+  "fileId": 228177683192,
+  "patternInfo": {
+   "id": "ESLint8_no-undef",
+   "category": "ErrorProne",
+   "level": "High",
+   "severityLevel": "High"
+  },
+  "toolInfo": {
+   "uuid": "f8b29663-2cb2-498d-b923-a10c6a8c05cd",
+   "name": "ESLint"
+  },
+  "lineNumber": 72,
+  "message": "'LK' is not defined.",
+  "language": "Javascript",
+  "lineText": "        if (window.LK) LK.toast(\"Gagal memuat: \" + loadError, \"error\");",
+  "falsePositiveThreshold": 80,
+  "commitInfo": {
+   "sha": "5e083d97608816ec83ad8f7ada7acdb8cea5fc9c",
+   "commiter": "dev@money-tracker.local",
+   "commiterName": "Money Tracker Dev",
+   "timestamp": "2026-08-30T04:05:59Z"
+  }
+ },
+ {
+  "issueId": "705754205db8802d54fdcaad76b3760a",
+  "resultDataId": 131533438348,
+  "filePath": "js/profile.js",
+  "fileId": 228177683205,
+  "patternInfo": {
+   "id": "ESLint8_no-undef",
+   "category": "ErrorProne",
+   "level": "High",
+   "severityLevel": "High"
+  },
+  "toolInfo": {
+   "uuid": "f8b29663-2cb2-498d-b923-a10c6a8c05cd",
+   "name": "ESLint"
+  },
+  "lineNumber": 207,
+  "message": "'LK' is not defined.",
+  "language": "Javascript",
+  "lineText": "          LK.broadcast(\"tx:removed\", { reset: true });",
+  "falsePositiveThreshold": 80,
+  "commitInfo": {
+   "sha": "5e083d97608816ec83ad8f7ada7acdb8cea5fc9c",
+   "commiter": "dev@money-tracker.local",
+   "commiterName": "Money Tracker Dev",
+   "timestamp": "2026-08-30T04:05:59Z"
+  }
+ },
+ {
+  "issueId": "fc7580b9f8e5311b6d9a9bbc90dc56bb",
+  "resultDataId": 131533438336,
+  "filePath": "js/profile.js",
+  "fileId": 228177683205,
+  "patternInfo": {
+   "id": "ESLint8_no-undef",
+   "category": "ErrorProne",
+   "level": "High",
+   "severityLevel": "High"
+  },
+  "toolInfo": {
+   "uuid": "f8b29663-2cb2-498d-b923-a10c6a8c05cd",
+   "name": "ESLint"
+  },
+  "lineNumber": 181,
+  "message": "'LK' is not defined.",
+  "language": "Javascript",
+  "lineText": "          if (window.LK) LK.toast(\"Anda akan logout untuk konfirmasi password baru\", \"info\");",
+  "falsePositiveThreshold": 80,
+  "commitInfo": {
+   "sha": "5e083d97608816ec83ad8f7ada7acdb8cea5fc9c",
+   "commiter": "dev@money-tracker.local",
+   "commiterName": "Money Tracker Dev",
+   "timestamp": "2026-08-30T04:05:59Z"
+  }
+ },
+ {
+  "issueId": "f171c79e70629c77407eedae5cd49e42",
+  "resultDataId": 131533438313,
+  "filePath": "js/login.js",
+  "fileId": 228177683189,
+  "patternInfo": {
+   "id": "ESLint8_no-undef",
+   "category": "ErrorProne",
+   "level": "High",
+   "severityLevel": "High"
+  },
+  "toolInfo": {
+   "uuid": "f8b29663-2cb2-498d-b923-a10c6a8c05cd",
+   "name": "ESLint"
+  },
+  "lineNumber": 95,
+  "message": "'Auth' is not defined.",
+  "language": "Javascript",
+  "lineText": "            const sess = up.user && (await Auth.currentUser());",
+  "falsePositiveThreshold": 80,
+  "commitInfo": {
+   "sha": "5e083d97608816ec83ad8f7ada7acdb8cea5fc9c",
+   "commiter": "dev@money-tracker.local",
+   "commiterName": "Money Tracker Dev",
+   "timestamp": "2026-08-30T04:05:59Z"
+  }
+ },
+ {
+  "issueId": "f264d64326c5237f8fabb37c6c499b23",
+  "resultDataId": 131533438384,
+  "filePath": "js/profile.js",
+  "fileId": 228177683205,
+  "patternInfo": {
+   "id": "Lizard_nloc-medium",
+   "category": "Complexity",
+   "level": "Warning",
+   "severityLevel": "Warning"
+  },
+  "toolInfo": {
+   "uuid": "76348462-84b3-409a-90d3-955e90abfb87",
+   "name": "Lizard"
+  },
+  "lineNumber": 4,
+  "message": "Method (anonymous) has 75 lines of code (limit is 50)",
+  "language": "Javascript",
+  "lineText": "(async function () {",
+  "falsePositiveThreshold": 80,
+  "commitInfo": {
+   "sha": "5e083d97608816ec83ad8f7ada7acdb8cea5fc9c",
+   "commiter": "dev@money-tracker.local",
+   "commiterName": "Money Tracker Dev",
+   "timestamp": "2026-08-30T04:05:59Z"
+  }
+ },
+ {
+  "issueId": "f613ff116247fbdfda1d4695ce2aea2f",
+  "resultDataId": 131533438386,
+  "filePath": "js/history.js",
+  "fileId": 228177683192,
+  "patternInfo": {
+   "id": "Lizard_nloc-medium",
+   "category": "Complexity",
+   "level": "Warning",
+   "severityLevel": "Warning"
+  },
+  "toolInfo": {
+   "uuid": "76348462-84b3-409a-90d3-955e90abfb87",
+   "name": "Lizard"
+  },
+  "lineNumber": 2,
+  "message": "Method (anonymous) has 72 lines of code (limit is 50)",
+  "language": "Javascript",
+  "lineText": "(async function () {",
+  "falsePositiveThreshold": 80,
+  "commitInfo": {
+   "sha": "5e083d97608816ec83ad8f7ada7acdb8cea5fc9c",
+   "commiter": "dev@money-tracker.local",
+   "commiterName": "Money Tracker Dev",
+   "timestamp": "2026-08-30T04:05:59Z"
+  }
+ },
+ {
+  "issueId": "74cff9564ed330ec79ae940bf007df7d",
+  "resultDataId": 131533438385,
+  "filePath": "js/dashboard.js",
+  "fileId": 228177683197,
+  "patternInfo": {
+   "id": "Lizard_nloc-medium",
+   "category": "Complexity",
+   "level": "Warning",
+   "severityLevel": "Warning"
+  },
+  "toolInfo": {
+   "uuid": "76348462-84b3-409a-90d3-955e90abfb87",
+   "name": "Lizard"
+  },
+  "lineNumber": 2,
+  "message": "Method (anonymous) has 53 lines of code (limit is 50)",
+  "language": "Javascript",
+  "lineText": "(async function () {",
+  "falsePositiveThreshold": 80,
+  "commitInfo": {
+   "sha": "5e083d97608816ec83ad8f7ada7acdb8cea5fc9c",
+   "commiter": "dev@money-tracker.local",
+   "commiterName": "Money Tracker Dev",
+   "timestamp": "2026-08-30T04:05:59Z"
+  }
+ },
+ {
+  "issueId": "da9922607b53e56e63f2e3843799462e",
+  "resultDataId": 131533438375,
+  "filePath": "package-lock.json",
+  "fileId": 228177683179,
+  "patternInfo": {
+   "id": "Lizard_file-nloc-medium",
+   "category": "Complexity",
+   "level": "Warning",
+   "severityLevel": "Warning"
+  },
+  "toolInfo": {
+   "uuid": "76348462-84b3-409a-90d3-955e90abfb87",
+   "name": "Lizard"
+  },
+  "lineNumber": 1,
+  "message": "File package-lock.json has 2935 non-comment lines of code",
+  "language": "TypeScript",
+  "lineText": "{",
+  "falsePositiveThreshold": 80,
+  "commitInfo": {
+   "sha": "5e083d97608816ec83ad8f7ada7acdb8cea5fc9c",
+   "commiter": "dev@money-tracker.local",
+   "commiterName": "Money Tracker Dev",
+   "timestamp": "2026-08-30T04:05:59Z"
+  }
+ },
+ {
+  "issueId": "bdb5240feaef2b2e8fcfbb421e8436cd",
+  "resultDataId": 131533438391,
+  "filePath": "css/ui.css",
+  "fileId": 228177683180,
+  "patternInfo": {
+   "id": "Stylelint_scss_function-disallowed-list",
+   "category": "BestPractice",
+   "level": "Warning",
+   "severityLevel": "Warning"
+  },
+  "toolInfo": {
+   "uuid": "1f03328a-086e-459e-bfa3-73e56f01020f",
+   "name": "Stylelint"
+  },
+  "lineNumber": 1,
+  "message": "Unknown rule scss_function-disallowed-list. Did you mean function-disallowed-list?",
+  "language": "CSS",
+  "lineText": "/* ui.css \u2014 Styling kustom untuk LK Kas Harian",
+  "falsePositiveThreshold": 80,
+  "commitInfo": {
+   "sha": "5e083d97608816ec83ad8f7ada7acdb8cea5fc9c",
+   "commiter": "dev@money-tracker.local",
+   "commiterName": "Money Tracker Dev",
+   "timestamp": "2026-08-30T04:05:59Z"
+  }
+ },
+ {
+  "issueId": "78abdfba21639c950e3a2343ce871839",
+  "resultDataId": 131533438371,
+  "filePath": "js/dashboard.js",
+  "fileId": 228177683197,
+  "patternInfo": {
+   "id": "ESLint8_@typescript-eslint_no-unused-vars",
+   "category": "UnusedCode",
+   "level": "Warning",
+   "severityLevel": "Warning"
+  },
+  "toolInfo": {
+   "uuid": "f8b29663-2cb2-498d-b923-a10c6a8c05cd",
+   "name": "ESLint"
+  },
+  "lineNumber": 12,
+  "message": "'todayItems' is assigned a value but never used.",
+  "language": "Javascript",
+  "lineText": "  const todayItems = Storage.byDate(items, today);",
+  "falsePositiveThreshold": 80,
+  "commitInfo": {
+   "sha": "5e083d97608816ec83ad8f7ada7acdb8cea5fc9c",
+   "commiter": "dev@money-tracker.local",
+   "commiterName": "Money Tracker Dev",
+   "timestamp": "2026-08-30T04:05:59Z"
+  }
+ },
+ {
+  "issueId": "feee929633c779dcbaf0362a66135b48",
+  "resultDataId": 131533438367,
+  "filePath": "js/storage.js",
+  "fileId": 228177683184,
+  "patternInfo": {
+   "id": "ESLint8_no-unused-vars",
+   "category": "UnusedCode",
+   "level": "Warning",
+   "severityLevel": "Warning"
+  },
+  "toolInfo": {
+   "uuid": "f8b29663-2cb2-498d-b923-a10c6a8c05cd",
+   "name": "ESLint"
+  },
+  "lineNumber": 89,
+  "message": "'invalidate' is defined but never used.",
+  "language": "Javascript",
+  "lineText": "function invalidate() {",
+  "falsePositiveThreshold": 80,
+  "commitInfo": {
+   "sha": "5e083d97608816ec83ad8f7ada7acdb8cea5fc9c",
+   "commiter": "dev@money-tracker.local",
+   "commiterName": "Money Tracker Dev",
+   "timestamp": "2026-08-30T04:05:59Z"
+  }
+ },
+ {
+  "issueId": "6c0b13db001415cb97e8576ea0317783",
+  "resultDataId": 131533438283,
+  "filePath": "js/auth.js",
+  "fileId": 228177683186,
+  "patternInfo": {
+   "id": "ESLint8_@typescript-eslint_no-unused-vars",
+   "category": "UnusedCode",
+   "level": "Warning",
+   "severityLevel": "Warning"
+  },
+  "toolInfo": {
+   "uuid": "f8b29663-2cb2-498d-b923-a10c6a8c05cd",
+   "name": "ESLint"
+  },
+  "lineNumber": 138,
+  "message": "'_identifier' is defined but never used.",
+  "language": "Javascript",
+  "lineText": "export async function findUser(_identifier) {",
+  "falsePositiveThreshold": 80,
+  "commitInfo": {
+   "sha": "5e083d97608816ec83ad8f7ada7acdb8cea5fc9c",
+   "commiter": "dev@money-tracker.local",
+   "commiterName": "Money Tracker Dev",
+   "timestamp": "2026-08-30T04:05:59Z"
+  }
+ },
+ {
+  "issueId": "56af170ee699f0618ebcde37709735f1",
+  "resultDataId": 131533438308,
+  "filePath": "js/dashboard.js",
+  "fileId": 228177683197,
+  "patternInfo": {
+   "id": "ESLint8_no-unused-vars",
+   "category": "UnusedCode",
+   "level": "Warning",
+   "severityLevel": "Warning"
+  },
+  "toolInfo": {
+   "uuid": "f8b29663-2cb2-498d-b923-a10c6a8c05cd",
+   "name": "ESLint"
+  },
+  "lineNumber": 12,
+  "message": "'todayItems' is assigned a value but never used.",
+  "language": "Javascript",
+  "lineText": "  const todayItems = Storage.byDate(items, today);",
+  "falsePositiveThreshold": 80,
+  "commitInfo": {
+   "sha": "5e083d97608816ec83ad8f7ada7acdb8cea5fc9c",
+   "commiter": "dev@money-tracker.local",
+   "commiterName": "Money Tracker Dev",
+   "timestamp": "2026-08-30T04:05:59Z"
+  }
+ },
+ {
+  "issueId": "53b3a3ac4cb52bf9b547c3b27e4a2d5f",
+  "resultDataId": 131533438311,
+  "filePath": "js/dashboard.js",
+  "fileId": 228177683197,
+  "patternInfo": {
+   "id": "ESLint8_@typescript-eslint_no-unused-vars",
+   "category": "UnusedCode",
+   "level": "Warning",
+   "severityLevel": "Warning"
+  },
+  "toolInfo": {
+   "uuid": "f8b29663-2cb2-498d-b923-a10c6a8c05cd",
+   "name": "ESLint"
+  },
+  "lineNumber": 21,
+  "message": "'chartLegend' is assigned a value but never used.",
+  "language": "Javascript",
+  "lineText": "  const chartLegend = document.getElementById(\"chart-legend\");",
+  "falsePositiveThreshold": 80,
+  "commitInfo": {
+   "sha": "5e083d97608816ec83ad8f7ada7acdb8cea5fc9c",
+   "commiter": "dev@money-tracker.local",
+   "commiterName": "Money Tracker Dev",
+   "timestamp": "2026-08-30T04:05:59Z"
+  }
+ },
+ {
+  "issueId": "bc823b766c1a6fed2234c86e4cb73bce",
+  "resultDataId": 131533438366,
+  "filePath": "js/realtime.js",
+  "fileId": 228177683193,
+  "patternInfo": {
+   "id": "ESLint8_@typescript-eslint_no-unused-vars",
+   "category": "UnusedCode",
+   "level": "Warning",
+   "severityLevel": "Warning"
+  },
+  "toolInfo": {
+   "uuid": "f8b29663-2cb2-498d-b923-a10c6a8c05cd",
+   "name": "ESLint"
+  },
+  "lineNumber": 19,
+  "message": "'userId' is defined but never used.",
+  "language": "Javascript",
+  "lineText": "function userId() {",
+  "falsePositiveThreshold": 80,
+  "commitInfo": {
+   "sha": "5e083d97608816ec83ad8f7ada7acdb8cea5fc9c",
+   "commiter": "dev@money-tracker.local",
+   "commiterName": "Money Tracker Dev",
+   "timestamp": "2026-08-30T04:05:59Z"
+  }
+ },
+ {
+  "issueId": "51d0efe94a391e150ef4c822a3664b65",
+  "resultDataId": 131533438322,
+  "filePath": "js/storage.js",
+  "fileId": 228177683184,
+  "patternInfo": {
+   "id": "ESLint8_@typescript-eslint_no-unused-vars",
+   "category": "UnusedCode",
+   "level": "Warning",
+   "severityLevel": "Warning"
+  },
+  "toolInfo": {
+   "uuid": "f8b29663-2cb2-498d-b923-a10c6a8c05cd",
+   "name": "ESLint"
+  },
+  "lineNumber": 89,
+  "message": "'invalidate' is defined but never used.",
+  "language": "Javascript",
+  "lineText": "function invalidate() {",
+  "falsePositiveThreshold": 80,
+  "commitInfo": {
+   "sha": "5e083d97608816ec83ad8f7ada7acdb8cea5fc9c",
+   "commiter": "dev@money-tracker.local",
+   "commiterName": "Money Tracker Dev",
+   "timestamp": "2026-08-30T04:05:59Z"
+  }
+ },
+ {
+  "issueId": "3bf038aad66cad5f2c88be4f71bf8040",
+  "resultDataId": 131533438373,
+  "filePath": "js/realtime.js",
+  "fileId": 228177683193,
+  "patternInfo": {
+   "id": "ESLint8_no-unused-vars",
+   "category": "UnusedCode",
+   "level": "Warning",
+   "severityLevel": "Warning"
+  },
+  "toolInfo": {
+   "uuid": "f8b29663-2cb2-498d-b923-a10c6a8c05cd",
+   "name": "ESLint"
+  },
+  "lineNumber": 19,
+  "message": "'userId' is defined but never used.",
+  "language": "Javascript",
+  "lineText": "function userId() {",
+  "falsePositiveThreshold": 80,
+  "commitInfo": {
+   "sha": "5e083d97608816ec83ad8f7ada7acdb8cea5fc9c",
+   "commiter": "dev@money-tracker.local",
+   "commiterName": "Money Tracker Dev",
+   "timestamp": "2026-08-30T04:05:59Z"
+  }
+ },
+ {
+  "issueId": "4edd303791ce450b09f40b0553cda562",
+  "resultDataId": 131533438276,
+  "filePath": "js/dashboard.js",
+  "fileId": 228177683197,
+  "patternInfo": {
+   "id": "ESLint8_@typescript-eslint_no-unused-vars",
+   "category": "UnusedCode",
+   "level": "Warning",
+   "severityLevel": "Warning"
+  },
+  "toolInfo": {
+   "uuid": "f8b29663-2cb2-498d-b923-a10c6a8c05cd",
+   "name": "ESLint"
+  },
+  "lineNumber": 137,
+  "message": "'row' is defined but never used.",
+  "language": "Javascript",
+  "lineText": "    LK.on(\"tx:added\", async (row) => {",
+  "falsePositiveThreshold": 80,
+  "commitInfo": {
+   "sha": "5e083d97608816ec83ad8f7ada7acdb8cea5fc9c",
+   "commiter": "dev@money-tracker.local",
+   "commiterName": "Money Tracker Dev",
+   "timestamp": "2026-08-30T04:05:59Z"
+  }
+ },
+ {
+  "issueId": "e5b76ca5ade556c850e91525b7960849",
+  "resultDataId": 131533438370,
+  "filePath": "js/dashboard.js",
+  "fileId": 228177683197,
+  "patternInfo": {
+   "id": "ESLint8_no-unused-vars",
+   "category": "UnusedCode",
+   "level": "Warning",
+   "severityLevel": "Warning"
+  },
+  "toolInfo": {
+   "uuid": "f8b29663-2cb2-498d-b923-a10c6a8c05cd",
+   "name": "ESLint"
+  },
+  "lineNumber": 137,
+  "message": "'row' is defined but never used.",
+  "language": "Javascript",
+  "lineText": "    LK.on(\"tx:added\", async (row) => {",
+  "falsePositiveThreshold": 80,
+  "commitInfo": {
+   "sha": "5e083d97608816ec83ad8f7ada7acdb8cea5fc9c",
+   "commiter": "dev@money-tracker.local",
+   "commiterName": "Money Tracker Dev",
+   "timestamp": "2026-08-30T04:05:59Z"
+  }
+ },
+ {
+  "issueId": "8a499383075b068fd3b283dd5c3b9379",
+  "resultDataId": 131533438369,
+  "filePath": "js/auth.js",
+  "fileId": 228177683186,
+  "patternInfo": {
+   "id": "ESLint8_no-unused-vars",
+   "category": "UnusedCode",
+   "level": "Warning",
+   "severityLevel": "Warning"
+  },
+  "toolInfo": {
+   "uuid": "f8b29663-2cb2-498d-b923-a10c6a8c05cd",
+   "name": "ESLint"
+  },
+  "lineNumber": 138,
+  "message": "'_identifier' is defined but never used.",
+  "language": "Javascript",
+  "lineText": "export async function findUser(_identifier) {",
+  "falsePositiveThreshold": 80,
+  "commitInfo": {
+   "sha": "5e083d97608816ec83ad8f7ada7acdb8cea5fc9c",
+   "commiter": "dev@money-tracker.local",
+   "commiterName": "Money Tracker Dev",
+   "timestamp": "2026-08-30T04:05:59Z"
+  }
+ },
+ {
+  "issueId": "3ca9f56a8bcb37ce3bce4208834f9ae4",
+  "resultDataId": 131533438361,
+  "filePath": "js/history.js",
+  "fileId": 228177683192,
+  "patternInfo": {
+   "id": "ESLint8_@typescript-eslint_no-unused-vars",
+   "category": "UnusedCode",
+   "level": "Warning",
+   "severityLevel": "Warning"
+  },
+  "toolInfo": {
+   "uuid": "f8b29663-2cb2-498d-b923-a10c6a8c05cd",
+   "name": "ESLint"
+  },
+  "lineNumber": 29,
+  "message": "'summaryBar' is assigned a value but never used.",
+  "language": "Javascript",
+  "lineText": "  const summaryBar = document.getElementById(\"summary-bar\");",
+  "falsePositiveThreshold": 80,
+  "commitInfo": {
+   "sha": "5e083d97608816ec83ad8f7ada7acdb8cea5fc9c",
+   "commiter": "dev@money-tracker.local",
+   "commiterName": "Money Tracker Dev",
+   "timestamp": "2026-08-30T04:05:59Z"
+  }
+ },
+ {
+  "issueId": "63070bea769ea26758e8a11b7aacbe07",
+  "resultDataId": 131533438270,
+  "filePath": "js/dashboard.js",
+  "fileId": 228177683197,
+  "patternInfo": {
+   "id": "ESLint8_no-unused-vars",
+   "category": "UnusedCode",
+   "level": "Warning",
+   "severityLevel": "Warning"
+  },
+  "toolInfo": {
+   "uuid": "f8b29663-2cb2-498d-b923-a10c6a8c05cd",
+   "name": "ESLint"
+  },
+  "lineNumber": 21,
+  "message": "'chartLegend' is assigned a value but never used.",
+  "language": "Javascript",
+  "lineText": "  const chartLegend = document.getElementById(\"chart-legend\");",
+  "falsePositiveThreshold": 80,
+  "commitInfo": {
+   "sha": "5e083d97608816ec83ad8f7ada7acdb8cea5fc9c",
+   "commiter": "dev@money-tracker.local",
+   "commiterName": "Money Tracker Dev",
+   "timestamp": "2026-08-30T04:05:59Z"
+  }
+ },
+ {
+  "issueId": "319296abca0e6de48617160562f84bcd",
+  "resultDataId": 131533438301,
+  "filePath": "js/history.js",
+  "fileId": 228177683192,
+  "patternInfo": {
+   "id": "ESLint8_no-unused-vars",
+   "category": "UnusedCode",
+   "level": "Warning",
+   "severityLevel": "Warning"
+  },
+  "toolInfo": {
+   "uuid": "f8b29663-2cb2-498d-b923-a10c6a8c05cd",
+   "name": "ESLint"
+  },
+  "lineNumber": 29,
+  "message": "'summaryBar' is assigned a value but never used.",
+  "language": "Javascript",
+  "lineText": "  const summaryBar = document.getElementById(\"summary-bar\");",
+  "falsePositiveThreshold": 80,
+  "commitInfo": {
+   "sha": "5e083d97608816ec83ad8f7ada7acdb8cea5fc9c",
+   "commiter": "dev@money-tracker.local",
+   "commiterName": "Money Tracker Dev",
+   "timestamp": "2026-08-30T04:05:59Z"
+  }
+ }
+]
