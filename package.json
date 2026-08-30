@@ -10,5 +10,8 @@
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.45.0"
+  },
+  "devDependencies": {
+    "eslint": "^8.57.1"
   }
 }
