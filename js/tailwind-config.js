@@ -1,4 +1,10 @@
-tailwind.config = {
+// tailwind-config.js — Extend tema Tailwind (Play CDN).
+// Global `tailwind` di-set oleh script CDN Play. Object config dideklarasikan
+// di top level (data, bukan fungsi) supaya nloc per fungsi tetap kecil;
+// assignment di-guard `typeof window.tailwind` agar tidak melempar
+// ReferenceError kalau CDN lambat/terblokir (menyelesaikan no-undef).
+
+var LK_TAILWIND_CONFIG = {
   darkMode: "class",
   theme: {
     extend: {
@@ -89,3 +95,9 @@ tailwind.config = {
     }
   }
 };
+
+if (typeof window !== "undefined" && window.tailwind) {
+  window.tailwind.config = LK_TAILWIND_CONFIG;
+} else if (typeof window !== "undefined") {
+  console.warn("[LK] Tailwind CDN belum siap — theme override dilewati.");
+}

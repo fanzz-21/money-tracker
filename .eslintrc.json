@@ -1,0 +1,32 @@
+{
+  "root": true,
+  "env": { "browser": true, "es2022": true },
+  "parserOptions": {
+    "ecmaVersion": 2022,
+    "sourceType": "script"
+  },
+  "globals": {
+    "LK": "readonly",
+    "Budget": "readonly",
+    "Auth": "readonly",
+    "Storage": "readonly",
+    "Chart": "readonly",
+    "Sidebar": "readonly",
+    "Theme": "readonly",
+    "waitFor": "readonly",
+    "waitForAuth": "readonly",
+    "waitForStorage": "readonly",
+    "tailwind": "readonly",
+    "supabase": "readonly"
+  },
+  "rules": {
+    "no-undef": "error",
+    "no-unused-vars": ["error", { "argsIgnorePattern": "^_", "varsIgnorePattern": "^_" }]
+  },
+  "overrides": [
+    {
+      "files": ["js/auth.js", "js/storage.js", "js/budget.js", "js/realtime.js", "js/supabase.js", "js/migrate.js", "js/storage-backup.js"],
+      "parserOptions": { "sourceType": "module" }
+    }
+  ]
+}

@@ -3,14 +3,6 @@
     return "Rp " + Number(n || 0).toLocaleString("id-ID");
   }
 
-  function hexToRgba(hex, alpha) {
-    const h = hex.replace("#", "");
-    const r = parseInt(h.slice(0, 2), 16);
-    const g = parseInt(h.slice(2, 4), 16);
-    const b = parseInt(h.slice(4, 6), 16);
-    return `rgba(${r}, ${g}, ${b}, ${alpha})`;
-  }
-
   function getCssVar(name) {
     return getComputedStyle(document.documentElement).getPropertyValue(name).trim();
   }
@@ -183,7 +175,7 @@
     ctx.fillStyle = getCssVar("--color-on-surface-variant") || "#3d4947";
     ctx.textAlign = "center";
     startAngle = -Math.PI / 2;
-    data.forEach((d, i) => {
+    data.forEach((d) => {
       const sliceAngle = (d.amount / total) * Math.PI * 2;
       const mid = startAngle + sliceAngle / 2;
       const labelR = radius * 0.6;
@@ -199,7 +191,7 @@
   }
 
   function renderCatLegend(container, data) {
-    container.innerHTML = "";
+    container.replaceChildren();
     if (!data || !data.length) return;
     const total = data.reduce((a, b) => a + b.amount, 0);
     const colors = catColors(data.length);
@@ -207,11 +199,16 @@
       const pct = ((d.amount / total) * 100).toFixed(1);
       const row = document.createElement("div");
       row.className = "flex items-center justify-center gap-2";
-      row.innerHTML = `
-        <span class="w-3 h-3 rounded" style="background:${colors[i]}"></span>
-        <span class="font-body-sm text-body-sm text-on-surface-variant dark:text-surface-variant">${global.LK ? LK.escapeHTML(d.name) : d.name}</span>
-        <span class="font-body-sm text-body-sm font-medium">${pct}%</span>
-      `;
+      const swatch = document.createElement("span");
+      swatch.className = "w-3 h-3 rounded";
+      swatch.style.background = colors[i];
+      const name = document.createElement("span");
+      name.className = "font-body-sm text-body-sm text-on-surface-variant dark:text-surface-variant";
+      name.textContent = d.name;
+      const pctEl = document.createElement("span");
+      pctEl.className = "font-body-sm text-body-sm font-medium";
+      pctEl.textContent = pct + "%";
+      row.append(swatch, name, pctEl);
       container.appendChild(row);
     });
   }

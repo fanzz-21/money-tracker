@@ -7,8 +7,8 @@
   // Tunggu auth.js & supabase.js selesai load sebagai module
   await new Promise((r) => setTimeout(r, 50));
 
-  if (window.Auth && Auth.isLoggedIn()) {
-    Auth.redirectAfterAuth();
+  if (window.Auth && window.Auth.isLoggedIn()) {
+    window.Auth.redirectAfterAuth();
     return;
   }
 
@@ -53,7 +53,7 @@
   form1.addEventListener("submit", (e) => {
     e.preventDefault();
     const id = identifier.value.trim();
-    const validationErr = Auth.validateIdentifier(id);
+    const validationErr = window.Auth.validateIdentifier(id);
     if (validationErr) {
       showErr(err1, validationErr);
       return;
@@ -87,15 +87,15 @@
     try {
       let result;
       if (isExisting) {
-        result = await Auth.signIn(pendingId, pwd);
+        result = await window.Auth.signIn(pendingId, pwd);
         if (!result.ok && /salah|tidak valid|invalid/i.test(result.error || "")) {
           // Coba signUp — kemungkinan user baru
-          const up = await Auth.signUp(pendingId, pwd);
+          const up = await window.Auth.signUp(pendingId, pwd);
           if (up.ok) {
-            const sess = up.user && (await Auth.currentUser());
+            const sess = up.user && (await window.Auth.currentUser());
             if (sess) {
               await runMigrations();
-              Auth.redirectAfterAuth();
+              window.Auth.redirectAfterAuth();
               return;
             }
             showErr(err2, "Akun dibuat. Cek email untuk konfirmasi (atau matikan email confirmation di Supabase).");
@@ -106,7 +106,7 @@
           result = up;
         }
       } else {
-        result = await Auth.signUp(pendingId, pwd);
+        result = await window.Auth.signUp(pendingId, pwd);
       }
 
       if (!result.ok) {
@@ -120,7 +120,7 @@
       }
 
       await runMigrations();
-      Auth.redirectAfterAuth();
+      window.Auth.redirectAfterAuth();
     } catch (err) {
       showErr(err2, err.message || "Gagal. Coba lagi.");
     } finally {

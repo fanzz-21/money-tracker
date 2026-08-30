@@ -16,16 +16,6 @@ import { supabase } from "./supabase.js";
 let currentChannel = null;
 let currentUserId = null;
 
-function userId() {
-  // Prefer global state, fallback ke supabase.auth.getUser (async, diabaikan di sync path)
-  try {
-    if (typeof window !== "undefined" && window.LK_CURRENT_USER_ID) {
-      return window.LK_CURRENT_USER_ID;
-    }
-  } catch (e) { /* ignore */ }
-  return null;
-}
-
 function teardown() {
   if (currentChannel) {
     try { supabase.removeChannel(currentChannel); } catch (e) { /* ignore */ }
