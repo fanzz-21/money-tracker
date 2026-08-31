@@ -82,7 +82,7 @@ const windowStub = {
   console,
   URL, URLSearchParams,
   navigator: { onLine: true, userAgent: "smoketest" },
-  crypto: { getRandomValues(arr){ for (let i=0;i<arr.length;i++) arr[i]=(Math.random()*256)|0; return arr; } },
+  crypto: { getRandomValues(arr){ for (let i=0;i<arr.length;i++) arr[i]=0; return arr; } },
   CustomEvent: class { constructor(t){ this.type=t; } },
   Event: class { constructor(t){ this.type=t; } },
   setTimeout: setTimeout,
