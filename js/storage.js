@@ -16,6 +16,10 @@
 //   Storage.monthTotals(items, ym)  -> {masuk,keluar,net}  (sync)
 //   Storage.flowSeries(items, n)    -> [{ym,label,masuk,keluar}]
 //   Storage.spendByCategory(items, ym?) -> [{name,amount}]
+//   Storage.prevMonthKey(ym)            -> "YYYY-MM"  (bulan sebelumnya)
+//   Storage.monthComparison(items, ym)  -> {cur,prev,deltaMasuk,deltaKeluar}
+//   Storage.spendByCategoryTop(items, ym) -> {name,amount} | null
+//   Storage.projectMonthEnd(items, ym, today) -> {projected,basisDays,daysInMonth,soFar}
 //
 // Catatan migrasi:
 // - items sekarang adalah array biasa hasil query (bukan array sinkron).
@@ -257,6 +261,46 @@ function spendByCategory(items, ym) {
   return out;
 }
 
+function prevMonthKey(ym) {
+  const [y, m] = String(ym).split("-").map(Number);
+  const d = new Date(y, m - 2, 1);
+  return d.getFullYear() + "-" + String(d.getMonth() + 1).padStart(2, "0");
+}
+
+function monthComparison(items, ym) {
+  const cur = monthTotals(items, ym);
+  const prev = monthTotals(items, prevMonthKey(ym));
+  const pct = (a, b) => (b === 0 ? null : Math.round(((a - b) / b) * 1000) / 10);
+  return {
+    cur,
+    prev,
+    deltaMasuk: pct(cur.masuk, prev.masuk),
+    deltaKeluar: pct(cur.keluar, prev.keluar)
+  };
+}
+
+function spendByCategoryTop(items, ym) {
+  const list = spendByCategory(items, ym);
+  return list.length ? list[0] : null;
+}
+
+function projectMonthEnd(items, ym, today) {
+  // today = { ym:'YYYY-MM', day:int } — injectable untuk test (bukan Date.now).
+  // Idiom hari-dalam-bulan: new Date(y, m, 0) = hari terakhir bulan m (1-based).
+  // (Catatan: kode plan memakai `m-1` — itu mengembalikan bulan SEBELUMNYA;
+  //  bug ketahuan test deterministik Juni -> 31 padahal harus 30.)
+  const cur = monthTotals(items, ym);
+  const day = today && today.day ? today.day : 0;
+  const dim = new Date(Number(ym.slice(0, 4)), Number(ym.slice(5)), 0).getDate();
+  const avg = day > 0 ? cur.keluar / day : 0;
+  return {
+    projected: Math.round(avg * dim),
+    basisDays: day,
+    daysInMonth: dim,
+    soFar: cur.keluar
+  };
+}
+
 // Ekspos ke window untuk kompatibilitas dengan kode non-modular
 // (dashboard.js, history.js, input.js masih pakai `Storage.xxx`).
 const Storage = {
@@ -275,7 +319,11 @@ const Storage = {
   lastMonths,
   monthTotals,
   flowSeries,
-  spendByCategory
+  spendByCategory,
+  prevMonthKey,
+  monthComparison,
+  spendByCategoryTop,
+  projectMonthEnd
   // exportToJSON / importFromJSON / clearAll ditambahkan oleh storage-backup.js
 };
 
@@ -284,5 +332,6 @@ export default Storage;
 export {
   CATS, todayISO, uid, loadAll, addTx, removeTx, clearDate, invalidate,
   byDate, totals, toCsv, monthKey, lastMonths, monthTotals,
-  flowSeries, spendByCategory
+  flowSeries, spendByCategory, prevMonthKey, monthComparison,
+  spendByCategoryTop, projectMonthEnd
 };

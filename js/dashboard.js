@@ -189,6 +189,7 @@ function dashEmptyMarkup(el) {
     renderBudget();
     renderToday();
     refreshCharts();
+    if (window.Insight) window.Insight.render(items, month);
   }
 
   function onResize() {

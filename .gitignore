@@ -8,3 +8,4 @@ config.local.js
 js/.hermes-tmp.*
 *.bak
 .hermes/
+tests/helpers/.supabase-stub.mjs
