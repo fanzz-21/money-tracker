@@ -159,8 +159,24 @@ function dashEmptyMarkup(el) {
     for (const row of t) todayList.appendChild(makeTxRow(row));
   }
 
+  function revealChart(canvas, skeletonId) {
+    // Buka canvas + hapus skeleton shimmer SEBELUM menggambar:
+    // canvas yang masih hidden (display:none) punya getBoundingClientRect()
+    // 0x0 sehingga chart tergambar ke ukuran nol — dan shimmer-nya sendiri
+    // tidak pernah hilang (bug: skeleton chart stuck).
+    if (!canvas) return;
+    canvas.hidden = false;
+    canvas.classList.add("lk-content-fade");
+    const sk = document.getElementById(skeletonId);
+    if (sk) sk.remove();
+  }
+
   function refreshCharts() {
     const m = periodSel.value === "12" ? 12 : 6;
+    // Reveal dulu (canvas buka + shimmer hapus) — juga jalan kalau window.Chart
+    // belum siap, supaya shimmer tidak pernah stuck selamanya.
+    revealChart(flowCanvas, "flow-skeleton");
+    revealChart(catCanvas, "cat-skeleton");
     if (!window.Chart) return;
     window.Chart.drawFlowChart(flowCanvas, Storage.flowSeries(items, m));
     const cat = Storage.spendByCategory(items, month);

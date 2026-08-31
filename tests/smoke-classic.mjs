@@ -29,7 +29,7 @@ function makeEl(id) {
     appendChild(c) { this.children.push(c); return c; },
     append(...nodes) { this.children.push(...nodes); },
     prepend(c) { this.children.unshift(c); },
-    remove() {},
+    remove() { if (this.id) delete elementsById[this.id]; },
     insertBefore(c) { return c; },
     replaceChildren(...a) { this.children = [...a]; },
     removeAttributeNodes() {},
