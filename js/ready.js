@@ -7,11 +7,12 @@
 // langsung ditolak.
 
 (function (global) {
-  const ALLOWED = ["Auth", "Storage", "Exports"];
+  const ALLOWED = ["Auth", "Storage", "Exports", "Recurring"];
   function resolve(name) {
     if (name === "Auth") return global.Auth || null;
     if (name === "Storage") return global.Storage || null;
     if (name === "Exports") return global.Exports || null;
+    if (name === "Recurring") return global.Recurring || null;
     return null;
   }
 

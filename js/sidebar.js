@@ -23,7 +23,8 @@
   const NAV = [
     { href: "index.html", icon: "dashboard", label: "Dasbor" },
     { href: "input.html", icon: "add_circle", label: "Catat Transaksi" },
-    { href: "history.html", icon: "history", label: "Riwayat" }
+    { href: "history.html", icon: "history", label: "Riwayat" },
+    { href: "recurring.html", icon: "repeat", label: "Berulang" }
   ];
 
   // Section Tampilan: tema toggle. Taruh sebelum section Akun.

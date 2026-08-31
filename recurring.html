@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html class="light" lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Transaksi Berulang — Fintrack</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&display=swap" rel="stylesheet" />
+  <script src="js/pwa.js?v=9"></script>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <script src="js/tailwind-config.js"></script>
+  <link rel="stylesheet" href="css/ui.css" />
+</head>
+<body class="min-h-screen flex flex-col">
+  <header class="lk-header">
+    <div class="lk-header-inner">
+      <div class="flex items-center gap-2 min-w-0">
+        <button type="button" data-sidebar-toggle class="lk-menu-btn" aria-label="Buka menu">
+          <span class="material-symbols-outlined text-xl">menu</span>
+        </button>
+        <a href="index.html" class="flex items-center gap-2 min-w-0">
+          <span class="material-symbols-outlined text-xl">arrow_back</span>
+          <h1 class="text-lg font-semibold truncate">Transaksi Berulang</h1>
+        </a>
+      </div>
+      <button type="button" data-theme-toggle class="p-2 rounded-full hover:bg-black/5 dark:hover:bg-white/10 transition-colors" aria-label="Ganti tema">
+        <span class="material-symbols-outlined text-xl" data-theme-icon>dark_mode</span>
+      </button>
+    </div>
+  </header>
+
+  <main class="flex-1 lk-page lk-stack" style="max-width:640px">
+    <form id="rec-form" class="lk-card p-5 md:p-6 lk-stack min-w-0" style="gap:1.25rem" novalidate>
+      <div class="flex items-center gap-2">
+        <span class="material-symbols-outlined lk-text-accent">repeat</span>
+        <h2 class="text-sm font-semibold text-[var(--lk-text-muted)] uppercase tracking-wide">Aturan Baru</h2>
+      </div>
+
+      <div>
+        <label for="rec-name" class="block text-sm font-medium mb-1.5">Nama</label>
+        <input id="rec-name" name="name" type="text" required placeholder="Internet, Langganan, Gaji..." maxlength="100" />
+        <p class="text-xs text-[var(--lk-text-faint)] mt-1">Muncul sebagai keterangan transaksi yang dibuat otomatis.</p>
+      </div>
+
+      <div>
+        <label for="rec-type" class="block text-sm font-medium mb-1.5">Tipe</label>
+        <select id="rec-type" name="type" required>
+          <option value="out" selected>Dana Keluar</option>
+          <option value="in">Dana Masuk</option>
+        </select>
+      </div>
+
+      <div>
+        <label for="rec-amount" class="block text-sm font-medium mb-1.5">Jumlah</label>
+        <div class="relative">
+          <span class="absolute left-3 top-1/2 -translate-y-1/2 text-[var(--lk-text-muted)] pointer-events-none">Rp</span>
+          <input id="rec-amount" name="amount" type="number" inputmode="numeric" min="1" step="any" required
+            placeholder="100.000" style="padding-left:2.25rem" />
+        </div>
+      </div>
+
+      <div>
+        <label for="rec-category" class="block text-sm font-medium mb-1.5">Kategori</label>
+        <select id="rec-category" name="category" required>
+          <option value="" disabled selected>Pilih kategori</option>
+        </select>
+      </div>
+
+      <div>
+        <label for="rec-day" class="block text-sm font-medium mb-1.5">Tanggal setiap bulan</label>
+        <select id="rec-day" name="day" required>
+        </select>
+        <p class="text-xs text-[var(--lk-text-faint)] mt-1">1–28 (menghindari masalah panjang bulan).</p>
+      </div>
+
+      <div>
+        <label for="rec-note" class="block text-sm font-medium mb-1.5">Catatan <span class="text-[var(--lk-text-faint)] font-normal">(opsional)</span></label>
+        <input id="rec-note" name="note" type="text" placeholder="Detail tambahan..." maxlength="500" />
+      </div>
+
+      <button type="submit" id="btn-rec-save" class="lk-btn-primary w-full flex items-center justify-center gap-2" style="padding:0.75rem">
+        <span class="material-symbols-outlined text-lg">add</span>
+        <span>Tambah Aturan</span>
+      </button>
+    </form>
+
+    <section class="lk-card p-4 min-w-0">
+      <div class="flex items-center justify-between mb-3">
+        <h2 class="text-sm font-semibold text-[var(--lk-text-muted)] uppercase tracking-wide">Aturan Kamu</h2>
+        <span id="rec-count" class="text-xs text-[var(--lk-text-faint)] tabular-nums"></span>
+      </div>
+      <p class="text-xs text-[var(--lk-text-faint)] mb-3">
+        Transaksi dibuat otomatis saat app dibuka, maksimal sekali per bulan per aturan.
+      </p>
+      <ul id="rec-list" class="rec-list"></ul>
+    </section>
+  </main>
+
+  <div id="toast" class="lk-toast hidden" role="status" aria-live="polite"></div>
+
+  <script src="js/config.js?v=1"></script>
+  <script src="js/theme.js?v=10"></script>
+  <script src="js/ready.js?v=10"></script>
+  <script src="js/notify.js?v=10"></script>
+  <script src="js/sidebar.js?v=16"></script>
+  <script type="module" src="js/supabase.js?v=10"></script>
+  <script type="module" src="js/auth.js?v=10"></script>
+  <script type="module" src="js/storage.js?v=10"></script>
+  <script type="module" src="js/recurring.js?v=1"></script>
+  <script src="js/recurring-ui.js?v=1"></script>
+</body>
+</html>

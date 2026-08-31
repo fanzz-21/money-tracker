@@ -247,4 +247,20 @@ function dashEmptyMarkup(el) {
   populateUserChip();
   fadeSummaryCards();
   rerenderAll();
+
+  // Auto-generate transaksi berulang (Phase D): idempotent per-bulan
+  // (guard last_generated_month di DB). Dipanggil tiap buka dasbor;
+  // kalau ada transaksi baru, refresh data + rerender.
+  if (window.Recurring) {
+    window.Recurring.maybeGenerate({ items, today: new Date() })
+      .then((created) => {
+        if (!created || created.length === 0) return;
+        if (window.LK) window.LK.toast(created.length + " transaksi berulang ditambahkan", "success");
+        return Storage.loadAll({ force: true }).then((next) => {
+          items = next;
+          rerenderAll();
+        });
+      })
+      .catch((e) => console.warn("[LK] maybeGenerate gagal:", e));
+  }
 })();
