@@ -243,20 +243,28 @@ ID issue ada di `docs/codacy-issues-2026-08-30.json` (field `issueId`) — tapi 
 # Token
 source ~/.hermes/.env   # CODACY_API_TOKEN (account token v3)
 BASE="https://api.codacy.com/api/v3"
-ORG="gh/fanzz-21/money-tracker"
+# CATATAN (diperbaiki 2026-08-31): repo endpoint pakai ORG="gh/fanzz-21" (bukan
+# "gh/fanzz-21/money-tracker") + suffix /repositories[/money-tracker].
+ORG="gh/fanzz-21"
+REPO="money-tracker"
 
-# Repo + grade
+# Repo + grade (GET; field: gradeLetter, grade, issuesCount, issuesPercentage, loc)
 curl -s "$BASE/analysis/organizations/$ORG/repositories" -H "api-token: $CODACY_API_TOKEN"
 
-# Issue overview (catatan: POST, bukan GET)
-curl -s -X POST "$BASE/analysis/organizations/$ORG/issues/overview" -H "api-token: $CODACY_API_TOKEN" -H "Content-Type: application/json" -d '{}'
+# Issue overview (POST)
+curl -s -X POST "$BASE/analysis/organizations/$ORG/repositories/$REPO/issues/overview" -H "api-token: $CODACY_API_TOKEN" -H "Content-Type: application/json" -d '{}'
 
 # Cari issue per kategori (pagination kursor di API ini BUG/terbatas — tarik per-kategori)
 for c in Security ErrorProne Complexity BestPractice UnusedCode; do
-  curl -s -X POST "$BASE/analysis/organizations/$ORG/issues/search" \
+  curl -s -X POST "$BASE/analysis/organizations/$ORG/repositories/$REPO/issues/search" \
     -H "api-token: $CODACY_API_TOKEN" -H "Content-Type: application/json" \
-    -d "{\"categories\":[\"$c\"],\"limit\":100}"
+    -d "{\"issueCategories\":[\"$c\"],\"limit\":50}"
 done
+
+# Bulk-ignore (POST, max 100 issue, body: {"issueIds":[...]})
+curl -s -X POST "$BASE/analysis/organizations/$ORG/repositories/$REPO/issues/bulk-ignore" \
+  -H "api-token: $CODACY_API_TOKEN" -H "Content-Type: application/json" \
+  -d '{"issueIds":["<id1>","<id2>"]}'
 ```
 
 Catatan pagination: `issues/search` dengan cursor berulang tidak memajukan (sisa 26 dari 126 tak muncul) — selalu tarik per-kategori lalu dedupe by `issueId`.
@@ -264,9 +272,32 @@ Catatan pagination: `issues/search` dengan cursor berulang tidak memajukan (sisa
 ## Checklist progres
 
 - [x] 2026-08-30: repo disinkron ke v2.2.0 (5e083d9), 126 issue dipetakan, plan dituliskan
-- [ ] Fase 1: Security (36)
-- [ ] Fase 2: no-undef (65)
-- [ ] Fase 3: Hygiene (15)
-- [ ] Fase 4: Complexity & config (5)
-- [ ] Fase 5: bulk-ignore FP + re-run + verifikasi grade A
+- [x] Fase 1: Security (36) — commit `e4f73b2`
+- [x] Fase 2: no-undef (65) — commit `67380c8` + verifikasi strict ESLint (0 no-undef)
+- [x] Fase 3: Hygiene (15) — commit `d6fb248`
+- [x] Fase 4: Complexity & config (5) — commit `404e4ed`
+- [x] Fase 5: bulk-ignore 7 FP + re-run + verifikasi — **GRADE A (98/100)**
 - [ ] (Opsional) Webhook Codacy → Hermes
+
+## Hasil akhir (2026-08-31)
+
+| Metrik | Sebelum | Sesudah |
+|---|---|---|
+| Grade | B (72) | **A (98)** |
+| Issues | 126 | 7 (semua FP, di-ignore) |
+| Issue % | 23% (gate FAIL) | **0% (gate PASS)** |
+| LOC | 6.096 | 8.349 |
+
+Issue yang di-fix di kode (bukan di-ignore): 65 no-undef, 9 XSS, 12 object injection,
+open redirect (di-upgrade ke allowlist), crypto weak random, XSS dashboard/history,
+4 unused vars, numeric literals (7→1 sisa FP), linefeed, `while(true)`,
+dynamic delete, ConsistentReturn, CSS `rgba()`/`min()` → hex-8/max-width,
+IIFE >50 NLOC dipecah (profile, history, dashboard, tailwind-config).
+
+7 issue bulk-ignore (semua false positive, justifikasi per item):
+1. `js/auth.js:135` Semgrep open-redirect — `next` sudah allowlist ketat (4 path tetap)
+2-5. `storage.js:36`, `budget.js:22`, `input.js:120`, `storage-backup.js:11` PMD InnaccurateNumericLiteral — `1000000000` presisi eksak (≪ 2^53), rule over-aggressive untuk ECMAScript
+6. `css/ui.css:1` Stylelint — error config Codacy sendiri: "Unknown rule scss_function-disallowed-list"
+7. `package-lock.json:1` Lizard — file generated, bukan kode
+
+Commit remedial: `e4f73b2` (Fase 1) → `67380c8` (Fase 2) → `d6fb248` (Fase 3) → `404e4ed` (Fase 4) → `fe2d090` (Fase 5: ConsistentReturn + allowlist).
