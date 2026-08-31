@@ -30,6 +30,17 @@
   // Load items sekali untuk hitung spent per kategori di bulan ini
   let allItems = await Storage.loadAll();
 
+  // Muat kategori custom per-user (Phase C) sebelum dropdown dibangun,
+  // supaya Storage.CATS memuat kategori non-default milik user.
+  // Gagal load (mis. offline) tidak memblokir input — fallback ke default.
+  try {
+    if (typeof Storage.loadCategories === "function") {
+      await Storage.loadCategories();
+    }
+  } catch (e) {
+    console.warn("[input] loadCategories gagal, pakai default:", e);
+  }
+
   // Default today
   date.value = Storage.todayISO();
   noteCount.textContent = "0";

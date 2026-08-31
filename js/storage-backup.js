@@ -11,11 +11,14 @@ const EXPORT_VERSION = 1;
 const MAX_AMOUNT = 1000000000;
 const MAX_NOTE_LENGTH = 500;
 
-// Pakai whitelist dari Storage.CATS (single source of truth)
-const ALL_CATS = new Set([
-  ...(Storage.CATS.in || []),
-  ...(Storage.CATS.out || [])
-]);
+// whitelist kategori dihitung fresh tiap restore dari Storage.CATS (live) —
+// jadi kategori custom yang sudah di-load loadCategories() ikut tervalidasi.
+function catWhitelist() {
+  const s = new Set();
+  for (const k of (Storage.CATS.in || [])) s.add(k);
+  for (const k of (Storage.CATS.out || [])) s.add(k);
+  return s;
+}
 
 function exportToJSON(items) {
   return JSON.stringify({
@@ -48,6 +51,11 @@ async function importFromJSON(jsonText) {
   if (!Array.isArray(data.transactions)) {
     throw new Error("Format transactions tidak valid.");
   }
+  // Muat ulang kategori custom agar whitelist memuat kategori non-default.
+  if (typeof Storage.loadCategories === "function") {
+    try { await Storage.loadCategories({ force: true }); } catch (e) { /* fallback ke default */ }
+  }
+  const allowed = catWhitelist();
   const valid = [];
   const skipped = [];
   for (const t of data.transactions) {
@@ -56,7 +64,7 @@ async function importFromJSON(jsonText) {
     if (!["in", "out"].includes(t.type)) { skipped.push(`bad type: ${t.type}`); continue; }
     const amt = Math.round(Number(t.amount));
     if (!Number.isFinite(amt) || amt < 1 || amt > MAX_AMOUNT) { skipped.push(`bad amount: ${t.amount}`); continue; }
-    if (!ALL_CATS.has(t.category)) { skipped.push(`bad category: ${t.category}`); continue; }
+    if (!allowed.has(t.category)) { skipped.push(`bad category: ${t.category}`); continue; }
     const note = String(t.note || "").slice(0, MAX_NOTE_LENGTH);
     valid.push({ date: t.date, type: t.type, amount: amt, category: t.category, note });
   }

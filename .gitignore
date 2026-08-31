@@ -9,3 +9,5 @@ js/.hermes-tmp.*
 *.bak
 .hermes/
 tests/helpers/.supabase-stub.mjs
+verify-c.mjs
+# verify-c.mjs = one-off DB verification, tidak boleh commit

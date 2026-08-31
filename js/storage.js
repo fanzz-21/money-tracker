@@ -20,6 +20,10 @@
 //   Storage.monthComparison(items, ym)  -> {cur,prev,deltaMasuk,deltaKeluar}
 //   Storage.spendByCategoryTop(items, ym) -> {name,amount} | null
 //   Storage.projectMonthEnd(items, ym, today) -> {projected,basisDays,daysInMonth,soFar}
+//   Storage.isSafeCatName(k)                  -> bool  (validasi nama kategori)
+//   Storage.loadCategories({force}?)          -> Promise<{in,out}>  (merge sistem+custom)
+//   Storage.addCategory(name,type)            -> Promise<name>
+//   Storage.removeCategory(name,type)         -> Promise<bool>  (blokir jika terpakai)
 //
 // Catatan migrasi:
 // - items sekarang adalah array biasa hasil query (bukan array sinkron).
@@ -35,7 +39,27 @@ const CATS = {
   out: ["Makan", "Transport", "Tagihan", "Belanja", "Lainnya"]
 };
 
-const ALL_CATS = new Set([...CATS.in, ...CATS.out]);
+// Validasi nama kategori (client-side; sumber kebenaran akhir = trigger DB).
+// Reuse logika isSafeCat dari js/budget.js: 1-50 char, tolak key spesial
+// prototype-chain (__proto__, constructor, prototype, semua yang diawali "__").
+// CATS_IN_USE memakai Set<string>, jadi nama apa pun aman secara runtime;
+// validasi ini hanya mencegah nama berbahaya disimpan sebagai data baru.
+function isSafeCatName(k) {
+  return (
+    typeof k === "string" &&
+    k.length > 0 &&
+    k.length <= MAX_CATEGORY_LENGTH &&
+    k !== "__proto__" &&
+    k !== "constructor" &&
+    k !== "prototype" &&
+    !k.startsWith("__")
+  );
+}
+
+// Set nama kategori yang terpakai di items termuat — diisi oleh loadAll().
+// Dipakai removeCategory() untuk memblokir hapus kategori yang masih ada di
+// transaksi (Q4-final: blokir, bukan pindahkan).
+const CATS_IN_USE = new Set();
 
 const MAX_AMOUNT = 1000000000;        // 1 miliar
 const MAX_NOTE_LENGTH = 500;          // chars
@@ -90,6 +114,9 @@ async function loadAll({ force = false } = {}) {
       throw new Error(error.message);
     }
     _cache = (data || []).map(rowFromDb);
+    // Refresh daftar kategori terpakai (dipakai removeCategory).
+    CATS_IN_USE.clear();
+    for (const t of _cache) CATS_IN_USE.add(t.category);
     _inflight = null;
     return _cache;
   })();
@@ -107,7 +134,10 @@ async function addTx({ date, type, amount, category, note }) {
   const n = Math.round(Number(amount));
   if (!Number.isFinite(n) || n < 1) throw new Error("Jumlah tidak valid (min 1).");
   if (n > MAX_AMOUNT) throw new Error(`Jumlah terlalu besar (maks ${MAX_AMOUNT.toLocaleString("id-ID")}).`);
-  if (!ALL_CATS.has(category)) throw new Error(`Kategori "${category}" tidak dikenal.`);
+  // Validasi kategori: cukup isSafeCatName — kategori custom (non-default)
+  // harus lolos client-side; sumber kebenaran = trigger DB tx_category_valid
+  // (nama harus ada di categories sistem ATAU user_categories user).
+  if (!isSafeCatName(category)) throw new Error(`Kategori "${category}" tidak dikenal.`);
   const cleanNote = String(note || "").trim().slice(0, MAX_NOTE_LENGTH);
   if (category.length > MAX_CATEGORY_LENGTH) throw new Error("Kategori terlalu panjang.");
 
@@ -307,6 +337,78 @@ function projectMonthEnd(items, ym, today) {
   };
 }
 
+// =========================================================================
+// Kategori custom per-user (Phase C). Sumber kebenaran nama kategori = DB
+// (trigger tx_category_valid); di sini kita hanya load/merge + CRUD ke
+// user_categories. loadCategories() mengisi CATS in-place agar dropdown di
+// input.js ikut menampilkan custom, dan memulihkan default dari scratch tiap
+// force (agar kategori yang dihapus dari DB tidak "tengkorak" di client).
+// =========================================================================
+const BASE_CATS = {
+  in: ["Gaji", "Usaha", "Transfer masuk", "Lainnya"],
+  out: ["Makan", "Transport", "Tagihan", "Belanja", "Lainnya"]
+};
+let _catsLoaded = false;
+
+async function loadCategories({ force = false } = {}) {
+  if (_catsLoaded && !force) {
+    return { in: CATS.in.slice(), out: CATS.out.slice() };
+  }
+  const [sys, usr] = await Promise.all([
+    supabase.from("categories").select("id,type"),
+    supabase.from("user_categories").select("name,type")
+  ]);
+  // Reset ke default dulu, lalu merge sistem + custom (dedupe via Set).
+  CATS.in = BASE_CATS.in.slice();
+  CATS.out = BASE_CATS.out.slice();
+  const inSet = new Set(CATS.in), outSet = new Set(CATS.out);
+  (sys.data || []).forEach((c) => (c.type === "in" ? inSet : outSet).add(c.id));
+  (usr.data || []).forEach((c) => (c.type === "in" ? inSet : outSet).add(c.name));
+  CATS.in = Array.from(inSet);
+  CATS.out = Array.from(outSet);
+  _catsLoaded = true;
+  return { in: CATS.in.slice(), out: CATS.out.slice() };
+}
+
+async function addCategory(name, type) {
+  const n = String(name || "").trim();
+  if (!isSafeCatName(n)) throw new Error("Nama kategori tidak valid.");
+  if (!["in", "out"].includes(type)) throw new Error("Tipe tidak valid.");
+  const { data: { user } } = await supabase.auth.getUser();
+  if (!user) throw new Error("Belum login.");
+  const { error } = await supabase
+    .from("user_categories")
+    .insert({ user_id: user.id, name: n, type });
+  if (error) {
+    if (String(error.message).toLowerCase().includes("duplicate")) {
+      throw new Error("Kategori sudah ada.");
+    }
+    throw new Error(error.message);
+  }
+  _catsLoaded = false;
+  return n;
+}
+
+async function removeCategory(name, type) {
+  if (!["in", "out"].includes(type)) throw new Error("Tipe tidak valid.");
+  const n = String(name || "").trim();
+  const isSystem = (type === "in" ? BASE_CATS.in : BASE_CATS.out).includes(n);
+  if (isSystem) throw new Error("Kategori bawaan sistem tidak bisa dihapus.");
+  if (CATS_IN_USE.has(n)) {
+    throw new Error("Kategori masih dipakai di transaksi. Pindahkan dulu.");
+  }
+  const { data: { user } } = await supabase.auth.getUser();
+  if (!user) throw new Error("Belum login.");
+  const { error } = await supabase
+    .from("user_categories")
+    .delete()
+    .eq("name", n)
+    .eq("type", type);
+  if (error) throw new Error(error.message);
+  _catsLoaded = false;
+  return true;
+}
+
 // Ekspos ke window untuk kompatibilitas dengan kode non-modular
 // (dashboard.js, history.js, input.js masih pakai `Storage.xxx`).
 const Storage = {
@@ -330,7 +432,11 @@ const Storage = {
   prevMonthKey,
   monthComparison,
   spendByCategoryTop,
-  projectMonthEnd
+  projectMonthEnd,
+  isSafeCatName,
+  loadCategories,
+  addCategory,
+  removeCategory
   // exportToJSON / importFromJSON / clearAll ditambahkan oleh storage-backup.js
 };
 
@@ -340,5 +446,6 @@ export {
   CATS, todayISO, uid, loadAll, addTx, removeTx, clearDate, invalidate,
   byDate, totals, toCsv, toCsvBom, monthKey, lastMonths, monthTotals,
   flowSeries, spendByCategory, prevMonthKey, monthComparison,
-  spendByCategoryTop, projectMonthEnd
+  spendByCategoryTop, projectMonthEnd,
+  isSafeCatName, loadCategories, addCategory, removeCategory
 };

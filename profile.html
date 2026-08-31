@@ -105,6 +105,37 @@
       </form>
     </section>
 
+    <!-- Kategori custom (Phase C) -->
+    <section class="lk-card p-4 mb-4">
+      <h3 class="font-semibold mb-3 flex items-center gap-2">
+        <span class="material-symbols-outlined lk-text-accent">category</span>
+        Kategori Custom
+      </h3>
+      <p class="text-xs text-[var(--lk-text-muted)] mb-3">
+        Tambah kategori khusus milikmu (muncul di input transaksi). Kategori bawaan sistem tidak bisa dihapus; kategori yang masih dipakai transaksi akan diblokir dari penghapusan.
+      </p>
+      <div class="lk-grid-2 mb-3">
+        <div class="lk-stack" style="gap:0.5rem">
+          <p class="text-xs font-medium text-[var(--lk-text-muted)]">Masuk</p>
+          <ul id="custom-cats-in" class="cat-list"></ul>
+        </div>
+        <div class="lk-stack" style="gap:0.5rem">
+          <p class="text-xs font-medium text-[var(--lk-text-muted)]">Keluar</p>
+          <ul id="custom-cats-out" class="cat-list"></ul>
+        </div>
+      </div>
+      <form id="cat-form" class="lk-row" style="gap:0.5rem">
+        <input id="cat-name" type="text" maxlength="50" required placeholder="Nama kategori baru" style="flex:1 1 10rem" />
+        <select id="cat-type" required style="flex:0 1 8rem">
+          <option value="out">Keluar</option>
+          <option value="in">Masuk</option>
+        </select>
+        <button type="submit" class="lk-btn-primary text-sm" style="flex:0 0 auto">
+          <span class="material-symbols-outlined text-lg">add</span>
+        </button>
+      </form>
+    </section>
+
     <!-- Tampilan & Backup -->
     <section class="lk-card p-4 mb-4">
       <h3 class="font-semibold mb-3 flex items-center gap-2">
@@ -160,6 +191,7 @@
   <script type="module" src="js/budget.js?v=10"></script>
   <script src="js/notify.js?v=10"></script>
   <script src="js/sidebar.js?v=15"></script>
+  <script src="js/categories-ui.js?v=1"></script>
   <script src="js/profile.js?v=10"></script>
 </body>
 </html>
