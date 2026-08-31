@@ -1,6 +1,6 @@
 {
-  "name": "Kas Harian",
-  "short_name": "Kas Harian",
+  "name": "Fintrack",
+  "short_name": "Fintrack",
   "description": "Laporan keuangan harian dengan sinkronisasi multi-device via Supabase.",
   "start_url": "./index.html",
   "scope": "./",

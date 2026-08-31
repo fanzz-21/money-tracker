@@ -101,7 +101,7 @@
     brandRow.appendChild(makeIcon("material-symbols-outlined lk-text-accent text-2xl", "account_balance_wallet"));
     const h2 = document.createElement("h2");
     h2.className = "font-semibold text-lg truncate";
-    h2.textContent = "Kas Harian";
+    h2.textContent = "Fintrack";
     brandRow.appendChild(h2);
     const closeBtn = document.createElement("button");
     closeBtn.type = "button";
