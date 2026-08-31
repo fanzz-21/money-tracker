@@ -6,7 +6,10 @@
   "scripts": {
     "dev": "vercel dev",
     "build": "echo 'Static site - no build step'",
-    "deploy": "vercel --prod"
+    "deploy": "vercel --prod",
+    "lint": "eslint js/",
+    "lint:strict": "eslint -c .eslintrc-strict.json js/",
+    "smoke": "node tests/smoke-classic.mjs"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.45.0"
