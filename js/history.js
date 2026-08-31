@@ -88,6 +88,7 @@ function makeTxRow(row) {
   const typeSel = document.getElementById("filter-type");
   const searchInp = document.getElementById("search-note");
   const exportCsvBtn = document.getElementById("btn-export-csv");
+  const exportXlsxBtn = document.getElementById("btn-export-xlsx");
   const exportJsonBtn = document.getElementById("btn-export-json");
   const importFile = document.getElementById("import-file");
   const resetBtn = document.getElementById("btn-reset");
@@ -223,33 +224,36 @@ function makeTxRow(row) {
       });
   }
 
-  function downloadBlob(blob, filename) {
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement("a");
-    a.href = url;
-    a.download = filename;
-    a.click();
-    URL.revokeObjectURL(url);
-  }
-
   function bindExport() {
-    exportCsvBtn.addEventListener("click", () => {
-      const csv = Storage.toCsv(items.filter(matchesFilter));
-      downloadBlob(new Blob([csv], { type: "text/csv;charset=utf-8;" }),
-        "riwayat-" + Storage.todayISO() + ".csv");
-      if (window.LK) window.LK.toast("CSV diunduh", "success");
-    });
+    // Modul ESM js/exports.js set window.Exports — tunggu sebelum bind.
+    window.waitForExports().then((Exports) => {
+      exportCsvBtn.addEventListener("click", () => {
+        Exports.csv(items.filter(matchesFilter));
+        if (window.LK) window.LK.toast("CSV diunduh", "success");
+      });
 
-    exportJsonBtn.addEventListener("click", () => {
-      try {
-        const json = Storage.exportToJSON(items);
-        const date = new Date().toISOString().slice(0, 10);
-        downloadBlob(new Blob([json], { type: "application/json" }),
-          "kas-harian-backup-" + date + ".json");
-        if (window.LK) window.LK.toast("Backup " + items.length + " transaksi diunduh", "success");
-      } catch (err) {
-        if (window.LK) window.LK.toast("Gagal export: " + ((err && err.message) || "unknown"), "error");
-      }
+      exportXlsxBtn.addEventListener("click", async () => {
+        try {
+          await Exports.xlsx(items.filter(matchesFilter));
+          if (window.LK) window.LK.toast("Excel (.xlsx) diunduh", "success");
+        } catch (err) {
+          if (window.LK) window.LK.toast("Gagal export Excel: " + ((err && err.message) || "unknown") + " — coba CSV", "error");
+        }
+      });
+
+      exportJsonBtn.addEventListener("click", () => {
+        try {
+          const json = Storage.exportToJSON(items);
+          const date = Storage.todayISO();
+          Exports.downloadBlob(new Blob([json], { type: "application/json" }),
+            "fintrack-backup-" + date + ".json");
+          if (window.LK) window.LK.toast("Backup " + items.length + " transaksi diunduh", "success");
+        } catch (err) {
+          if (window.LK) window.LK.toast("Gagal export: " + ((err && err.message) || "unknown"), "error");
+        }
+      });
+    }).catch((err) => {
+      console.error("[history] Exports tidak siap:", err);
     });
   }
 

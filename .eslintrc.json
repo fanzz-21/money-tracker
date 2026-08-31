@@ -25,7 +25,7 @@
   },
   "overrides": [
     {
-      "files": ["js/auth.js", "js/storage.js", "js/budget.js", "js/realtime.js", "js/supabase.js", "js/migrate.js", "js/storage-backup.js"],
+      "files": ["js/auth.js", "js/storage.js", "js/budget.js", "js/realtime.js", "js/supabase.js", "js/migrate.js", "js/storage-backup.js", "js/exports.js"],
       "parserOptions": { "sourceType": "module" }
     }
   ]

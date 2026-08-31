@@ -5,7 +5,7 @@
   "rules": { "no-undef": "error" },
   "overrides": [
     {
-      "files": ["supabase.js", "auth.js", "storage.js", "realtime.js", "budget.js", "migrate.js", "storage-backup.js"],
+      "files": ["supabase.js", "auth.js", "storage.js", "realtime.js", "budget.js", "migrate.js", "storage-backup.js", "exports.js"],
       "parserOptions": { "sourceType": "module" }
     }
   ]

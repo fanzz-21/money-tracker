@@ -209,6 +209,12 @@ function toCsv(items) {
   return [head].concat(lines).join("\n");
 }
 
+// BOM \uFEFF di depan supaya Excel membaca sebagai UTF-8 (karakter non-ASCII
+// di catatan — tanda −, kurung siku, dll — tidak corrupt).
+function toCsvBom(items) {
+  return "\uFEFF" + toCsv(items);
+}
+
 function monthKey(iso) {
   return String(iso || "").slice(0, 7);
 }
@@ -315,6 +321,7 @@ const Storage = {
   byDate,
   totals,
   toCsv,
+  toCsvBom,
   monthKey,
   lastMonths,
   monthTotals,
@@ -331,7 +338,7 @@ window.Storage = Storage;
 export default Storage;
 export {
   CATS, todayISO, uid, loadAll, addTx, removeTx, clearDate, invalidate,
-  byDate, totals, toCsv, monthKey, lastMonths, monthTotals,
+  byDate, totals, toCsv, toCsvBom, monthKey, lastMonths, monthTotals,
   flowSeries, spendByCategory, prevMonthKey, monthComparison,
   spendByCategoryTop, projectMonthEnd
 };

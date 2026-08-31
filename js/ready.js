@@ -2,19 +2,21 @@
 // Dipakai oleh dashboard.js, input.js, history.js yang load sync
 // tapi butuh window.Auth & window.Storage (di-set oleh ESM modules async).
 //
-// Whitelist nama modul (Auth/Storage) — tidak ada akses properti dinamis
-// `global[name]` (membuka peluang object injection); nama lain langsung
-// ditolak.
+// Whitelist nama modul (Auth/Storage/Exports) — tidak ada akses properti
+// dinamis `global[name]` (membuka peluang object injection); nama lain
+// langsung ditolak.
 
 (function (global) {
+  const ALLOWED = ["Auth", "Storage", "Exports"];
   function resolve(name) {
     if (name === "Auth") return global.Auth || null;
     if (name === "Storage") return global.Storage || null;
+    if (name === "Exports") return global.Exports || null;
     return null;
   }
 
   global.waitFor = async function (name, timeout = 5000) {
-    if (name !== "Auth" && name !== "Storage") {
+    if (!ALLOWED.includes(name)) {
       throw new Error(`[LK] Nama modul tidak dikenal: ${String(name)}`);
     }
     const start = Date.now();
@@ -29,4 +31,5 @@
 
   global.waitForAuth = () => global.waitFor("Auth");
   global.waitForStorage = () => global.waitFor("Storage");
+  global.waitForExports = () => global.waitFor("Exports");
 })(window);
