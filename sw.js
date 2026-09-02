@@ -8,7 +8,7 @@
 // baru otomatis karena URL sama; handler "activate" di bawah bersihkan cache
 // versi lama dan paksa klien pakai SW baru.
 
-const CACHE_VERSION = "v2";
+const CACHE_VERSION = "v3";
 const SHELL_CACHE = "lk-shell-" + CACHE_VERSION;
 const STATIC_CACHE = "lk-static-" + CACHE_VERSION;
 
@@ -37,6 +37,11 @@ const SHELL = [
   "./js/history.js",
   "./js/login.js",
   "./js/tailwind-config.js",
+  "./js/insight.js",
+  "./js/recurring.js",
+  "./js/recurring-ui.js",
+  "./recurring.html",
+  "./profile.html",
   "./manifest.webmanifest",
   "./icon.svg",
   "./icon-192.png",
