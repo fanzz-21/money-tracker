@@ -1,0 +1,39 @@
+# robots.txt for kas-harian-swart.vercel.app (Fintrack)
+# This is a PRIVATE financial app. All user data is behind authentication.
+# No public content to index. Block all crawlers including AI bots.
+
+User-agent: *
+Disallow: /
+
+# Explicit AI crawler blocks (defense in depth)
+User-agent: GPTBot
+Disallow: /
+
+User-agent: OAI-SearchBot
+Disallow: /
+
+User-agent: Claude-Web
+Disallow: /
+
+User-agent: Google-Extended
+Disallow: /
+
+User-agent: CCBot
+Disallow: /
+
+User-agent: anthropic-ai
+Disallow: /
+
+User-agent: Bytespider
+Disallow: /
+
+User-agent: Amazonbot
+Disallow: /
+
+# Content Signals (https://contentsignals.org/)
+Content-Signal: ai-train=no, search=no, ai-input=no
+
+# Sitemap (only public pages)
+Sitemap: https://kas-harian-swart.vercel.app/sitemap.xml
+
+</content>
