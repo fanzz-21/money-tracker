@@ -32,4 +32,3 @@ drop policy if exists "savings_all_own" on public.savings_goals;
 create policy "savings_all_own" on public.savings_goals for all
   using (auth.uid() = user_id) with check (auth.uid() = user_id);
 
-</content>
