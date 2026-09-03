@@ -131,6 +131,15 @@ function dashEmptyMarkup(el) {
     sumIn.textContent = dashFmtRp(mt.masuk);
     sumOut.textContent = dashFmtRp(mt.keluar);
     sumNet.textContent = dashFmtRp(mt.net);
+
+    // Saldo keseluruhan (all-time)
+    const at = Storage.allTimeBalance(items);
+    const atIn = document.getElementById("alltime-in");
+    const atOut = document.getElementById("alltime-out");
+    const atNet = document.getElementById("alltime-net");
+    if (atIn) atIn.textContent = dashFmtRp(at.masuk);
+    if (atOut) atOut.textContent = dashFmtRp(at.keluar);
+    if (atNet) atNet.textContent = dashFmtRp(at.net);
   }
 
   function renderBudget() {

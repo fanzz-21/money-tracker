@@ -61,6 +61,29 @@
       </article>
     </section>
 
+    <!-- Saldo Keseluruhan (All-time) -->
+    <section class="lk-card p-4 md:p-5 min-w-0" aria-label="Saldo keseluruhan">
+      <div class="flex items-center gap-2 mb-3">
+        <span class="material-symbols-outlined lk-text-accent">account_balance_wallet</span>
+        <h2 class="text-sm font-semibold text-[var(--lk-text-muted)] uppercase tracking-wide">Saldo Keseluruhan</h2>
+      </div>
+      <div class="lk-grid-3" style="gap:0.75rem">
+        <div class="min-w-0">
+          <p class="text-xs text-[var(--lk-text-faint)] mb-0.5">Total Masuk</p>
+          <p id="alltime-in" class="text-lg font-semibold lk-money-in truncate" data-loading><span class="lk-skeleton" style="display:inline-block;width:6rem;height:1.25rem" aria-hidden="true">&nbsp;</span></p>
+        </div>
+        <div class="min-w-0">
+          <p class="text-xs text-[var(--lk-text-faint)] mb-0.5">Total Keluar</p>
+          <p id="alltime-out" class="text-lg font-semibold lk-money-out truncate" data-loading><span class="lk-skeleton" style="display:inline-block;width:6rem;height:1.25rem" aria-hidden="true">&nbsp;</span></p>
+        </div>
+        <div class="min-w-0">
+          <p class="text-xs text-[var(--lk-text-faint)] mb-0.5">Saldo Bersih</p>
+          <p id="alltime-net" class="text-lg font-semibold lk-money-net truncate" data-loading><span class="lk-skeleton" style="display:inline-block;width:6rem;height:1.25rem" aria-hidden="true">&nbsp;</span></p>
+        </div>
+      </div>
+      <p class="text-xs text-[var(--lk-text-faint)] mt-2">Akumulasi seluruh waktu, bukan hanya bulan ini.</p>
+    </section>
+
     <!-- Insight -->
     <section class="lk-grid-3" aria-label="Insight bulan ini" id="insight-grid" hidden>
       <article class="lk-card p-4 min-w-0">

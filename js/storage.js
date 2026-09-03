@@ -315,6 +315,19 @@ function monthComparison(items, ym) {
   };
 }
 
+// Saldo keseluruhan (all-time): total masuk - keluar dari SEMUA transaksi,
+// bukan hanya bulan ini. Dipakai kartu "Saldo Keseluruhan" di dasbor.
+function allTimeBalance(items) {
+  let masuk = 0;
+  let keluar = 0;
+  for (const t of items) {
+    const n = Number(t.amount) || 0;
+    if (t.type === "in") masuk += n;
+    else keluar += n;
+  }
+  return { masuk, keluar, net: masuk - keluar };
+}
+
 function spendByCategoryTop(items, ym) {
   const list = spendByCategory(items, ym);
   return list.length ? list[0] : null;
@@ -436,7 +449,8 @@ const Storage = {
   isSafeCatName,
   loadCategories,
   addCategory,
-  removeCategory
+  removeCategory,
+  allTimeBalance
   // exportToJSON / importFromJSON / clearAll ditambahkan oleh storage-backup.js
 };
 
@@ -447,5 +461,6 @@ export {
   byDate, totals, toCsv, toCsvBom, monthKey, lastMonths, monthTotals,
   flowSeries, spendByCategory, prevMonthKey, monthComparison,
   spendByCategoryTop, projectMonthEnd,
-  isSafeCatName, loadCategories, addCategory, removeCategory
+  isSafeCatName, loadCategories, addCategory, removeCategory,
+  allTimeBalance
 };
